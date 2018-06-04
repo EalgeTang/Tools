@@ -12,18 +12,51 @@
 
 @interface TTUtility : NSObject
 
+/**
+ 获取windows当前现在的Vc
+ @return Windows 上正在展示的VC
+ */
++ (UIViewController *)tt_getCurrentViewController;
+
+/**
+ 验证E-mail 格式
+ @param email 需要验证的emal格式
+ @return 格式是否正确
+ */
++ (BOOL)tt_validateEmail:(NSString *)email;
+
+/**
+ 验证中文
+ */
++ (BOOL)tt_validateChinese:(NSString *)str;
+
+/**
+  使用传入的正则表达式用谓词的方法检验 某一段字符串 是否符合标准
+
+ @param reg 正则表达式,需要符合oc语法, 需要转义`\` 的地方为`\\`
+ @param str 需要校验的字符串
+ @return 校验结果
+ */
++ (BOOL)tt_validateRegExForPredicate:(NSString *)reg string:(NSString *)str;
+
 @end
 
 #pragma mark -- Datas
 
 @interface NSArray (TTUtility)
 
+/**
+ 是否可以正常使用, 即数据存在并且数量大于0
+ */
 @property (nonatomic, assign, readonly) BOOL tt_isUseable;
 
 @end
 
 @interface NSDictionary (TTUtility)
 
+/**
+ 是否可以正常使用, 即数据存在并且数量大于0
+ */
 @property (nonatomic, assign, readonly) BOOL tt_isUseable;
 /**
  获取int类型的数据
@@ -108,7 +141,25 @@
 @property (readonly) CGFloat tt_right;
 
 
+
+/**
+ 设置一个默认无边框的圆角
+
+ @param radius 圆角半径
+ */
+- (void)tt_setupConnerRadius:(CGFloat)radius;
+
+/**
+ 设置圆角 以及圆角边框展示
+
+ @param borderColor 圆角边框的颜色值
+ @param borderWidth 圆角边框的宽度
+ @param radius 圆角边框半径
+ */
+- (void)tt_setupBorder:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth cornerRadius:(CGFloat)radius;
+
 @end
+
 @interface UITableView (TTUtility)
 
 - (void)tt_registerNibClass:(nullable Class) cellClass forCellReuseIdentifier:(nullable NSString *)identifier;
@@ -129,7 +180,27 @@
 
 @end
 
-/**因为内联方法以 tk 开头方便检索*/
+@interface UIImage (TTUtility)
+
+/**
+ 以图片的中心点为拉伸点去拉伸图片
+
+ @return 拉伸过的图片
+ */
+- (UIImage *)tt_resizableImageForSretchMode;
+@end
+
+@interface CALayer (TTUtility)
+
+/**左右抖动*/
+- (void)tt_shake;
+
+@end
+/**
+ 因为内联方法以 tk 开头方便检索
+ 之所以把内联方法放到最下面书写是因为有的内联方法是用到上面自己写的方法的, 如果放在最上面的话,
+ 自己写的方法就会因为找不到而报错了
+ */
 #pragma 一些常用的内联方法
 static inline CGRect tkRect(CGFloat x, CGFloat y, CGFloat width, CGFloat height){
     return CGRectMake(x, y, width, height);

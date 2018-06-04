@@ -8,7 +8,63 @@
 
 #import "TTUtility.h"
 #import <objc/runtime.h>
+
 @implementation TTUtility
+
+/** 获取windows当前现在的Vc*/
++ (UIViewController *)tt_getCurrentViewController
+{
+    UIViewController *vc = [UIApplication sharedApplication].delegate.window.rootViewController;
+    while (1) {
+         //
+        if ([vc isKindOfClass:[UITabBarController class]])
+        {
+            vc = ((UITabBarController *)vc).selectedViewController;
+        }
+        if ([vc isKindOfClass:[UINavigationController class]])
+        {
+            vc = ((UINavigationController *)vc).visibleViewController;
+        }
+        if (vc.presentedViewController)
+        {
+            vc = vc.presentedViewController;
+        }
+        else
+        {
+            break;
+        }
+    }
+    
+    return vc;
+}
+
+/**
+ 验证E-mail 格式
+ @param email 需要验证的emal格式
+ @return 格式是否正确
+ */
++ (BOOL)tt_validateEmail:(NSString *)email
+{
+    NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",emailReg];
+    return [predicate evaluateWithObject:email];
+}
+
+/**
+ 验证中文
+ */
++ (BOOL)tt_validateChinese:(NSString *)str;
+{
+    NSString *reg = @"[\u4e00-\u9fa5]";
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",reg];
+    return [predicate evaluateWithObject:str];
+}
+
++ (BOOL)tt_validateRegExForPredicate:(NSString *)reg string:(NSString *)str
+{
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",reg];
+    return [predicate evaluateWithObject:str];
+}
 
 @end
 
@@ -247,7 +303,8 @@
     self.frame = frame;
 }
 
-- (CGFloat)tt_y{
+- (CGFloat)tt_y
+{
     return self.frame.origin.y;
 }
 
@@ -307,6 +364,27 @@
 {
     return self.center.y;
 }
+
+/**
+ 设置一个默认无边框的圆角
+ 
+ @param radius 圆角半径
+ */
+- (void)tt_setupConnerRadius:(CGFloat)radius
+{
+    [self tt_setupBorder:nil borderWidth:0 cornerRadius:radius];
+}
+
+- (void)tt_setupBorder:(UIColor *)borderColor
+           borderWidth:(CGFloat)borderWidth
+          cornerRadius:(CGFloat)radius;
+{
+    self.layer.masksToBounds = YES;
+    self.layer.cornerRadius = radius;
+    self.layer.borderWidth = borderWidth;
+    self.layer.borderColor = borderColor.CGColor;
+}
+
 @end
 
 @implementation UITableView (TTUtility)
@@ -380,4 +458,40 @@
     return [self tt_colorWithHexString:stringToConvert alpha:1.0];
 }
 
+@end
+
+@implementation UIImage (TTUtility)
+
+/**
+ 以图片的中心点为拉伸点去拉伸图片
+ 
+ @return 拉伸过的图片
+ */
+- (UIImage *)tt_resizableImageForSretchMode
+{
+    CGFloat hor = self.size.width *0.5 - 1;
+    CGFloat ver = self.size.height *0.5 - 1;
+    
+    UIImage *img = [self resizableImageWithCapInsets:UIEdgeInsetsMake(ver, hor, ver, hor) resizingMode:UIImageResizingModeStretch];
+    return img;
+}
+
+@end
+
+@implementation CALayer (TTUtility)
+
+/**左右抖动*/
+- (void)tt_shake
+{
+    CAKeyframeAnimation *keyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
+    CGFloat shakeWidth = 16;
+    keyAnimation.values = @[@(-shakeWidth),@(0),@(shakeWidth),@(0),@(-shakeWidth),@(0),@(shakeWidth),@(0)];
+    //时长
+    keyAnimation.duration = .1f;
+    //重复
+    keyAnimation.repeatCount =2;
+    //移除
+    keyAnimation.removedOnCompletion = YES;
+    [self addAnimation:keyAnimation forKey:@"shake"];
+}
 @end
