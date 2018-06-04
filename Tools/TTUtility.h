@@ -120,7 +120,7 @@
 - (NSString *)tt_substringToIndex:(NSUInteger)toIndex;
 
 /**用URL对特殊字符的允许范围将字符串进行UTF8编码*/
-- (NSString *)tt_URLQueryStringEncoding;
+- (NSString *)tt_URLQueryStringUTF8Encoding;
 
 /**将字符串解码*/
 - (NSString *)tt_stringDecoding;

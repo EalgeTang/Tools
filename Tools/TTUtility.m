@@ -260,7 +260,7 @@
 }
 
 /**用URL对特殊字符的允许范围将字符串进行UTF8编码*/
-- (NSString *)tt_URLQueryStringEncoding
+- (NSString *)tt_URLQueryStringUTF8Encoding
 {
     return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
     //    NSCharacterSet其他类方法的所代表的特殊字符串 下边表示了需要转码的特殊字符
@@ -493,5 +493,11 @@
     //移除
     keyAnimation.removedOnCompletion = YES;
     [self addAnimation:keyAnimation forKey:@"shake"];
+}
+
+- (void)setTestFrame
+{
+    NSLog(@"这是一个分支测试的东西");
+    
 }
 @end
