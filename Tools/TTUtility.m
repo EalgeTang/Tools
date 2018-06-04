@@ -1,0 +1,382 @@
+//
+//  TTUtility.m
+//  Tools
+//
+//  Created by tangbowen on 2018/5/30.
+//  Copyright © 2018年 tangbowen. All rights reserved.
+//
+
+#import "TTUtility.h"
+#import <objc/runtime.h>
+@implementation TTUtility
+
+@end
+
+@implementation NSArray (TTUtility)
+
+- (BOOL)tt_isUseable
+{
+    return (self && self.count > 0);
+}
+@end
+
+@implementation  NSDictionary (TTUtility)
+
+- (BOOL)tt_isUseable
+{
+    return (self && self.count > 0);
+}
+
+- (id)getAttribute:(NSString *)attribute
+{
+    id obj = [self objectForKey:attribute];
+    return (obj == [NSNull null] ? @"" : obj);
+}
+
+- (int)tt_intAttribute:(NSString *)attribute defaultValue:(int)defaultValue {
+    NSString *value = [self getAttribute:attribute];
+    if (value) {
+        return [value intValue];
+    }
+    return defaultValue;
+}
+
+- (NSInteger)tt_integerAttribute:(NSString *)attribute defaultValue:(NSInteger)defaultValue {
+    NSString *value = [self getAttribute:attribute];
+    if (value) {
+        return [value integerValue];
+    }
+    return defaultValue;
+}
+
+- (float)tt_floatAttribute:(NSString *)attribute defaultValue:(float)defaultValue {
+    NSString *value = [self getAttribute:attribute];
+    if (value) {
+        return [value floatValue];
+    }
+    return defaultValue;
+}
+
+- (BOOL)tt_boolAttribute:(NSString *)attribute defaultValue:(BOOL)defalutValue {
+    NSString *value = [self getAttribute:attribute];
+    if (value) {
+        return [value boolValue];
+    }
+    return defalutValue;
+}
+
+- (NSString *)tt_stringAttributeIncludeNil:(NSString *)attribute
+{
+    id object = [self objectForKey:attribute];
+    if (object == nil)
+    {
+        return nil;
+    }
+    if ([object isKindOfClass:[NSString class]])
+    {
+        return object;
+    }
+    if ([object isKindOfClass:[NSNumber class]])
+    {
+        NSNumber *num = (NSNumber *)object;
+        NSString *str = [num stringValue];
+        return str;
+    }
+    if ([object isKindOfClass:[NSNull class]])
+    {
+        return nil;
+    }
+    
+    return object;
+}
+
+- (NSString *)tt_stringAttribute:(NSString *)attribute
+{
+    id object = [self objectForKey:attribute];
+    if (object == nil)
+    {
+        return @"";
+    }
+    if ([object isKindOfClass:[NSString class]])
+    {
+        return object;
+    }
+    if ([object isKindOfClass:[NSNumber class]])
+    {
+        NSNumber *num = (NSNumber *)object;
+        NSString *str = [num stringValue];
+        return str;
+    }
+    if ([object isKindOfClass:[NSNull class]])
+    {
+        return @"";
+    }
+    
+    return object;
+}
+
+- (NSArray *)tt_arrayAttribute:(NSString *)attribute
+{
+    if (attribute == nil)
+    {
+        return nil;
+    }
+    id object = [self objectForKey:attribute];
+    if ([object isKindOfClass:[NSArray class]])
+    {
+        return object;
+    }
+    return nil;
+}
+
+@end
+
+@implementation NSData (TTUtility)
+
+@end
+
+@implementation NSString (TTUtility)
+
+- (BOOL)tt_isUseable
+{
+    return (self && self.length>0);
+}
+
+/**判断是否包含 字符串 aString*/
+- (BOOL)tt_containString:(NSString *)aString {
+    BOOL isContain = NO;
+    
+    if([aString isKindOfClass:[NSString class]]) {
+        isContain = [self containsString:aString];
+    }
+    
+    return isContain;
+}
+
+/**从from位置截取字符串*/
+- (NSString *)tt_substringFromIndex:(NSUInteger)from {
+    if ([self isKindOfClass:[NSString class]]) {
+        if (from <= self.length) {
+            return [self substringFromIndex:from];
+        }
+    }
+    return nil;
+}
+
+/**从开始截取到to位置的字符串*/
+- (NSString *)tt_substringToIndex:(NSUInteger)toIndex {
+    if ([self isKindOfClass:[NSString class]]) {
+        if (toIndex <= self.length) {
+            return [self substringToIndex:toIndex];
+        }
+    }
+    return nil;
+}
+
+/**截取指定范围的字符串*/
+- (NSString *)tt_substringWithRange:(NSRange)range {
+    if ([self isKindOfClass:[NSString class]]) {
+        if ((range.location + range.length) <= self.length && range.location <= self.length && range.length <= self.length) {
+            return [self substringWithRange:range];
+        }
+    }
+    return nil;
+}
+
+/**
+ 根据起始位字符串去截取特定位置的字符串
+ 
+ @param startString 开始位置的字符串
+ @param endString 结束位置字符串
+ @return 截取过的字符串
+ */
+- (NSString *)tt_subStringFromStartStr:(NSString *)startString to:(NSString *)endString
+{
+    NSRange startRange = (startString && startString.length > 0) ? [self rangeOfString:startString] :NSMakeRange(0, 0);
+    startRange = startRange.location != NSNotFound ? startRange : NSMakeRange(0, 0);
+    
+    NSRange endRange = (endString && endString.length > 0) ? [self rangeOfString:endString] : NSMakeRange(self.length, 0);
+    endRange = endRange.location != NSNotFound ? endRange : NSMakeRange(0, 0);
+    
+    NSRange range = NSMakeRange(startRange.location + startRange.length, endRange.location - startRange.location - startRange.length);
+    return self.length > 0 ? [self tt_substringWithRange:range] : @"";
+}
+
+/**用URL对特殊字符的允许范围将字符串进行UTF8编码*/
+- (NSString *)tt_URLQueryStringEncoding
+{
+    return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
+    //    NSCharacterSet其他类方法的所代表的特殊字符串 下边表示了需要转码的特殊字符
+    //    URLFragmentAllowedCharacterSet  @"#%<>[\]^`{|}"
+    //    URLHostAllowedCharacterSet      @"#%/<>?@\^`{|}"
+    //    URLPasswordAllowedCharacterSet  @"#%/:<>?@[\]^`{|}"
+    //    URLPathAllowedCharacterSet      @"#%;<>?[\]^`{|}"
+    //    URLQueryAllowedCharacterSet     @"#%<>[\]^`{|}"
+    //    URLUserAllowedCharacterSet      @"#%/:<>?@[\]^`"
+    
+}
+
+/**将字符串解码*/
+- (NSString *)tt_stringDecoding
+{
+    return [self stringByRemovingPercentEncoding];
+}
+@end
+
+#pragma mark -- Views
+
+@implementation UIView (TTUtility)
+
+- (void)setTt_x:(CGFloat)tt_x
+{
+    CGRect frame = self.frame;
+    frame.origin.x = tt_x;
+    self.frame = frame;
+}
+
+- (CGFloat)tt_x
+{
+    return self.frame.origin.x;
+}
+
+- (void)setTt_y:(CGFloat)tt_y
+{
+    CGRect frame = self.frame;
+    frame.origin.y = tt_y;
+    self.frame = frame;
+}
+
+- (CGFloat)tt_y{
+    return self.frame.origin.y;
+}
+
+- (void)setTt_width:(CGFloat)tt_width
+{
+    CGRect frame = self.frame;
+    frame.size.width = tt_width;
+    self.frame = frame;
+}
+
+- (CGFloat)tt_width
+{
+    return self.frame.size.width;
+}
+
+- (void)setTt_height:(CGFloat)tt_height
+{
+    CGRect frame = self.frame;
+    frame.size.height = tt_height;
+    self.frame = frame;
+}
+
+- (CGFloat)tt_height
+{
+    return self.frame.size.height;
+}
+
+- (CGFloat)tt_bottom
+{
+    return self.frame.origin.y + self.frame.size.height;
+}
+
+- (CGFloat)tt_right{
+    return self.frame.origin.x + self.frame.size.width;
+}
+
+- (void)setTt_centerX:(CGFloat)tt_centerX
+{
+    CGPoint center = self.center;
+    center.x = tt_centerX;
+    self.center = center;
+}
+
+- (CGFloat)tt_centerX
+{
+    return self.center.x;
+}
+
+- (void)setTt_centerY:(CGFloat)tt_centerY
+{
+    CGPoint center = self.center;
+    center.y = tt_centerY;
+    self.center = center;
+}
+
+- (CGFloat)tt_centerY
+{
+    return self.center.y;
+}
+@end
+
+@implementation UITableView (TTUtility)
+
+- (void)tt_registerNibClass:(nullable Class)cellClass forCellReuseIdentifier:(nullable NSString *)identifier
+{
+    
+    if (!cellClass || !(identifier.length > 0 && identifier))
+    {
+        return;
+    }
+    
+    NSString * nibName = [cellClass description];
+    [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:identifier];
+    
+}
+
+@end
+
+@implementation UICollectionView (TTUtility)
+
+- (void)tt_registerNibClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier
+{
+    if (!cellClass || !(identifier && identifier.length > 0))
+    {
+        return;
+    }
+    NSString *nibName = [cellClass description];
+    [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellWithReuseIdentifier:identifier];
+    
+}
+@end
+
+@implementation UIColor (TTUtility)
+
++ (UIColor *)tt_colorWithHexString:(NSString *)stringToConvert alpha:(CGFloat)alpha {
+    NSString *cString = [[stringToConvert stringByTrimmingCharactersInSet:[NSCharacterSet whitespaceAndNewlineCharacterSet]] uppercaseString];
+    
+    // String should be 6 or 8 characters
+    if ([cString length] < 6) return [UIColor clearColor];
+    
+    // strip 0X if it appears
+    if ([cString hasPrefix:@"0X"]) cString = [cString substringFromIndex:2];
+    if ([cString hasPrefix:@"#"]) cString = [cString substringFromIndex:1];
+    if ([cString length] != 6) return [UIColor clearColor];
+    // Separate into r, g, b substrings
+    NSRange range;
+    range.location = 0;
+    range.length = 2;
+    NSString *rString = [cString substringWithRange:range];
+    
+    range.location = 2;
+    NSString *gString = [cString substringWithRange:range];
+    
+    range.location = 4;
+    NSString *bString = [cString substringWithRange:range];
+    
+    // Scan values
+    unsigned int r, g, b;
+    [[NSScanner scannerWithString:rString] scanHexInt:&r];
+    [[NSScanner scannerWithString:gString] scanHexInt:&g];
+    [[NSScanner scannerWithString:bString] scanHexInt:&b];
+    
+    return [UIColor colorWithRed:((float) r / 255.0f)
+                           green:((float) g / 255.0f)
+                            blue:((float) b / 255.0f)
+                           alpha:alpha];
+}
+
++ (UIColor *)tt_colorWithHexString:(NSString *)stringToConvert {
+    return [self tt_colorWithHexString:stringToConvert alpha:1.0];
+}
+
+@end
