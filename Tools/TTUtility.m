@@ -38,6 +38,7 @@
     if (value) {
         return [value intValue];
     }
+    
     return defaultValue;
 }
 
