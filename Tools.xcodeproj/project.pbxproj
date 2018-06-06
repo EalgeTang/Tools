@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80B222D420C78E2200539DEC /* TTPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B222D320C78E2200539DEC /* TTPlaceholderTextView.m */; };
 		80FD762B20BEAB6300811327 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD762A20BEAB6300811327 /* AppDelegate.m */; };
 		80FD762E20BEAB6300811327 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD762D20BEAB6300811327 /* ViewController.m */; };
 		80FD763120BEAB6300811327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80FD762F20BEAB6300811327 /* Main.storyboard */; };
@@ -36,6 +37,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80B222D220C78E2200539DEC /* TTPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPlaceholderTextView.h; sourceTree = "<group>"; };
+		80B222D320C78E2200539DEC /* TTPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPlaceholderTextView.m; sourceTree = "<group>"; };
 		80FD762620BEAB6300811327 /* Tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tools.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		80FD762920BEAB6300811327 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		80FD762A20BEAB6300811327 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
@@ -81,6 +84,17 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80B222D120C78DD300539DEC /* general */ = {
+			isa = PBXGroup;
+			children = (
+				80FD765B20BEAE2200811327 /* TTUtility.h */,
+				80FD765C20BEAE2200811327 /* TTUtility.m */,
+				80B222D220C78E2200539DEC /* TTPlaceholderTextView.h */,
+				80B222D320C78E2200539DEC /* TTPlaceholderTextView.m */,
+			);
+			path = general;
+			sourceTree = "<group>";
+		};
 		80FD761D20BEAB6300811327 = {
 			isa = PBXGroup;
 			children = (
@@ -108,8 +122,7 @@
 				80FD762A20BEAB6300811327 /* AppDelegate.m */,
 				80FD762C20BEAB6300811327 /* ViewController.h */,
 				80FD762D20BEAB6300811327 /* ViewController.m */,
-				80FD765B20BEAE2200811327 /* TTUtility.h */,
-				80FD765C20BEAE2200811327 /* TTUtility.m */,
+				80B222D120C78DD300539DEC /* general */,
 				80FD762F20BEAB6300811327 /* Main.storyboard */,
 				80FD763220BEAB6500811327 /* Assets.xcassets */,
 				80FD763420BEAB6500811327 /* LaunchScreen.storyboard */,
@@ -267,6 +280,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80B222D420C78E2200539DEC /* TTPlaceholderTextView.m in Sources */,
 				80FD762E20BEAB6300811327 /* ViewController.m in Sources */,
 				80FD763920BEAB6500811327 /* main.m in Sources */,
 				80FD762B20BEAB6300811327 /* AppDelegate.m in Sources */,
