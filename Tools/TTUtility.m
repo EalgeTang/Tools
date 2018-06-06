@@ -8,7 +8,7 @@
 
 #import "TTUtility.h"
 #import <objc/runtime.h>
-
+#import <sys/utsname.h>
 @implementation TTUtility
 
 /** 获取windows当前现在的Vc*/
@@ -68,6 +68,48 @@
 
 @end
 
+@implementation NSObject (TTUtility)
+
+/**设备型号*/
++ (NSString *)tt_deviceModel
+{
+    struct utsname systemInfo;
+    uname(&systemInfo);
+    NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
+    // 中间这段内容视情况而定, 可以省略掉..
+//    if ([deviceString hasPrefix:@"iPhone3"])    return @"iPhone 4";
+//    if ([deviceString isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
+//    if ([deviceString isEqualToString:@"iPhone5,1"]||[deviceString isEqualToString:@"iPhone5,2"])    return @"iPhone 5";
+//    if ([deviceString isEqualToString:@"iPhone5,3"]||[deviceString isEqualToString:@"iPhone5,4"])    return @"iPhone 5C";
+//    if ([deviceString hasPrefix:@"iPhone6"])    return @"iPhone 5S";
+//    if ([deviceString isEqualToString:@"iPhone7,1"])    return @"iPhone 6 Plus";
+//    if ([deviceString isEqualToString:@"iPhone7,2"])    return @"iPhone 6";
+//    if ([deviceString isEqualToString:@"i386"])         return @"Simulator";
+//    if ([deviceString isEqualToString:@"x86_64"])       return @"Simulator";
+    return deviceString;
+}
+
+- (NSString *)tt_className
+{
+    return NSStringFromClass([self class]);
+}
+
+- (NSString *)tt_superClassName
+{
+    return NSStringFromClass([self superclass]);
+}
+
++ (NSString *)tt_className
+{
+    return NSStringFromClass([self class]);
+}
+
++ (NSString *)tt_superClassName
+{
+    return NSStringFromClass([self superclass]);
+}
+
+@end
 @implementation NSArray (TTUtility)
 
 - (BOOL)tt_isUseable
@@ -495,9 +537,4 @@
     [self addAnimation:keyAnimation forKey:@"shake"];
 }
 
-- (void)setTestFrame
-{
-    NSLog(@"这是一个分支测试的东西");
-    
-}
 @end

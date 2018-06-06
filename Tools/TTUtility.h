@@ -41,13 +41,24 @@
 
 @end
 
+@interface NSObject (TTUtility)
+
+/**设备型号*/
++ (NSString *)tt_deviceModel;
+//类名
+- (NSString *)tt_className;
++ (NSString *)tt_className;
+
+//父类名称
+- (NSString *)tt_superClassName;
++ (NSString *)tt_superClassName;
+
+@end
 #pragma mark -- Datas
 
 @interface NSArray (TTUtility)
 
-/**
- 是否可以正常使用, 即数据存在并且数量大于0
- */
+/**是否可以正常使用, 即数据存在并且数量大于0*/
 @property (nonatomic, assign, readonly) BOOL tt_isUseable;
 
 @end
@@ -62,7 +73,6 @@
  获取int类型的数据
  */
 - (int)tt_intAttribute:(NSString *)attribute defaultValue:(int)defaultValue;
-
 /**
  获取NSInteger类型的数据
  */
@@ -86,7 +96,6 @@
 - (NSString *)tt_stringAttribute:(NSString *)attribute;
 
 - (NSArray *)tt_arrayAttribute:(NSString *)attribute;
-
 
 @end
 
@@ -226,6 +235,17 @@ static inline UIColor *tkHexColor(NSString *hexColor){
     return [UIColor tt_colorWithHexString:hexColor];
 }
 
+
+/**
+ 生成一个随机颜色.
+ */
+static inline UIColor *tkRandowColor(){
+    NSInteger rValue = arc4random() % 255;
+    NSInteger gValue = arc4random() % 255;
+    NSInteger bValue = arc4random() % 255;
+    return [UIColor colorWithRed:rValue/255.f green:gValue/255.f blue:bValue/255.f alpha:1.0];
+    
+}
 static inline UIColor *tkHexColorWithAlpha(NSString *hexColor, CGFloat alpha){
     return [UIColor tt_colorWithHexString:hexColor alpha:alpha];
 }
