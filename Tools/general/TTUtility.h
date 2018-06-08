@@ -39,12 +39,17 @@
  */
 + (BOOL)tt_validateRegExForPredicate:(NSString *)reg string:(NSString *)str;
 
+/**APP的icon*/
++ (UIImage *)tt_appIcon;
+/**设备型号*/
++ (NSString *)tt_deviceModel;
+/**app的名字*/
++ (NSString *)tt_appName;
+
 @end
 
 @interface NSObject (TTUtility)
 
-/**设备型号*/
-+ (NSString *)tt_deviceModel;
 //类名
 - (NSString *)tt_className;
 + (NSString *)tt_className;
@@ -245,6 +250,10 @@ static inline UIColor *tkRandowColor(){
     NSInteger bValue = arc4random() % 255;
     return [UIColor colorWithRed:rValue/255.f green:gValue/255.f blue:bValue/255.f alpha:1.0];
     
+}
+
+static inline UIImage *tkImageName(NSString *imageName){
+    return [UIImage imageNamed:imageName];
 }
 static inline UIColor *tkHexColorWithAlpha(NSString *hexColor, CGFloat alpha){
     return [UIColor tt_colorWithHexString:hexColor alpha:alpha];

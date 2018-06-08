@@ -19,12 +19,6 @@
     // Do any additional setup after loading the view, typically from a nib.
     self.edgesForExtendedLayout = UIRectEdgeNone;
     
-//    UIView *vi = [[UIView alloc] initWithFrame:CGRectMake(100, 100, 100, 100)];
-//    [self.view addSubview:vi];
-    
-    NSString * str = [NSObject tt_deviceModel];
-    NSLog(@"----%@", str);
-    
     
 }
 

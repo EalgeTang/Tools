@@ -66,10 +66,6 @@
     return [predicate evaluateWithObject:str];
 }
 
-@end
-
-@implementation NSObject (TTUtility)
-
 /**设备型号*/
 + (NSString *)tt_deviceModel
 {
@@ -77,17 +73,48 @@
     uname(&systemInfo);
     NSString *deviceString = [NSString stringWithCString:systemInfo.machine encoding:NSUTF8StringEncoding];
     // 中间这段内容视情况而定, 可以省略掉..
-//    if ([deviceString hasPrefix:@"iPhone3"])    return @"iPhone 4";
-//    if ([deviceString isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
-//    if ([deviceString isEqualToString:@"iPhone5,1"]||[deviceString isEqualToString:@"iPhone5,2"])    return @"iPhone 5";
-//    if ([deviceString isEqualToString:@"iPhone5,3"]||[deviceString isEqualToString:@"iPhone5,4"])    return @"iPhone 5C";
-//    if ([deviceString hasPrefix:@"iPhone6"])    return @"iPhone 5S";
-//    if ([deviceString isEqualToString:@"iPhone7,1"])    return @"iPhone 6 Plus";
-//    if ([deviceString isEqualToString:@"iPhone7,2"])    return @"iPhone 6";
-//    if ([deviceString isEqualToString:@"i386"])         return @"Simulator";
-//    if ([deviceString isEqualToString:@"x86_64"])       return @"Simulator";
+    //    if ([deviceString hasPrefix:@"iPhone3"])    return @"iPhone 4";
+    //    if ([deviceString isEqualToString:@"iPhone4,1"])    return @"iPhone 4S";
+    //    if ([deviceString isEqualToString:@"iPhone5,1"]||[deviceString isEqualToString:@"iPhone5,2"])    return @"iPhone 5";
+    //    if ([deviceString isEqualToString:@"iPhone5,3"]||[deviceString isEqualToString:@"iPhone5,4"])    return @"iPhone 5C";
+    //    if ([deviceString hasPrefix:@"iPhone6"])    return @"iPhone 5S";
+    //    if ([deviceString isEqualToString:@"iPhone7,1"])    return @"iPhone 6 Plus";
+    //    if ([deviceString isEqualToString:@"iPhone7,2"])    return @"iPhone 6";
+    //    if ([deviceString isEqualToString:@"i386"])         return @"Simulator";
+    //    if ([deviceString isEqualToString:@"x86_64"])       return @"Simulator";
     return deviceString;
 }
+
+/**APP的icon*/
++ (UIImage *)tt_appIcon
+{
+    NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
+    NSArray *arr = [infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"];
+    NSString *icon = [arr lastObject];
+    UIImage *image = [UIImage imageNamed:icon];
+    if (image == nil)
+    {
+        icon = [arr firstObject];
+        image = [UIImage imageNamed:icon];
+    }
+    return image;
+}
+
+/**app的名字*/
++ (NSString *)tt_appName
+{
+    NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
+    NSString *name = dict[@"CFBundleDisplayName"];
+    if (name == nil)
+    {
+        name = dict[@"CFBundleName"];
+    }
+    return name?:@"";
+}
+
+@end
+
+@implementation NSObject (TTUtility)
 
 - (NSString *)tt_className
 {
