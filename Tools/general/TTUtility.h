@@ -242,6 +242,13 @@ static inline BOOL tkIsIPhoneX(){
     return NO;
 }
 
+static inline CGFloat tkDeviceHeight(){
+    return [UIScreen mainScreen].bounds.size.height;
+}
+
+static inline CGFloat tkDeviceWidth(){
+    return [UIScreen mainScreen].bounds.size.width;
+}
 static inline UIColor *tkRGBColor(CGFloat r, CGFloat g, CGFloat b){
     return [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:1];
 }
