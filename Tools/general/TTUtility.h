@@ -228,6 +228,20 @@ static inline CGSize tkSize(CGFloat width, CGFloat height){
     return CGSizeMake(width, height);
 }
 
+static inline CGFloat tkNavHeight(){
+    return [UIApplication sharedApplication].statusBarFrame.size.height + 44.f;
+}
+
+static inline BOOL tkIsIPhoneX(){
+    UIApplication *app = [UIApplication sharedApplication];
+    UIView *statusBar = [app valueForKeyPath:@"statusBar"];
+    if ([statusBar isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")])
+    {
+        return YES;
+    }
+    return NO;
+}
+
 static inline UIColor *tkRGBColor(CGFloat r, CGFloat g, CGFloat b){
     return [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:1];
 }
@@ -239,7 +253,6 @@ static inline UIColor *tkRGBAlphaColor(CGFloat r, CGFloat g, CGFloat b, CGFloat 
 static inline UIColor *tkHexColor(NSString *hexColor){
     return [UIColor tt_colorWithHexString:hexColor];
 }
-
 
 /**
  生成一个随机颜色.
@@ -255,6 +268,7 @@ static inline UIColor *tkRandowColor(){
 static inline UIImage *tkImageName(NSString *imageName){
     return [UIImage imageNamed:imageName];
 }
+
 static inline UIColor *tkHexColorWithAlpha(NSString *hexColor, CGFloat alpha){
     return [UIColor tt_colorWithHexString:hexColor alpha:alpha];
 }
