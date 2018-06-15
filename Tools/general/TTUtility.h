@@ -202,6 +202,31 @@
  @return 拉伸过的图片
  */
 - (UIImage *)tt_resizableImageForSretchMode;
+
+/**
+ 修改图片的前景色
+
+ @param theColor 需要被修改成的前景色
+ @return 修改过前景色的目标图片
+ */
+- (UIImage *)tt_rederWithColor:(UIColor *)theColor;
+
+/**
+  屏幕截屏, 截取一个size为目标view本身尺寸的图片
+
+ @param vi 目标view
+ @return 生成的图片
+ */
++ (UIImage *)tt_screenShotFromeView:(UIView *)vi;
+
+/**
+ 屏幕截屏, 如果size为zero,默认使用目标view的size.
+
+ @param vi 目标view
+ @param size 目标尺寸
+ @return 生成的图片
+ */
++ (UIImage *)tt_screenShotFromView:(UIView *)vi withSize:(CGSize)size;
 @end
 
 @interface CALayer (TTUtility)
@@ -232,6 +257,11 @@ static inline CGFloat tkNavHeight(){
     return [UIApplication sharedApplication].statusBarFrame.size.height + 44.f;
 }
 
+/**
+ 判断是否为iPhone X 机型,  后续可能为 iPhone X 后续带刘海屏机型的判断依据
+
+ @return yes 为iPhone X机型
+ */
 static inline BOOL tkIsIPhoneX(){
     UIApplication *app = [UIApplication sharedApplication];
     UIView *statusBar = [app valueForKeyPath:@"statusBar"];
@@ -249,6 +279,7 @@ static inline CGFloat tkDeviceHeight(){
 static inline CGFloat tkDeviceWidth(){
     return [UIScreen mainScreen].bounds.size.width;
 }
+
 static inline UIColor *tkRGBColor(CGFloat r, CGFloat g, CGFloat b){
     return [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:1];
 }

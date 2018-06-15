@@ -141,7 +141,7 @@
 
 - (BOOL)tt_isUseable
 {
-    return (self && self.count > 0);
+    return ([self isKindOfClass:[NSArray class]] && self.count > 0);
 }
 @end
 
@@ -149,7 +149,7 @@
 
 - (BOOL)tt_isUseable
 {
-    return (self && self.count > 0);
+    return ([self isKindOfClass:[NSDictionary class]] && self.count > 0);
 }
 
 - (id)getAttribute:(NSString *)attribute
@@ -158,7 +158,8 @@
     return (obj == [NSNull null] ? @"" : obj);
 }
 
-- (int)tt_intAttribute:(NSString *)attribute defaultValue:(int)defaultValue {
+- (int)tt_intAttribute:(NSString *)attribute defaultValue:(int)defaultValue
+{
     NSString *value = [self getAttribute:attribute];
     if (value) {
         return [value intValue];
@@ -167,7 +168,8 @@
     return defaultValue;
 }
 
-- (NSInteger)tt_integerAttribute:(NSString *)attribute defaultValue:(NSInteger)defaultValue {
+- (NSInteger)tt_integerAttribute:(NSString *)attribute defaultValue:(NSInteger)defaultValue
+{
     NSString *value = [self getAttribute:attribute];
     if (value) {
         return [value integerValue];
@@ -175,7 +177,8 @@
     return defaultValue;
 }
 
-- (float)tt_floatAttribute:(NSString *)attribute defaultValue:(float)defaultValue {
+- (float)tt_floatAttribute:(NSString *)attribute defaultValue:(float)defaultValue
+{
     NSString *value = [self getAttribute:attribute];
     if (value) {
         return [value floatValue];
@@ -183,7 +186,8 @@
     return defaultValue;
 }
 
-- (BOOL)tt_boolAttribute:(NSString *)attribute defaultValue:(BOOL)defalutValue {
+- (BOOL)tt_boolAttribute:(NSString *)attribute defaultValue:(BOOL)defalutValue
+{
     NSString *value = [self getAttribute:attribute];
     if (value) {
         return [value boolValue];
@@ -265,7 +269,7 @@
 
 - (BOOL)tt_isUseable
 {
-    return (self && self.length>0);
+    return ([self isKindOfClass:[NSString class]] && self.length>0);
 }
 
 /**判断是否包含 字符串 aString*/
@@ -545,6 +549,71 @@
     return img;
 }
 
+/**
+ 修改图片的前景色
+ 
+ @param theColor 需要被修改成的前景色
+ @return 修改过前景色的目标图片
+ */
+- (UIImage *)tt_rederWithColor:(UIColor *)theColor
+{
+    //    if (NULL != UIGraphicsBeginImageContextWithOptions)
+    UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
+    //    else
+    //        UIGraphicsBeginImageContext(baseImage.size);
+    
+    CGContextRef ctx = UIGraphicsGetCurrentContext();
+    CGRect area = CGRectMake(0, 0, self.size.width, self.size.height);
+    CGContextScaleCTM(ctx, 1, -1);
+    CGContextTranslateCTM(ctx, 0, -area.size.height);
+    CGContextSaveGState(ctx);
+    CGContextClipToMask(ctx, area, self.CGImage);
+    [theColor set];
+    CGContextFillRect(ctx, area);
+    CGContextRestoreGState(ctx);
+    CGContextSetBlendMode(ctx, kCGBlendModeMultiply);
+    CGContextDrawImage(ctx, area, self.CGImage);
+    UIImage *newImage = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return newImage;
+}
+
+/**
+ 屏幕截屏, 截取一个size为目标view本身尺寸的图片
+ 
+ @param vi 目标view
+ @return 生成的图片
+ */
++ (UIImage *)tt_screenShotFromeView:(UIView *)vi
+{
+    return [UIImage tt_screenShotFromView:vi withSize:CGSizeZero];
+}
+
+/**
+ 屏幕截屏, 如果size为nil,默认使用目标view的size.
+ 
+ @param vi 目标view
+ @param size 目标尺寸
+ @return 生成的图片
+ */
++ (UIImage *)tt_screenShotFromView:(UIView *)vi withSize:(CGSize)size
+{
+    CGSize targetSize;
+    if (CGSizeEqualToSize(size, CGSizeZero))
+    {
+        targetSize = vi.frame.size;
+    }
+    else
+    {
+        targetSize = size;
+    }
+    UIGraphicsBeginImageContextWithOptions(targetSize, NO, 0.0);
+    CGContextRef context = UIGraphicsGetCurrentContext();
+    [vi.layer renderInContext:context];
+    UIImage *image  = UIGraphicsGetImageFromCurrentImageContext();
+    UIGraphicsEndImageContext();
+    return image;
+}
 @end
 
 @implementation CALayer (TTUtility)
