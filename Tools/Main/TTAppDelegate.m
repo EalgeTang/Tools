@@ -1,22 +1,32 @@
 //
-//  AppDelegate.m
+//  TTAppDelegate.m
 //  Tools
 //
-//  Created by tangbowen on 2018/5/30.
+//  Created by tangbowen on 2018/6/28.
 //  Copyright © 2018年 tangbowen. All rights reserved.
 //
 
-#import "AppDelegate.h"
+#import "TTAppDelegate.h"
+#import "FirstViewController.h"
+@implementation TTAppDelegate
 
-@interface AppDelegate ()
-
-@end
-
-@implementation AppDelegate
-
+- (void)initAppMainViewControllers
+{
+    FirstViewController *vc = [FirstViewController build];
+    TTNavigationController *nav = [[TTNavigationController alloc] initWithRootViewController:vc];
+    nav.view.backgroundColor = [UIColor yellowColor];
+    // 如果去掉了storyboard  需要自己在手动初始化一个window出来
+    self.window = [UIWindow new];
+    self.window.bounds = [UIScreen mainScreen].bounds;
+    
+    self.window.rootViewController = nav;
+    [self.window makeKeyAndVisible];
+}
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [self initAppMainViewControllers];
     return YES;
 }
 
@@ -46,6 +56,5 @@
 - (void)applicationWillTerminate:(UIApplication *)application {
     // Called when the application is about to terminate. Save data if appropriate. See also applicationDidEnterBackground:.
 }
-
 
 @end

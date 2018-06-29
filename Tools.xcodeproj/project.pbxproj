@@ -7,10 +7,15 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		80AEF1D320E4C9820028FDB1 /* TTConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1D220E4C9820028FDB1 /* TTConstant.m */; };
+		80AEF1D720E4CB1D0028FDB1 /* TTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1D620E4CB1D0028FDB1 /* TTAppDelegate.m */; };
+		80AEF1DB20E4E1B00028FDB1 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1DA20E4E1B00028FDB1 /* TTNavigationController.m */; };
+		80AEF1DE20E4E3DB0028FDB1 /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1DD20E4E3DB0028FDB1 /* TTTabBarController.m */; };
+		80AEF1E120E4E4370028FDB1 /* TTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1E020E4E4370028FDB1 /* TTBaseViewController.m */; };
+		80AEF1E420E4E7370028FDB1 /* TTBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1E320E4E7370028FDB1 /* TTBaseView.m */; };
+		80AEF1E920E4E8650028FDB1 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1E720E4E8650028FDB1 /* FirstViewController.m */; };
+		80AEF1EA20E4E8650028FDB1 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80AEF1E820E4E8650028FDB1 /* FirstViewController.xib */; };
 		80B222D420C78E2200539DEC /* TTPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80B222D320C78E2200539DEC /* TTPlaceholderTextView.m */; };
-		80FD762B20BEAB6300811327 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD762A20BEAB6300811327 /* AppDelegate.m */; };
-		80FD762E20BEAB6300811327 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD762D20BEAB6300811327 /* ViewController.m */; };
-		80FD763120BEAB6300811327 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80FD762F20BEAB6300811327 /* Main.storyboard */; };
 		80FD763320BEAB6500811327 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FD763220BEAB6500811327 /* Assets.xcassets */; };
 		80FD763620BEAB6500811327 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 80FD763420BEAB6500811327 /* LaunchScreen.storyboard */; };
 		80FD763920BEAB6500811327 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD763820BEAB6500811327 /* main.m */; };
@@ -37,14 +42,25 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		80AEF1D020E4C5220028FDB1 /* TTMacro.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMacro.pch; sourceTree = "<group>"; };
+		80AEF1D120E4C9820028FDB1 /* TTConstant.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTConstant.h; sourceTree = "<group>"; };
+		80AEF1D220E4C9820028FDB1 /* TTConstant.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTConstant.m; sourceTree = "<group>"; };
+		80AEF1D520E4CB1D0028FDB1 /* TTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTAppDelegate.h; sourceTree = "<group>"; };
+		80AEF1D620E4CB1D0028FDB1 /* TTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTAppDelegate.m; sourceTree = "<group>"; };
+		80AEF1D920E4E1B00028FDB1 /* TTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationController.h; sourceTree = "<group>"; };
+		80AEF1DA20E4E1B00028FDB1 /* TTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationController.m; sourceTree = "<group>"; };
+		80AEF1DC20E4E3DB0028FDB1 /* TTTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTabBarController.h; sourceTree = "<group>"; };
+		80AEF1DD20E4E3DB0028FDB1 /* TTTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTabBarController.m; sourceTree = "<group>"; };
+		80AEF1DF20E4E4370028FDB1 /* TTBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTBaseViewController.h; sourceTree = "<group>"; };
+		80AEF1E020E4E4370028FDB1 /* TTBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTBaseViewController.m; sourceTree = "<group>"; };
+		80AEF1E220E4E7370028FDB1 /* TTBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTBaseView.h; sourceTree = "<group>"; };
+		80AEF1E320E4E7370028FDB1 /* TTBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTBaseView.m; sourceTree = "<group>"; };
+		80AEF1E620E4E8650028FDB1 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
+		80AEF1E720E4E8650028FDB1 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
+		80AEF1E820E4E8650028FDB1 /* FirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
 		80B222D220C78E2200539DEC /* TTPlaceholderTextView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTPlaceholderTextView.h; sourceTree = "<group>"; };
 		80B222D320C78E2200539DEC /* TTPlaceholderTextView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTPlaceholderTextView.m; sourceTree = "<group>"; };
 		80FD762620BEAB6300811327 /* Tools.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tools.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		80FD762920BEAB6300811327 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		80FD762A20BEAB6300811327 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		80FD762C20BEAB6300811327 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		80FD762D20BEAB6300811327 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
-		80FD763020BEAB6300811327 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		80FD763220BEAB6500811327 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		80FD763520BEAB6500811327 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		80FD763720BEAB6500811327 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -84,6 +100,50 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		80AEF1CF20E4C4BF0028FDB1 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				80FD763720BEAB6500811327 /* Info.plist */,
+				80AEF1D020E4C5220028FDB1 /* TTMacro.pch */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+		80AEF1D420E4CADE0028FDB1 /* Main */ = {
+			isa = PBXGroup;
+			children = (
+				80FD763820BEAB6500811327 /* main.m */,
+				80AEF1D520E4CB1D0028FDB1 /* TTAppDelegate.h */,
+				80AEF1D620E4CB1D0028FDB1 /* TTAppDelegate.m */,
+			);
+			path = Main;
+			sourceTree = "<group>";
+		};
+		80AEF1D820E4E1630028FDB1 /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				80AEF1D920E4E1B00028FDB1 /* TTNavigationController.h */,
+				80AEF1DA20E4E1B00028FDB1 /* TTNavigationController.m */,
+				80AEF1DC20E4E3DB0028FDB1 /* TTTabBarController.h */,
+				80AEF1DD20E4E3DB0028FDB1 /* TTTabBarController.m */,
+				80AEF1DF20E4E4370028FDB1 /* TTBaseViewController.h */,
+				80AEF1E020E4E4370028FDB1 /* TTBaseViewController.m */,
+				80AEF1E220E4E7370028FDB1 /* TTBaseView.h */,
+				80AEF1E320E4E7370028FDB1 /* TTBaseView.m */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		80AEF1E520E4E82D0028FDB1 /* Class */ = {
+			isa = PBXGroup;
+			children = (
+				80AEF1E620E4E8650028FDB1 /* FirstViewController.h */,
+				80AEF1E720E4E8650028FDB1 /* FirstViewController.m */,
+				80AEF1E820E4E8650028FDB1 /* FirstViewController.xib */,
+			);
+			path = Class;
+			sourceTree = "<group>";
+		};
 		80B222D120C78DD300539DEC /* general */ = {
 			isa = PBXGroup;
 			children = (
@@ -91,6 +151,8 @@
 				80FD765C20BEAE2200811327 /* TTUtility.m */,
 				80B222D220C78E2200539DEC /* TTPlaceholderTextView.h */,
 				80B222D320C78E2200539DEC /* TTPlaceholderTextView.m */,
+				80AEF1D120E4C9820028FDB1 /* TTConstant.h */,
+				80AEF1D220E4C9820028FDB1 /* TTConstant.m */,
 			);
 			path = general;
 			sourceTree = "<group>";
@@ -118,16 +180,13 @@
 		80FD762820BEAB6300811327 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
-				80FD762920BEAB6300811327 /* AppDelegate.h */,
-				80FD762A20BEAB6300811327 /* AppDelegate.m */,
-				80FD762C20BEAB6300811327 /* ViewController.h */,
-				80FD762D20BEAB6300811327 /* ViewController.m */,
+				80AEF1E520E4E82D0028FDB1 /* Class */,
+				80AEF1D420E4CADE0028FDB1 /* Main */,
+				80AEF1D820E4E1630028FDB1 /* Base */,
 				80B222D120C78DD300539DEC /* general */,
-				80FD762F20BEAB6300811327 /* Main.storyboard */,
+				80AEF1CF20E4C4BF0028FDB1 /* Resources */,
 				80FD763220BEAB6500811327 /* Assets.xcassets */,
 				80FD763420BEAB6500811327 /* LaunchScreen.storyboard */,
-				80FD763720BEAB6500811327 /* Info.plist */,
-				80FD763820BEAB6500811327 /* main.m */,
 			);
 			path = Tools;
 			sourceTree = "<group>";
@@ -254,8 +313,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				80FD763620BEAB6500811327 /* LaunchScreen.storyboard in Resources */,
+				80AEF1EA20E4E8650028FDB1 /* FirstViewController.xib in Resources */,
 				80FD763320BEAB6500811327 /* Assets.xcassets in Resources */,
-				80FD763120BEAB6300811327 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -280,10 +339,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80AEF1D720E4CB1D0028FDB1 /* TTAppDelegate.m in Sources */,
 				80B222D420C78E2200539DEC /* TTPlaceholderTextView.m in Sources */,
-				80FD762E20BEAB6300811327 /* ViewController.m in Sources */,
+				80AEF1DE20E4E3DB0028FDB1 /* TTTabBarController.m in Sources */,
+				80AEF1E120E4E4370028FDB1 /* TTBaseViewController.m in Sources */,
 				80FD763920BEAB6500811327 /* main.m in Sources */,
-				80FD762B20BEAB6300811327 /* AppDelegate.m in Sources */,
+				80AEF1DB20E4E1B00028FDB1 /* TTNavigationController.m in Sources */,
+				80AEF1E420E4E7370028FDB1 /* TTBaseView.m in Sources */,
+				80AEF1E920E4E8650028FDB1 /* FirstViewController.m in Sources */,
+				80AEF1D320E4C9820028FDB1 /* TTConstant.m in Sources */,
 				80FD765D20BEAE2200811327 /* TTUtility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -320,14 +384,6 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
-		80FD762F20BEAB6300811327 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				80FD763020BEAB6300811327 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		80FD763420BEAB6500811327 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -455,7 +511,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SU7A8H23Y;
-				INFOPLIST_FILE = Tools/Info.plist;
+				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Tools/Resources/TTMacro.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Tools/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -472,7 +531,10 @@
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 6SU7A8H23Y;
-				INFOPLIST_FILE = Tools/Info.plist;
+				ENABLE_BITCODE = NO;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "$(SRCROOT)/Tools/Resources/TTMacro.pch";
+				INFOPLIST_FILE = "$(SRCROOT)/Tools/Resources/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

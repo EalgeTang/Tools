@@ -292,7 +292,7 @@
     }
     return nil;
 }
-
+                    
 /**从开始截取到to位置的字符串*/
 - (NSString *)tt_substringToIndex:(NSUInteger)toIndex {
     if ([self isKindOfClass:[NSString class]]) {
@@ -448,7 +448,7 @@
     [self tt_setupBorder:nil borderWidth:0 cornerRadius:radius];
 }
 
-- (void)tt_setupBorder:(UIColor *)borderColor
+- (void)tt_setupBorder:(nullable UIColor *)borderColor
            borderWidth:(CGFloat)borderWidth
           cornerRadius:(CGFloat)radius;
 {

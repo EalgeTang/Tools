@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 #import <UIKit/UIKit.h>
-
+NS_ASSUME_NONNULL_BEGIN
 
 @interface TTUtility : NSObject
 
@@ -170,7 +170,7 @@
  @param borderWidth 圆角边框的宽度
  @param radius 圆角边框半径
  */
-- (void)tt_setupBorder:(UIColor *)borderColor borderWidth:(CGFloat)borderWidth cornerRadius:(CGFloat)radius;
+- (void)tt_setupBorder:(nullable UIColor *)borderColor borderWidth:(CGFloat)borderWidth cornerRadius:(CGFloat)radius;
 
 @end
 
@@ -323,3 +323,5 @@ static inline NSString *tkCachePath(){
 static inline NSString *tkLanguage(NSString *string){
     return NSLocalizedString(string, nil);
 }
+
+NS_ASSUME_NONNULL_END
