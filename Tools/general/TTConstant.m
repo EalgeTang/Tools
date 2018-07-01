@@ -10,8 +10,4 @@
 
 @implementation TTConstant
 
-- (void)test
-{
-    
-}
 @end
