@@ -33,7 +33,7 @@
             [self hideMessageHud];
         }
         
-        self.mbHud = [[MBProgressHUD alloc] initWithFrame:CGRectMake(0, 0, 260, 50)];
+        self.mbHud = [MBProgressHUD showHUDAddedTo:vi animated:YES];
         self.mbHud.userInteractionEnabled=NO;
         self.mbHud.animationType = MBProgressHUDAnimationFade;
         [self.mbHud setMode:MBProgressHUDModeText];
@@ -42,7 +42,9 @@
         self.mbHud.detailsLabel.font = [UIFont tt_systemFontWithSize:12];
         self.mbHud.detailsLabel.text = detailText;
         self.mbHud.label.text = title;
-        
+        self.mbHud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;   // HUD主色调无效果, 默认MBProgressHUDBackgroundStyleBlur 毛玻璃效果
+        self.mbHud.bezelView.backgroundColor = [UIColor blackColor];
+//        self.mbHud.offset = CGPointMake(0.f, offset_y);
         CGRect rt = vi.frame;
         rt = CGRectMake((rt.size.width-self.mbHud.frame.size.width)/2, rt.size.height-self.mbHud.frame.size.height - rt.size.height/8, self.mbHud.frame.size.width, self.mbHud.frame.size.height);
 //        if ([Utilities isiPhone4])
