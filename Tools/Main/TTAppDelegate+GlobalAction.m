@@ -44,29 +44,27 @@
         self.mbHud.label.text = title;
         self.mbHud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;   // HUD主色调无效果, 默认MBProgressHUDBackgroundStyleBlur 毛玻璃效果
         self.mbHud.bezelView.backgroundColor = [UIColor blackColor];
-//        self.mbHud.offset = CGPointMake(0.f, offset_y);
-        CGRect rt = vi.frame;
-        rt = CGRectMake((rt.size.width-self.mbHud.frame.size.width)/2, rt.size.height-self.mbHud.frame.size.height - rt.size.height/8, self.mbHud.frame.size.width, self.mbHud.frame.size.height);
-//        if ([Utilities isiPhone4])
-//        {
-//            rt.origin.y-=10;
-//        }
-        [self.mbHud setFrame:rt];
-        
         self.mbHud.margin = 5;
-        self.mbHud.backgroundView.style = MBProgressHUDBackgroundStyleSolidColor;
-        self.mbHud.backgroundView.color = [UIColor blackColor];
-        self.mbHud.layer.cornerRadius = 5;
-        self.mbHud.layer.masksToBounds = YES;
-        self.mbHud.autoresizingMask =     UIViewAutoresizingFlexibleLeftMargin|
-        UIViewAutoresizingFlexibleWidth  |
-        UIViewAutoresizingFlexibleRightMargin |
-        UIViewAutoresizingFlexibleBottomMargin ;
+        self.mbHud.contentColor = [UIColor whiteColor];
+//        self.mbHud.layer.cornerRadius = 5;
+//        self.mbHud.layer.masksToBounds = YES;
+        self.mbHud.offset = CGPointMake(0.f, 500);
+//        CGRect rt = vi.frame;
+//        rt = CGRectMake((rt.size.width-self.mbHud.frame.size.width)/2, rt.size.height-self.mbHud.frame.size.height - rt.size.height/8, self.mbHud.frame.size.width, self.mbHud.frame.size.height);
+////        if ([Utilities isiPhone4])
+////        {
+////            rt.origin.y-=10;
+////        }
+//        [self.mbHud setFrame:rt];
+//        self.mbHud.autoresizingMask =     UIViewAutoresizingFlexibleLeftMargin|
+//        UIViewAutoresizingFlexibleWidth  |
+//        UIViewAutoresizingFlexibleRightMargin |
+//        UIViewAutoresizingFlexibleBottomMargin ;
         
-        [vi addSubview:self.mbHud];
-        [self.mbHud showAnimated:YES];
+//        [vi addSubview:self.mbHud];
+//        [self.mbHud showAnimated:YES];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideMessageHud) object:nil];
-//        [self performSelector:@selector(hideMessageHud) withObject:nil afterDelay:delay];
+        [self performSelector:@selector(hideMessageHud) withObject:nil afterDelay:delay];
         
     });
 }
