@@ -10,5 +10,4 @@
 
 @interface TTAppDelegate (GlobalAction)
 
-
 @end

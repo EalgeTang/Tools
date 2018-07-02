@@ -241,6 +241,21 @@ NS_ASSUME_NONNULL_BEGIN
  自己写的方法就会因为找不到而报错了
  */
 #pragma 一些常用的内联方法
+
+static inline void tkDispatch_async_on_main_queue(void(^block)(void)){
+    if([NSThread isMainThread])
+    {
+        block();
+    }
+    else
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            //
+            block();
+        });
+    }
+}
+
 static inline CGRect tkRect(CGFloat x, CGFloat y, CGFloat width, CGFloat height){
     return CGRectMake(x, y, width, height);
 }
