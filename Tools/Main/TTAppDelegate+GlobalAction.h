@@ -10,4 +10,8 @@
 
 @interface TTAppDelegate (GlobalAction)
 
+- (void)showMessageHUDWithTitle:(NSString *)title detailText:(NSString *)detailText inView:(UIView *)vi;
+
+- (void)showMessageHUDWithTitle:(NSString *)title detailText:(NSString *)detailText inView:(UIView *)vi hideAfterDelay:(CGFloat)delay;
+
 @end
