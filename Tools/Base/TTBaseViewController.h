@@ -18,4 +18,8 @@
  */
 + (instancetype)build;
 
+#pragma  mark 通用的方法名
+
+- (void)setupViews;
+
 @end
