@@ -52,8 +52,7 @@
         UIViewAutoresizingFlexibleRightMargin |
         UIViewAutoresizingFlexibleBottomMargin ;
         
-        [view addSubview:self.mbHud];
-//        [self.mbHud show:YES];
+        [vi addSubview:self.mbHud];
         [self.mbHud showAnimated:YES];
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideMessageHud) object:nil];
         [self performSelector:@selector(hideMessageHud) withObject:nil afterDelay:delay];
