@@ -22,6 +22,9 @@
 		8090FABD20EA0DC60056946D /* TTUtility.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAAC20EA0DC60056946D /* TTUtility.m */; };
 		8090FABE20EA0DC60056946D /* TTConstant.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAAF20EA0DC60056946D /* TTConstant.m */; };
 		8090FABF20EA0DC60056946D /* TTPlaceholderTextView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAB020EA0DC60056946D /* TTPlaceholderTextView.m */; };
+		8090FAC220EA10F00056946D /* TTAppDelegate+GlobalAction.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAC120EA10F00056946D /* TTAppDelegate+GlobalAction.m */; };
+		8090FAC720EA288C0056946D /* UIFont+TTSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAC620EA288C0056946D /* UIFont+TTSystem.m */; };
+		8090FACB20EA2E730056946D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAC920EA2E730056946D /* MBProgressHUD.m */; };
 		80AEF1D720E4CB1D0028FDB1 /* TTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1D620E4CB1D0028FDB1 /* TTAppDelegate.m */; };
 		80AEF1DB20E4E1B00028FDB1 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1DA20E4E1B00028FDB1 /* TTNavigationController.m */; };
 		80AEF1DE20E4E3DB0028FDB1 /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1DD20E4E3DB0028FDB1 /* TTTabBarController.m */; };
@@ -90,6 +93,12 @@
 		8090FAAE20EA0DC60056946D /* TTUtility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTUtility.h; sourceTree = "<group>"; };
 		8090FAAF20EA0DC60056946D /* TTConstant.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTConstant.m; sourceTree = "<group>"; };
 		8090FAB020EA0DC60056946D /* TTPlaceholderTextView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTPlaceholderTextView.m; sourceTree = "<group>"; };
+		8090FAC020EA10F00056946D /* TTAppDelegate+GlobalAction.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "TTAppDelegate+GlobalAction.h"; sourceTree = "<group>"; };
+		8090FAC120EA10F00056946D /* TTAppDelegate+GlobalAction.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "TTAppDelegate+GlobalAction.m"; sourceTree = "<group>"; };
+		8090FAC520EA288C0056946D /* UIFont+TTSystem.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "UIFont+TTSystem.h"; sourceTree = "<group>"; };
+		8090FAC620EA288C0056946D /* UIFont+TTSystem.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = "UIFont+TTSystem.m"; sourceTree = "<group>"; };
+		8090FAC920EA2E730056946D /* MBProgressHUD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MBProgressHUD.m; sourceTree = "<group>"; };
+		8090FACA20EA2E730056946D /* MBProgressHUD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MBProgressHUD.h; sourceTree = "<group>"; };
 		80AEF1D020E4C5220028FDB1 /* TTMacro.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMacro.pch; sourceTree = "<group>"; };
 		80AEF1D520E4CB1D0028FDB1 /* TTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTAppDelegate.h; sourceTree = "<group>"; };
 		80AEF1D620E4CB1D0028FDB1 /* TTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTAppDelegate.m; sourceTree = "<group>"; };
@@ -145,6 +154,7 @@
 		8090FA5720E9D4430056946D /* thirdLib */ = {
 			isa = PBXGroup;
 			children = (
+				8090FAC820EA2E310056946D /* MBProgressHUD */,
 				8090FA7C20E9D82C0056946D /* YYModel */,
 				8090FA5820E9D6790056946D /* Masonry */,
 			);
@@ -199,13 +209,40 @@
 			isa = PBXGroup;
 			children = (
 				8090FAAB20EA0DC60056946D /* TTConstant.h */,
-				8090FAAC20EA0DC60056946D /* TTUtility.m */,
-				8090FAAD20EA0DC60056946D /* TTPlaceholderTextView.h */,
-				8090FAAE20EA0DC60056946D /* TTUtility.h */,
 				8090FAAF20EA0DC60056946D /* TTConstant.m */,
-				8090FAB020EA0DC60056946D /* TTPlaceholderTextView.m */,
+				8090FAAE20EA0DC60056946D /* TTUtility.h */,
+				8090FAAC20EA0DC60056946D /* TTUtility.m */,
+				8090FAC420EA28520056946D /* UIFont+System */,
+				8090FAC320EA28270056946D /* PlaceholderTextView */,
 			);
 			path = General;
+			sourceTree = "<group>";
+		};
+		8090FAC320EA28270056946D /* PlaceholderTextView */ = {
+			isa = PBXGroup;
+			children = (
+				8090FAAD20EA0DC60056946D /* TTPlaceholderTextView.h */,
+				8090FAB020EA0DC60056946D /* TTPlaceholderTextView.m */,
+			);
+			path = PlaceholderTextView;
+			sourceTree = "<group>";
+		};
+		8090FAC420EA28520056946D /* UIFont+System */ = {
+			isa = PBXGroup;
+			children = (
+				8090FAC520EA288C0056946D /* UIFont+TTSystem.h */,
+				8090FAC620EA288C0056946D /* UIFont+TTSystem.m */,
+			);
+			path = "UIFont+System";
+			sourceTree = "<group>";
+		};
+		8090FAC820EA2E310056946D /* MBProgressHUD */ = {
+			isa = PBXGroup;
+			children = (
+				8090FACA20EA2E730056946D /* MBProgressHUD.h */,
+				8090FAC920EA2E730056946D /* MBProgressHUD.m */,
+			);
+			path = MBProgressHUD;
 			sourceTree = "<group>";
 		};
 		80AEF1CF20E4C4BF0028FDB1 /* Resources */ = {
@@ -223,6 +260,8 @@
 				80FD763820BEAB6500811327 /* main.m */,
 				80AEF1D520E4CB1D0028FDB1 /* TTAppDelegate.h */,
 				80AEF1D620E4CB1D0028FDB1 /* TTAppDelegate.m */,
+				8090FAC020EA10F00056946D /* TTAppDelegate+GlobalAction.h */,
+				8090FAC120EA10F00056946D /* TTAppDelegate+GlobalAction.m */,
 			);
 			path = Main;
 			sourceTree = "<group>";
@@ -436,6 +475,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8090FA7220E9D6790056946D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
+				8090FAC720EA288C0056946D /* UIFont+TTSystem.m in Sources */,
 				80AEF1D720E4CB1D0028FDB1 /* TTAppDelegate.m in Sources */,
 				8090FABD20EA0DC60056946D /* TTUtility.m in Sources */,
 				8090FA7920E9D6790056946D /* MASConstraint.m in Sources */,
@@ -451,7 +491,9 @@
 				8090FA8320E9D82D0056946D /* YYClassInfo.m in Sources */,
 				8090FA7620E9D6790056946D /* MASLayoutConstraint.m in Sources */,
 				8090FA7520E9D6790056946D /* MASConstraintMaker.m in Sources */,
+				8090FACB20EA2E730056946D /* MBProgressHUD.m in Sources */,
 				80FD763920BEAB6500811327 /* main.m in Sources */,
+				8090FAC220EA10F00056946D /* TTAppDelegate+GlobalAction.m in Sources */,
 				80AEF1DB20E4E1B00028FDB1 /* TTNavigationController.m in Sources */,
 				80AEF1E420E4E7370028FDB1 /* TTBaseView.m in Sources */,
 				8090FA7720E9D6790056946D /* NSArray+MASAdditions.m in Sources */,

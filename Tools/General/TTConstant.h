@@ -7,15 +7,21 @@
 //  如果是只通用于本身项目,而没办法保证之后通用的东西, 那么抽出来放在这个类中写,方便之后对utility的维护
 //
 
-#pragma  mark  框架内基本不变的通用类
+#pragma  mark  框架内基本不变的东西
+
 #import <Foundation/Foundation.h>
 #import "TTUtility.h"
 #import "TTNavigationController.h"
 #import "TTBaseView.h"
 #import "TTTabBarController.h"
 #import "TTBaseViewController.h"
+#import "UIFont+TTSystem.h"
 #import "Masonry.h"
 #import "YYModel.h"
+
+#define tk_iOS_10_Above    ([UIDevice currentDevice].systemVersion.floatValue>=10.0f)
+#define tk_iOS_9_Above     ([[UIDevice currentDevice].systemVersion floatValue]>=9.0)
+#define tk_iOS_8_Above     ([[UIDevice currentDevice].systemVersion floatValue]>=8.0)
 
 #pragma mark 具体项目中的使用到的类
 
