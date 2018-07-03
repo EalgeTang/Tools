@@ -38,8 +38,8 @@
         self.mbHud.animationType = MBProgressHUDAnimationFade;
         [self.mbHud setMode:MBProgressHUDModeText];
         
-        self.mbHud.label.font = [UIFont tt_systemFontWithSize:12];
-        self.mbHud.detailsLabel.font = [UIFont tt_systemFontWithSize:12];
+//        self.mbHud.label.font = [UIFont tt_systemFontWithSize:12];
+//        self.mbHud.detailsLabel.font = [UIFont tt_systemFontWithSize:12];
         self.mbHud.detailsLabel.text = detailText;
         self.mbHud.label.text = title;
         self.mbHud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;   // HUD主色调无效果, 默认MBProgressHUDBackgroundStyleBlur 毛玻璃效果
