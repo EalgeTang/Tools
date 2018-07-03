@@ -212,7 +212,7 @@
 				8090FAAF20EA0DC60056946D /* TTConstant.m */,
 				8090FAAE20EA0DC60056946D /* TTUtility.h */,
 				8090FAAC20EA0DC60056946D /* TTUtility.m */,
-				8090FAC420EA28520056946D /* UIFont+TTSystem */,
+				8090FAC420EA28520056946D /* UIFont+System */,
 				8090FAC320EA28270056946D /* PlaceholderTextView */,
 			);
 			path = General;
@@ -227,13 +227,13 @@
 			path = PlaceholderTextView;
 			sourceTree = "<group>";
 		};
-		8090FAC420EA28520056946D /* UIFont+TTSystem */ = {
+		8090FAC420EA28520056946D /* UIFont+System */ = {
 			isa = PBXGroup;
 			children = (
 				8090FAC520EA288C0056946D /* UIFont+TTSystem.h */,
 				8090FAC620EA288C0056946D /* UIFont+TTSystem.m */,
 			);
-			path = "UIFont+TTSystem";
+			path = "UIFont+System";
 			sourceTree = "<group>";
 		};
 		8090FAC820EA2E310056946D /* MBProgressHUD */ = {
