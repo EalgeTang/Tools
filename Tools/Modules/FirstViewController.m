@@ -18,8 +18,8 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = tkRandowColor();
-    [tkAppDelegate showMessageHUDWithTitle:@"这是一个大啊大大dadadadadad" detailText:@"嗷嗷嗷嗷嗷啊" inView:self.view];
     
+    DLog(@"dadad ");
 }
 
 - (void)didReceiveMemoryWarning {

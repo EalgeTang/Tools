@@ -10,6 +10,8 @@
 
 @interface TTAppDelegate (GlobalAction)
 
+#pragma mark -- HUD部分
+
 - (void)showMessageHUDInWindowWithText:(NSString *)text;
 
 - (void)showMessageHUDWithTitle:(NSString *)title detailText:(NSString *)detailText inView:(UIView *)vi;

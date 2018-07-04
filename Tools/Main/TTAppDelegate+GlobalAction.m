@@ -16,7 +16,7 @@
 
 @implementation TTAppDelegate (GlobalAction)
 
-
+#pragma mark -- HUD部分
 - (void)showMessageHUDInWindowWithText:(NSString *)text
 {
     [self showMessageHUDWithTitle:text detailText:nil inView:tkAppWindow];
@@ -83,5 +83,6 @@
     return objc_getAssociatedObject(self, "mbHud");
     
 }
+
 @end
 
