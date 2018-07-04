@@ -14,7 +14,6 @@
 {
     FirstViewController *vc = [FirstViewController build];
     TTNavigationController *nav = [[TTNavigationController alloc] initWithRootViewController:vc];
-    nav.view.backgroundColor = [UIColor yellowColor];
     // 如果去掉了storyboard  需要自己在手动初始化一个window出来
     self.window = [UIWindow new];
     self.window.bounds = [UIScreen mainScreen].bounds;

@@ -24,13 +24,14 @@
 #define tk_iOS_10_Above    ([UIDevice currentDevice].systemVersion.floatValue>=10.0f)
 #define tk_iOS_9_Above     ([[UIDevice currentDevice].systemVersion floatValue]>=9.0)
 #define tk_iOS_8_Above     ([[UIDevice currentDevice].systemVersion floatValue]>=8.0)
+#define tkAppDelegate      ((TTAppDelegate *)[UIApplication sharedApplication].delegate)
+#define tkAppWindow        (tkAppDelegate.window)
 
 #pragma mark 具体项目中的使用到的类
 
 @interface TTConstant : NSObject
 
+
 @end
 
-static inline TTAppDelegate *tkAppDelegate(){
-    return (TTAppDelegate *)[UIApplication sharedApplication].delegate;
-}
+

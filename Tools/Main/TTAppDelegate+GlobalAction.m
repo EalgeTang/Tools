@@ -17,15 +17,22 @@
 @implementation TTAppDelegate (GlobalAction)
 
 
+- (void)showMessageHUDInWindowWithText:(NSString *)text
+{
+    [self showMessageHUDWithTitle:text detailText:nil inView:tkAppWindow];
+}
+
 - (void)showMessageHUDWithTitle:(NSString *)title detailText:(NSString *)detailText inView:(UIView *)vi
 {
     [self showMessageHUDWithTitle:title detailText:detailText inView:vi hideAfterDelay:3.6f];
 }
+
 - (void)showMessageHUDWithTitle:(NSString *)title detailText:(NSString *)detailText inView:(UIView *)vi hideAfterDelay:(CGFloat)delay
 {
     tkDispatch_async_on_main_queue(^{
         if (!vi)
         {
+            
             return;
         }
         if (self.mbHud)
@@ -38,31 +45,17 @@
         self.mbHud.animationType = MBProgressHUDAnimationFade;
         [self.mbHud setMode:MBProgressHUDModeText];
         
-//        self.mbHud.label.font = [UIFont tt_systemFontWithSize:12];
-//        self.mbHud.detailsLabel.font = [UIFont tt_systemFontWithSize:12];
+        self.mbHud.label.font = [UIFont tt_systemFontWithSize:12];
+        self.mbHud.detailsLabel.font = [UIFont tt_systemFontWithSize:12];
         self.mbHud.detailsLabel.text = detailText;
         self.mbHud.label.text = title;
         self.mbHud.bezelView.style = MBProgressHUDBackgroundStyleSolidColor;   // HUD主色调无效果, 默认MBProgressHUDBackgroundStyleBlur 毛玻璃效果
-        self.mbHud.bezelView.backgroundColor = [UIColor blackColor];
+        self.mbHud.bezelView.backgroundColor = tkRGBAlphaColor(0, 0, 0, 0.6);
         self.mbHud.margin = 5;
         self.mbHud.contentColor = [UIColor whiteColor];
-//        self.mbHud.layer.cornerRadius = 5;
-//        self.mbHud.layer.masksToBounds = YES;
-        self.mbHud.offset = CGPointMake(0.f, 500);
-//        CGRect rt = vi.frame;
-//        rt = CGRectMake((rt.size.width-self.mbHud.frame.size.width)/2, rt.size.height-self.mbHud.frame.size.height - rt.size.height/8, self.mbHud.frame.size.width, self.mbHud.frame.size.height);
-////        if ([Utilities isiPhone4])
-////        {
-////            rt.origin.y-=10;
-////        }
-//        [self.mbHud setFrame:rt];
-//        self.mbHud.autoresizingMask =     UIViewAutoresizingFlexibleLeftMargin|
-//        UIViewAutoresizingFlexibleWidth  |
-//        UIViewAutoresizingFlexibleRightMargin |
-//        UIViewAutoresizingFlexibleBottomMargin ;
-        
-//        [vi addSubview:self.mbHud];
-//        [self.mbHud showAnimated:YES];
+        CGFloat bottom = tkDeviceHeight() / 8.f + 10;
+        CGFloat offsetY = tkDeviceHeight() / 2.f - bottom;
+        self.mbHud.offset = tkPoint(0, offsetY);
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideMessageHud) object:nil];
         [self performSelector:@selector(hideMessageHud) withObject:nil afterDelay:delay];
         
