@@ -136,6 +136,43 @@
     return NSStringFromClass([self superclass]);
 }
 
++ (BOOL)tt_storeObjectToUserDefault:(id)obj key:(NSString *)key
+{
+    if (!obj || !key.tt_isUseable)
+    {
+        return NO;
+    }
+    NSUserDefaults * ud = [NSUserDefaults standardUserDefaults];
+    [ud setObject:obj forKey:key];
+    return [ud synchronize];
+}
+
++ (id)objectFromeUseDefaultWithKey:(NSString *)key
+{
+    if (!key.tt_isUseable)
+    {
+        return nil;
+    }
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    return [ud objectForKey:key];
+}
+
+/**
+ 删除指定的数据
+ 
+ @param key 需要删除的数据对应的key
+ @return 是否删除成功
+ */
++ (BOOL)removeObjectFromUserDefaultWithKey:(NSString *)key
+{
+    if (!key.tt_isUseable)
+    {
+        return NO;
+    }
+    NSUserDefaults *ud = [NSUserDefaults standardUserDefaults];
+    [ud removeObjectForKey:key];
+    return YES;
+}
 @end
 @implementation NSArray (TTUtility)
 
