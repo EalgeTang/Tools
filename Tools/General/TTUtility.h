@@ -62,7 +62,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param key 数据对应的key
  @return 对应的数据
  */
-+ (id)objectFromeUseDefaultWithKey:(NSString *)key;
++ (id)tt_objectFromeUseDefaultWithKey:(NSString *)key;
 
 /**
  删除指定的数据
@@ -70,7 +70,7 @@ NS_ASSUME_NONNULL_BEGIN
  @param key 需要删除的数据对应的key
  @return 是否删除成功
  */
-+ (BOOL)removeObjectFromUserDefaultWithKey:(NSString *)key;
++ (BOOL)tt_removeObjectFromUserDefaultWithKey:(NSString *)key;
 
 @end
 

@@ -136,6 +136,13 @@
     return NSStringFromClass([self superclass]);
 }
 
+/**
+ 向UserDefault中存储数据, 建议只存储轻量级数据
+ 
+ @param obj 需要存储的数据
+ @param key 数据对应的key
+ @return 是否存储成功
+ */
 + (BOOL)tt_storeObjectToUserDefault:(id)obj key:(NSString *)key
 {
     if (!obj || !key.tt_isUseable)
@@ -147,7 +154,13 @@
     return [ud synchronize];
 }
 
-+ (id)objectFromeUseDefaultWithKey:(NSString *)key
+/**
+ 从userDefault中取出指定的数据
+ 
+ @param key 数据对应的key
+ @return 对应的数据
+ */
++ (id)tt_objectFromeUseDefaultWithKey:(NSString *)key
 {
     if (!key.tt_isUseable)
     {
@@ -163,7 +176,7 @@
  @param key 需要删除的数据对应的key
  @return 是否删除成功
  */
-+ (BOOL)removeObjectFromUserDefaultWithKey:(NSString *)key
++ (BOOL)tt_removeObjectFromUserDefaultWithKey:(NSString *)key
 {
     if (!key.tt_isUseable)
     {
