@@ -9,6 +9,7 @@
 #import "FirstViewController.h"
 
 @interface FirstViewController ()
+@property (weak, nonatomic) IBOutlet UIView *vi;
 
 @end
 
@@ -18,7 +19,9 @@
     [super viewDidLoad];
     // Do any additional setup after loading the view from its nib.
     self.view.backgroundColor = tkRandowColor();
+    self.vi.backgroundColor = tkRandowColor();
     
+    [self.vi.layer tt_rotation];
     
 }
 

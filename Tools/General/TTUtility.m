@@ -683,4 +683,14 @@
     [self addAnimation:keyAnimation forKey:@"shake"];
 }
 
+/**自转/ 旋转*/
+- (void)tt_rotation
+{
+    CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
+    rotation.toValue = [NSNumber numberWithFloat:M_PI * 2];
+    rotation.repeatCount = 3;
+    rotation.duration = 0.5;
+    rotation.removedOnCompletion = YES;
+    [self addAnimation:rotation forKey:@"rotation"];
+}
 @end

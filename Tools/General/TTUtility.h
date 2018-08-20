@@ -259,7 +259,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /**左右抖动*/
 - (void)tt_shake;
-
+/**自转/旋转*/
+- (void)tt_rotation;
 @end
 /**
  因为内联方法以 tk 开头方便检索
