@@ -330,6 +330,10 @@ static inline UIColor *tkRGBAlphaColor(CGFloat r, CGFloat g, CGFloat b, CGFloat 
     return [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:alpha];
 }
 
+static inline UIColor *tkWhiteColor(){
+    return [UIColor whiteColor];
+}
+
 static inline UIColor *tkHexColor(NSString *hexColor){
     return [UIColor tt_colorWithHexString:hexColor];
 }

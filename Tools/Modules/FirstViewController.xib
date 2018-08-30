@@ -4,14 +4,16 @@
         <adaptation id="fullscreen"/>
     </device>
     <dependencies>
-        <deployment identifier="iOS"/>
+        <deployment version="2304" identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="14088"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FirstViewController">
             <connections>
-                <outlet property="vi" destination="IBE-ib-3ii" id="fzT-Pa-njs"/>
+                <outlet property="btn" destination="BBl-2x-z6K" id="k0d-bl-fBz"/>
+                <outlet property="lab" destination="jda-fn-ies" id="6kv-DN-2C2"/>
+                <outlet property="stackVi" destination="rwC-Yg-Q1x" id="p8B-vs-iXT"/>
                 <outlet property="view" destination="i5M-Pr-FkT" id="sfx-zR-JGt"/>
             </connections>
         </placeholder>
@@ -20,13 +22,31 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <view contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="IBE-ib-3ii">
-                    <rect key="frame" x="91" y="230" width="193" height="115"/>
-                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                    <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                </view>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rwC-Yg-Q1x">
+                    <rect key="frame" x="83.5" y="284" width="208" height="100"/>
+                    <subviews>
+                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只是简单的错事效果的标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jda-fn-ies">
+                            <rect key="frame" x="0.0" y="0.0" width="208" height="20.5"/>
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <nil key="textColor"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBl-2x-z6K">
+                            <rect key="frame" x="116" y="30.5" width="92" height="69.5"/>
+                            <state key="normal" title="这是一个按钮"/>
+                        </button>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="208" id="YOI-R4-x8F"/>
+                        <constraint firstAttribute="height" constant="100" id="axT-Hg-Cxs"/>
+                    </constraints>
+                </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+            <constraints>
+                <constraint firstItem="rwC-Yg-Q1x" firstAttribute="centerY" secondItem="i5M-Pr-FkT" secondAttribute="centerY" id="iDZ-hq-Ada"/>
+                <constraint firstItem="rwC-Yg-Q1x" firstAttribute="centerX" secondItem="i5M-Pr-FkT" secondAttribute="centerX" id="x0C-Zb-BGq"/>
+            </constraints>
             <point key="canvasLocation" x="25.5" y="51.5"/>
         </view>
     </objects>

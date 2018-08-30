@@ -674,9 +674,9 @@
     CAKeyframeAnimation *keyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
     CGFloat shakeWidth = 16;
     keyAnimation.values = @[@(-shakeWidth),@(0),@(shakeWidth),@(0),@(-shakeWidth),@(0),@(shakeWidth),@(0)];
-    //时长
+    //每次动画时长
     keyAnimation.duration = .1f;
-    //重复
+    //动画次数
     keyAnimation.repeatCount =2;
     //移除
     keyAnimation.removedOnCompletion = YES;
@@ -688,8 +688,10 @@
 {
     CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
     rotation.toValue = [NSNumber numberWithFloat:M_PI * 2];
+    // 动画执行次数
     rotation.repeatCount = 3;
-    rotation.duration = 0.5;
+    // 每次动画执行的时长
+    rotation.duration = 0.7;
     rotation.removedOnCompletion = YES;
     [self addAnimation:rotation forKey:@"rotation"];
 }
