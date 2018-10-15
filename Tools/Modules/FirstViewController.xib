@@ -22,8 +22,8 @@
             <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
             <subviews>
-                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="bottom" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rwC-Yg-Q1x">
-                    <rect key="frame" x="83.5" y="284" width="208" height="100"/>
+                <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="equalSpacing" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rwC-Yg-Q1x">
+                    <rect key="frame" x="83.5" y="303.5" width="208" height="60.5"/>
                     <subviews>
                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="只是简单的错事效果的标题" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="jda-fn-ies">
                             <rect key="frame" x="0.0" y="0.0" width="208" height="20.5"/>
@@ -32,14 +32,10 @@
                             <nil key="highlightedColor"/>
                         </label>
                         <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBl-2x-z6K">
-                            <rect key="frame" x="116" y="30.5" width="92" height="69.5"/>
+                            <rect key="frame" x="0.0" y="30.5" width="208" height="30"/>
                             <state key="normal" title="这是一个按钮"/>
                         </button>
                     </subviews>
-                    <constraints>
-                        <constraint firstAttribute="width" constant="208" id="YOI-R4-x8F"/>
-                        <constraint firstAttribute="height" constant="100" id="axT-Hg-Cxs"/>
-                    </constraints>
                 </stackView>
             </subviews>
             <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>

@@ -66,6 +66,8 @@
     return [predicate evaluateWithObject:str];
 }
 
+//TODO: 项目信息相关
+
 /**设备型号*/
 + (NSString *)tt_deviceModel
 {
@@ -88,7 +90,7 @@
 /**APP的icon*/
 + (UIImage *)tt_appIcon
 {
-    NSDictionary *infoPlist = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *infoPlist = [TTUtility tt_bundleInfoDictionary];
     NSArray *arr = [infoPlist valueForKeyPath:@"CFBundleIcons.CFBundlePrimaryIcon.CFBundleIconFiles"];
     NSString *icon = [arr lastObject];
     UIImage *image = [UIImage imageNamed:icon];
@@ -103,7 +105,7 @@
 /**app的名字*/
 + (NSString *)tt_appName
 {
-    NSDictionary *dict = [[NSBundle mainBundle] infoDictionary];
+    NSDictionary *dict = [TTUtility tt_bundleInfoDictionary];
     NSString *name = dict[@"CFBundleDisplayName"];
     if (name == nil)
     {
@@ -112,6 +114,10 @@
     return name?:@"";
 }
 
++ (NSDictionary *)tt_bundleInfoDictionary
+{
+    return [[NSBundle mainBundle] infoDictionary];
+}
 @end
 
 @implementation NSObject (TTUtility)

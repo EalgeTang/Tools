@@ -406,6 +406,7 @@
 		80FD761E20BEAB6300811327 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = TT;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = tangbowen;
 				TargetAttributes = {

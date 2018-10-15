@@ -12,22 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TTUtility : NSObject
 
-/**
- 获取windows当前现在的Vc
- @return Windows 上正在展示的VC
- */
+/**获取windows当前现在的Vc*/
 + (UIViewController *)tt_getCurrentViewController;
-
-/**
- 验证E-mail 格式
- @param email 需要验证的emal格式
- @return 格式是否正确
- */
+/**验证E-mail 格式 */
 + (BOOL)tt_validateEmail:(NSString *)email;
-
-/**
- 验证中文
- */
+/**验证中文*/
 + (BOOL)tt_validateChinese:(NSString *)str;
 
 /**
@@ -39,13 +28,16 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)tt_validateRegExForPredicate:(NSString *)reg string:(NSString *)str;
 
+//TODO: 项目信息相关
+
 /**APP的icon*/
 + (UIImage *)tt_appIcon;
 /**设备型号*/
 + (NSString *)tt_deviceModel;
 /**app的名字*/
 + (NSString *)tt_appName;
-
+/**获取info表*/
++ (NSDictionary *)tt_bundleInfoDictionary;
 
 /**
  向UserDefault中存储数据, 建议只存储轻量级数据
