@@ -406,6 +406,7 @@
 		80FD761E20BEAB6300811327 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = TT;
 				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = tangbowen;
 				TargetAttributes = {
@@ -665,7 +666,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Tools/Resources/TTMacro.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Tools/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -686,7 +687,7 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "$(SRCROOT)/Tools/Resources/TTMacro.pch";
 				INFOPLIST_FILE = "$(SRCROOT)/Tools/Resources/Info.plist";
-				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				IPHONEOS_DEPLOYMENT_TARGET = 9.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

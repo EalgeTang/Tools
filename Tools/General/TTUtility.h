@@ -12,22 +12,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface TTUtility : NSObject
 
-/**
- 获取windows当前现在的Vc
- @return Windows 上正在展示的VC
- */
+/**获取windows当前现在的Vc*/
 + (UIViewController *)tt_getCurrentViewController;
-
-/**
- 验证E-mail 格式
- @param email 需要验证的emal格式
- @return 格式是否正确
- */
+/**验证E-mail 格式 */
 + (BOOL)tt_validateEmail:(NSString *)email;
-
-/**
- 验证中文
- */
+/**验证中文*/
 + (BOOL)tt_validateChinese:(NSString *)str;
 
 /**
@@ -39,12 +28,45 @@ NS_ASSUME_NONNULL_BEGIN
  */
 + (BOOL)tt_validateRegExForPredicate:(NSString *)reg string:(NSString *)str;
 
+//TODO: 项目信息相关
+
 /**APP的icon*/
 + (UIImage *)tt_appIcon;
 /**设备型号*/
 + (NSString *)tt_deviceModel;
 /**app的名字*/
 + (NSString *)tt_appName;
+/**获取info表*/
++ (NSDictionary *)tt_bundleInfoDictionary;
+/**app版本*/
++ (NSString *)tt_appVersion;
+/**app build version*/
++ (NSString *)tt_appBuildVersion;
+
+/**
+ 向UserDefault中存储数据, 建议只存储轻量级数据
+
+ @param obj 需要存储的数据
+ @param key 数据对应的key
+ @return 是否存储成功
+ */
++ (BOOL)tt_storeObjectToUserDefault:(id)obj key:(NSString *)key;
+
+/**
+ 从userDefault中取出指定的数据
+
+ @param key 数据对应的key
+ @return 对应的数据
+ */
++ (id)tt_objectFromeUseDefaultWithKey:(NSString *)key;
+
+/**
+ 删除指定的数据
+
+ @param key 需要删除的数据对应的key
+ @return 是否删除成功
+ */
++ (BOOL)tt_removeObjectFromUserDefaultWithKey:(NSString *)key;
 
 @end
 
@@ -120,22 +142,16 @@ NS_ASSUME_NONNULL_BEGIN
  @return 截取过的字符串
  */
 - (NSString *)tt_subStringFromStartStr:(NSString *)startString to:(NSString *)endString;
-
 /**截取range范围*/
 - (NSString *)tt_substringWithRange:(NSRange)range;
-
 /**判断是否包含字符串aString*/
 - (BOOL)tt_containString:(NSString *)aString;
-
 /**NSString 从某个地方开始截取*/
 - (NSString *)tt_substringFromIndex:(NSUInteger)from;
-
 /**NSString 从截取到某个地方*/
 - (NSString *)tt_substringToIndex:(NSUInteger)toIndex;
-
 /**用URL对特殊字符的允许范围将字符串进行UTF8编码*/
 - (NSString *)tt_URLQueryStringUTF8Encoding;
-
 /**将字符串解码*/
 - (NSString *)tt_stringDecoding;
 
@@ -188,21 +204,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark -- others
 @interface UIColor (TTUtility)
-
 + (UIColor *)tt_colorWithHexString:(NSString *)stringToConvert;
 + (UIColor *)tt_colorWithHexString:(NSString *)stringToConvert alpha:(CGFloat)alpha;
-
 @end
 
 @interface UIImage (TTUtility)
-
 /**
  以图片的中心点为拉伸点去拉伸图片
 
  @return 拉伸过的图片
  */
 - (UIImage *)tt_resizableImageForSretchMode;
-
 /**
  修改图片的前景色
 
@@ -210,7 +222,6 @@ NS_ASSUME_NONNULL_BEGIN
  @return 修改过前景色的目标图片
  */
 - (UIImage *)tt_rederWithColor:(UIColor *)theColor;
-
 /**
   屏幕截屏, 截取一个size为目标view本身尺寸的图片
 
@@ -230,10 +241,10 @@ NS_ASSUME_NONNULL_BEGIN
 @end
 
 @interface CALayer (TTUtility)
-
 /**左右抖动*/
 - (void)tt_shake;
-
+/**自转/旋转*/
+- (void)tt_rotation;
 @end
 /**
  因为内联方法以 tk 开头方便检索
@@ -241,7 +252,6 @@ NS_ASSUME_NONNULL_BEGIN
  自己写的方法就会因为找不到而报错了
  */
 #pragma 一些常用的内联方法
-
 static inline void tkDispatch_async_on_main_queue(void(^block)(void)){
     if([NSThread isMainThread])
     {
@@ -255,11 +265,9 @@ static inline void tkDispatch_async_on_main_queue(void(^block)(void)){
         });
     }
 }
-
 static inline CGRect tkRect(CGFloat x, CGFloat y, CGFloat width, CGFloat height){
     return CGRectMake(x, y, width, height);
 }
-
 static inline CGPoint tkPoint(CGFloat x, CGFloat y){
     return CGPointMake(x, y);
 }
@@ -267,11 +275,9 @@ static inline CGPoint tkPoint(CGFloat x, CGFloat y){
 static inline CGSize tkSize(CGFloat width, CGFloat height){
     return CGSizeMake(width, height);
 }
-
 static inline CGFloat tkNavHeight(){
     return [UIApplication sharedApplication].statusBarFrame.size.height + 44.f;
 }
-
 /**
  判断是否为iPhone X 机型,  后续可能为 iPhone X 后续带刘海屏机型的判断依据
 
@@ -286,30 +292,26 @@ static inline BOOL tkIsIPhoneX(){
     }
     return NO;
 }
-
 static inline CGFloat tkDeviceHeight(){
     return [UIScreen mainScreen].bounds.size.height;
 }
-
 static inline CGFloat tkDeviceWidth(){
     return [UIScreen mainScreen].bounds.size.width;
 }
-
 static inline UIColor *tkRGBColor(CGFloat r, CGFloat g, CGFloat b){
     return [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:1];
 }
-
 static inline UIColor *tkRGBAlphaColor(CGFloat r, CGFloat g, CGFloat b, CGFloat alpha){
     return [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:alpha];
+}
+static inline UIColor *tkWhiteColor(){
+    return [UIColor whiteColor];
 }
 
 static inline UIColor *tkHexColor(NSString *hexColor){
     return [UIColor tt_colorWithHexString:hexColor];
 }
-
-/**
- 生成一个随机颜色.
- */
+/**生成一个随机颜色.*/
 static inline UIColor *tkRandowColor(){
     NSInteger rValue = arc4random() % 255;
     NSInteger gValue = arc4random() % 255;
@@ -317,23 +319,18 @@ static inline UIColor *tkRandowColor(){
     return [UIColor colorWithRed:rValue/255.f green:gValue/255.f blue:bValue/255.f alpha:1.0];
     
 }
-
 static inline UIImage *tkImageName(NSString *imageName){
     return [UIImage imageNamed:imageName];
 }
-
 static inline UIColor *tkHexColorWithAlpha(NSString *hexColor, CGFloat alpha){
     return [UIColor tt_colorWithHexString:hexColor alpha:alpha];
 }
-
 static inline NSString *tkDocumentPath(){
     return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
 }
-
 static inline NSString *tkCachePath(){
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
 }
-
 /**国际化设置, 传入国际化文件中自己设置的语言key值*/
 static inline NSString *tkLanguage(NSString *string){
     return NSLocalizedString(string, nil);
