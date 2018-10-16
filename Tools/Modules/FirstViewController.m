@@ -20,6 +20,8 @@
     self.view.backgroundColor = tkRandowColor();
     
     DLog(@"dadad ");
+    
+    NSStringFromClass([self class]);
 }
 
 - (void)didReceiveMemoryWarning {
