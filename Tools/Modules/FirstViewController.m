@@ -28,8 +28,6 @@
 //    self.lab.hidden = YES;
 //    self.lab.alpha = 0;
     [self.btn addTarget: self action:@selector(onBtnClick) forControlEvents:UIControlEventTouchUpInside];
-    
-    
 }
 
 - (void)onBtnClick
