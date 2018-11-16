@@ -49,15 +49,15 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",emailReg];
     return [predicate evaluateWithObject:email];
 }
-/**
- 验证中文
- */
+
+/**验证中文*/
 + (BOOL)tt_validateChinese:(NSString *)str;
 {
     NSString *reg = @"[\u4e00-\u9fa5]";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",reg];
     return [predicate evaluateWithObject:str];
 }
+
 + (BOOL)tt_validateRegExForPredicate:(NSString *)reg string:(NSString *)str
 {
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",reg];
@@ -133,6 +133,7 @@
     //    if ([deviceString isEqualToString:@"x86_64"])       return @"Simulator";
     return deviceString;
 }
+
 /**APP的icon*/
 + (UIImage *)tt_appIcon
 {
@@ -147,6 +148,7 @@
     }
     return image;
 }
+
 /**app的名字*/
 + (NSString *)tt_appName
 {
@@ -158,23 +160,28 @@
     }
     return name?:@"";
 }
+
 + (NSString *)tt_appVersion
 {
     NSDictionary *dic = [TTUtility tt_bundleInfoDictionary];
     return dic[@"CFBundleShortVersionString"]? : @"";
 }
+
 + (NSString *)tt_appBuildVersion
 {
     NSDictionary *dic = [TTUtility tt_bundleInfoDictionary];
     return dic[@"CFBundleVersion"]?:@"";
 }
+
 + (NSDictionary *)tt_bundleInfoDictionary
 {
     return [[NSBundle mainBundle] infoDictionary];
 }
+
 @end
 
 @implementation NSObject (TTUtility)
+
 - (NSString *)tt_className
 {
     return NSStringFromClass([self class]);
@@ -194,13 +201,16 @@
 {
     return NSStringFromClass([self superclass]);
 }
+
 @end
 
 @implementation NSArray (TTUtility)
+
 - (BOOL)tt_isUseable
 {
     return ([self isKindOfClass:[NSArray class]] && self.count > 0);
 }
+
 @end
 
 @implementation  NSDictionary (TTUtility)
@@ -215,6 +225,7 @@
     id obj = [self objectForKey:attribute];
     return (obj == [NSNull null] ? @"" : obj);
 }
+
 - (int)tt_intAttribute:(NSString *)attribute defaultValue:(int)defaultValue
 {
     NSString *value = [self getAttribute:attribute];
@@ -224,6 +235,7 @@
     
     return defaultValue;
 }
+
 - (NSInteger)tt_integerAttribute:(NSString *)attribute defaultValue:(NSInteger)defaultValue
 {
     NSString *value = [self getAttribute:attribute];
@@ -232,6 +244,7 @@
     }
     return defaultValue;
 }
+
 - (float)tt_floatAttribute:(NSString *)attribute defaultValue:(float)defaultValue
 {
     NSString *value = [self getAttribute:attribute];
@@ -240,6 +253,7 @@
     }
     return defaultValue;
 }
+
 - (BOOL)tt_boolAttribute:(NSString *)attribute defaultValue:(BOOL)defalutValue
 {
     NSString *value = [self getAttribute:attribute];
@@ -248,6 +262,7 @@
     }
     return defalutValue;
 }
+
 - (NSString *)tt_stringAttributeIncludeNil:(NSString *)attribute
 {
     id object = [self objectForKey:attribute];
@@ -272,6 +287,7 @@
     
     return object;
 }
+
 - (NSString *)tt_stringAttribute:(NSString *)attribute
 {
     id object = [self objectForKey:attribute];
@@ -296,6 +312,7 @@
     
     return object;
 }
+
 - (NSArray *)tt_arrayAttribute:(NSString *)attribute
 {
     if (attribute == nil)
@@ -309,6 +326,7 @@
     }
     return nil;
 }
+
 @end
 
 @implementation NSData (TTUtility)
@@ -316,10 +334,12 @@
 @end
 
 @implementation NSString (TTUtility)
+
 - (BOOL)tt_isUseable
 {
     return ([self isKindOfClass:[NSString class]] && self.length>0);
 }
+
 /**判断是否包含 字符串 aString*/
 - (BOOL)tt_containString:(NSString *)aString {
     BOOL isContain = NO;
@@ -330,6 +350,7 @@
     
     return isContain;
 }
+
 /**从from位置截取字符串*/
 - (NSString *)tt_substringFromIndex:(NSUInteger)from {
     if ([self isKindOfClass:[NSString class]]) {
@@ -339,6 +360,7 @@
     }
     return nil;
 }
+
 /**从开始截取到to位置的字符串*/
 - (NSString *)tt_substringToIndex:(NSUInteger)toIndex {
     if ([self isKindOfClass:[NSString class]]) {
@@ -348,6 +370,7 @@
     }
     return nil;
 }
+
 /**截取指定范围的字符串*/
 - (NSString *)tt_substringWithRange:(NSRange)range {
     if ([self isKindOfClass:[NSString class]]) {
@@ -357,6 +380,7 @@
     }
     return nil;
 }
+
 /**
  根据起始位字符串去截取特定位置的字符串
  
@@ -395,74 +419,89 @@
 {
     return [self stringByRemovingPercentEncoding];
 }
+
 @end
 
 #pragma mark -- Views
 
 @implementation UIView (TTUtility)
+
 - (void)setTt_x:(CGFloat)tt_x
 {
     CGRect frame = self.frame;
     frame.origin.x = tt_x;
     self.frame = frame;
 }
+
 - (CGFloat)tt_x
 {
     return self.frame.origin.x;
 }
+
 - (void)setTt_y:(CGFloat)tt_y
 {
     CGRect frame = self.frame;
     frame.origin.y = tt_y;
     self.frame = frame;
 }
+
 - (CGFloat)tt_y
 {
     return self.frame.origin.y;
 }
+
 - (void)setTt_width:(CGFloat)tt_width
 {
     CGRect frame = self.frame;
     frame.size.width = tt_width;
     self.frame = frame;
 }
+
 - (CGFloat)tt_width
 {
     return self.frame.size.width;
 }
+
 - (void)setTt_height:(CGFloat)tt_height
 {
     CGRect frame = self.frame;
     frame.size.height = tt_height;
     self.frame = frame;
 }
+
 - (CGFloat)tt_height
 {
     return self.frame.size.height;
 }
+
 - (CGFloat)tt_bottom
 {
     return self.frame.origin.y + self.frame.size.height;
 }
+
 - (CGFloat)tt_right{
     return self.frame.origin.x + self.frame.size.width;
 }
+
 - (void)setTt_centerX:(CGFloat)tt_centerX
 {
     CGPoint center = self.center;
     center.x = tt_centerX;
     self.center = center;
 }
+
 - (CGFloat)tt_centerX
 {
     return self.center.x;
 }
+
 - (void)setTt_centerY:(CGFloat)tt_centerY
 {
     CGPoint center = self.center;
     center.y = tt_centerY;
     self.center = center;
 }
+
 - (CGFloat)tt_centerY
 {
     return self.center.y;
@@ -491,6 +530,7 @@
 @end
 
 @implementation UITableView (TTUtility)
+
 - (void)tt_registerNibClass:(nullable Class)cellClass forCellReuseIdentifier:(nullable NSString *)identifier
 {
     
@@ -503,9 +543,11 @@
     [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:identifier];
     
 }
+
 @end
 
 @implementation UICollectionView (TTUtility)
+
 - (void)tt_registerNibClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier
 {
     if (!cellClass || !(identifier && identifier.length > 0))
@@ -516,6 +558,7 @@
     [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellWithReuseIdentifier:identifier];
     
 }
+
 @end
 
 @implementation UIColor (TTUtility)
@@ -640,6 +683,7 @@
     UIGraphicsEndImageContext();
     return image;
 }
+
 @end
 
 @implementation CALayer (TTUtility)
@@ -671,4 +715,5 @@
     rotation.removedOnCompletion = YES;
     [self addAnimation:rotation forKey:@"rotation"];
 }
+
 @end

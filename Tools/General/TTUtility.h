@@ -29,7 +29,6 @@ NS_ASSUME_NONNULL_BEGIN
 + (BOOL)tt_validateRegExForPredicate:(NSString *)reg string:(NSString *)str;
 
 //TODO: 项目信息相关
-
 /**APP的icon*/
 + (UIImage *)tt_appIcon;
 /**设备型号*/
@@ -81,6 +80,7 @@ NS_ASSUME_NONNULL_BEGIN
 + (NSString *)tt_superClassName;
 
 @end
+
 #pragma mark -- Datas
 
 @interface NSArray (TTUtility)
@@ -92,36 +92,21 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface NSDictionary (TTUtility)
 
-/**
- 是否可以正常使用, 即数据存在并且数量大于0
- */
+/**是否可以正常使用, 即数据存在并且数量大于0 */
 @property (nonatomic, assign, readonly) BOOL tt_isUseable;
-/**
- 获取int类型的数据
- */
+
+/**获取int类型的数据*/
 - (int)tt_intAttribute:(NSString *)attribute defaultValue:(int)defaultValue;
-/**
- 获取NSInteger类型的数据
- */
+/**获取bool类型的数据*/
+- (BOOL)tt_boolAttribute:(NSString *)attribute defaultValue:(BOOL)defalutValue;
+/**获取float类型的数据*/
+- (float)tt_floatAttribute:(NSString *)attribute defaultValue:(float)defaultValue;
+/**获取NSInteger类型的数据*/
 - (NSInteger)tt_integerAttribute:(NSString *)attribute defaultValue:(NSInteger)defaultValue;
 
-/**
- 获取float类型的数据
- */
-- (float)tt_floatAttribute:(NSString *)attribute defaultValue:(float)defaultValue;
-
-/**
- 获取bool类型的数据
- */
-- (BOOL)tt_boolAttribute:(NSString *)attribute defaultValue:(BOOL)defalutValue;
-
-/**
- 获取NSString类型的数据
- */
+/**获取NSString类型的数据*/
 - (NSString *)tt_stringAttributeIncludeNil:(NSString *)attribute;
-
 - (NSString *)tt_stringAttribute:(NSString *)attribute;
-
 - (NSArray *)tt_arrayAttribute:(NSString *)attribute;
 
 @end
@@ -142,14 +127,15 @@ NS_ASSUME_NONNULL_BEGIN
  @return 截取过的字符串
  */
 - (NSString *)tt_subStringFromStartStr:(NSString *)startString to:(NSString *)endString;
-/**截取range范围*/
-- (NSString *)tt_substringWithRange:(NSRange)range;
 /**判断是否包含字符串aString*/
 - (BOOL)tt_containString:(NSString *)aString;
+/**截取range范围*/
+- (NSString *)tt_substringWithRange:(NSRange)range;
 /**NSString 从某个地方开始截取*/
 - (NSString *)tt_substringFromIndex:(NSUInteger)from;
 /**NSString 从截取到某个地方*/
 - (NSString *)tt_substringToIndex:(NSUInteger)toIndex;
+
 /**用URL对特殊字符的允许范围将字符串进行UTF8编码*/
 - (NSString *)tt_URLQueryStringUTF8Encoding;
 /**将字符串解码*/
@@ -169,8 +155,6 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign) CGFloat tt_centerY;
 @property (readonly) CGFloat tt_bottom;
 @property (readonly) CGFloat tt_right;
-
-
 
 /**
  设置一个默认无边框的圆角
@@ -204,11 +188,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark -- others
 @interface UIColor (TTUtility)
+
 + (UIColor *)tt_colorWithHexString:(NSString *)stringToConvert;
 + (UIColor *)tt_colorWithHexString:(NSString *)stringToConvert alpha:(CGFloat)alpha;
+
 @end
 
 @interface UIImage (TTUtility)
+
 /**
  以图片的中心点为拉伸点去拉伸图片
 
@@ -238,6 +225,7 @@ NS_ASSUME_NONNULL_BEGIN
  @return 生成的图片
  */
 + (UIImage *)tt_screenShotFromView:(UIView *)vi withSize:(CGSize)size;
+
 @end
 
 @interface CALayer (TTUtility)
@@ -245,7 +233,9 @@ NS_ASSUME_NONNULL_BEGIN
 - (void)tt_shake;
 /**自转/旋转*/
 - (void)tt_rotation;
+
 @end
+
 /**
  因为内联方法以 tk 开头方便检索
  之所以把内联方法放到最下面书写是因为有的内联方法是用到上面自己写的方法的, 如果放在最上面的话,
@@ -265,9 +255,11 @@ static inline void tkDispatch_async_on_main_queue(void(^block)(void)){
         });
     }
 }
+
 static inline CGRect tkRect(CGFloat x, CGFloat y, CGFloat width, CGFloat height){
     return CGRectMake(x, y, width, height);
 }
+
 static inline CGPoint tkPoint(CGFloat x, CGFloat y){
     return CGPointMake(x, y);
 }
@@ -275,9 +267,11 @@ static inline CGPoint tkPoint(CGFloat x, CGFloat y){
 static inline CGSize tkSize(CGFloat width, CGFloat height){
     return CGSizeMake(width, height);
 }
+
 static inline CGFloat tkNavHeight(){
     return [UIApplication sharedApplication].statusBarFrame.size.height + 44.f;
 }
+
 /**
  判断是否为iPhone X 机型,  后续可能为 iPhone X 后续带刘海屏机型的判断依据
 
@@ -292,18 +286,23 @@ static inline BOOL tkIsIPhoneX(){
     }
     return NO;
 }
+
 static inline CGFloat tkDeviceHeight(){
     return [UIScreen mainScreen].bounds.size.height;
 }
+
 static inline CGFloat tkDeviceWidth(){
     return [UIScreen mainScreen].bounds.size.width;
 }
+
 static inline UIColor *tkRGBColor(CGFloat r, CGFloat g, CGFloat b){
     return [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:1];
 }
+
 static inline UIColor *tkRGBAlphaColor(CGFloat r, CGFloat g, CGFloat b, CGFloat alpha){
     return [UIColor colorWithRed:r/255.f green:g/255.f blue:b/255.f alpha:alpha];
 }
+
 static inline UIColor *tkWhiteColor(){
     return [UIColor whiteColor];
 }
@@ -311,6 +310,7 @@ static inline UIColor *tkWhiteColor(){
 static inline UIColor *tkHexColor(NSString *hexColor){
     return [UIColor tt_colorWithHexString:hexColor];
 }
+
 /**生成一个随机颜色.*/
 static inline UIColor *tkRandowColor(){
     NSInteger rValue = arc4random() % 255;
@@ -319,18 +319,23 @@ static inline UIColor *tkRandowColor(){
     return [UIColor colorWithRed:rValue/255.f green:gValue/255.f blue:bValue/255.f alpha:1.0];
     
 }
+
 static inline UIImage *tkImageName(NSString *imageName){
     return [UIImage imageNamed:imageName];
 }
+
 static inline UIColor *tkHexColorWithAlpha(NSString *hexColor, CGFloat alpha){
     return [UIColor tt_colorWithHexString:hexColor alpha:alpha];
 }
+
 static inline NSString *tkDocumentPath(){
     return NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES).firstObject;
 }
+
 static inline NSString *tkCachePath(){
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
 }
+
 /**国际化设置, 传入国际化文件中自己设置的语言key值*/
 static inline NSString *tkLanguage(NSString *string){
     return NSLocalizedString(string, nil);
