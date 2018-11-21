@@ -141,6 +141,14 @@ NS_ASSUME_NONNULL_BEGIN
 /**将字符串解码*/
 - (NSString *)tt_stringDecoding;
 
+/**
+ 获取string的尺寸
+
+ @param maxSize string 所在的容器的所能支持的最大尺寸.
+ @param font string的font
+ @return string的尺寸
+ */
+- (CGSize)tt_getStringSizeWithContentMaxSize:(CGSize)maxSize font:(UIFont *)font;
 @end
 
 #pragma mark -- Views
