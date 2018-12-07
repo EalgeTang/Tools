@@ -440,6 +440,11 @@
                               context:nil].size;
 }
 
+/**给定指定宽度, 高度不做限制,获取文字size*/
+- (CGSize)tt_getStringSizeWithFixedWidth:(CGFloat)fixedWidth font:(UIFont *)font
+{
+    return [self tt_getStringSizeWithContentMaxSize:CGSizeMake(fixedWidth, MAXFLOAT) font:font];
+}
 @end
 
 @implementation NSAttributedString (TTUtility)
@@ -449,6 +454,12 @@
     return [self boundingRectWithSize:maxSize
                               options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
                               context:nil].size;
+}
+
+/**给定指定宽度,高度不做限制,获取attributeStr的尺寸*/
+- (CGSize)tt_getAttributeStringWithFixedWidth:(CGFloat)fixedWidth
+{
+    return [self tt_getAttributeStringWithContainerMaxSize:CGSizeMake(fixedWidth, MAXFLOAT)];
 }
 
 @end
@@ -577,6 +588,15 @@
                                              context:nil].size;
 }
 
+/**给定label的宽度, 返回Label文字显示需要的高度*/
+- (CGSize)tt_getStringSizeWithContainerViFixedWith:(CGFloat)containerViFixedWidth
+{
+    return [self tt_getStringSizeWithContainerViMaxSize:CGSizeMake(containerViFixedWidth, MAXFLOAT)];
+}
+- (CGSize)tt_getAttributeStringSizeWithContainerViFixedWidth:(CGFloat)containerViFixedWidth
+{
+    return [self tt_getAttributeStringWithContainerViMaxSize:CGSizeMake(containerViFixedWidth, MAXFLOAT)];
+}
 @end
 @implementation UITableView (TTUtility)
 

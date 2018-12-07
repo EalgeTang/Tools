@@ -166,11 +166,22 @@ NS_ASSUME_NONNULL_BEGIN
  @return string的尺寸
  */
 - (CGSize)tt_getStringSizeWithContentMaxSize:(CGSize)maxSize font:(UIFont *)font;
+/**给定指定宽度, 高度不做限制,获取文字size*/
+- (CGSize)tt_getStringSizeWithFixedWidth:(CGFloat)fixedWidth font:(UIFont *)font;
+
 @end
 
 @interface NSAttributedString (TTUtility)
 
+/**
+ 获取attributeString的尺寸
+
+ @param maxSize attributeStr 所在容器的所能支持的最大尺寸
+ @return attributeStr的尺寸
+ */
 - (CGSize)tt_getAttributeStringWithContainerMaxSize:(CGSize)maxSize;
+/**给定指定宽度,高度不做限制,获取attributeStr的尺寸*/
+- (CGSize)tt_getAttributeStringWithFixedWidth:(CGFloat)fixedWidth;
 
 @end
 #pragma mark -- Views
@@ -209,6 +220,9 @@ NS_ASSUME_NONNULL_BEGIN
 /**给定一个容器的最大size, 返回文字的size*/
 - (CGSize)tt_getStringSizeWithContainerViMaxSize:(CGSize)containerViMaxSize;
 - (CGSize)tt_getAttributeStringWithContainerViMaxSize:(CGSize)containerViMaxSize;
+/**给定label的宽度, 返回Label文字显示需要的高度*/
+- (CGSize)tt_getStringSizeWithContainerViFixedWith:(CGFloat)containerViFixedWidth;
+- (CGSize)tt_getAttributeStringSizeWithContainerViFixedWidth:(CGFloat)containerViFixedWidth;
 
 @end
 @interface UITableView (TTUtility)
