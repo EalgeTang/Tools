@@ -224,7 +224,6 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGSize)tt_getStringSizeWithContainerViFixedWith:(CGFloat)containerViFixedWidth;
 - (CGSize)tt_getAttributeStringSizeWithContainerViFixedWidth:(CGFloat)containerViFixedWidth;
 
-
 @end
 @interface UITableView (TTUtility)
 
