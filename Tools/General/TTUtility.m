@@ -63,6 +63,7 @@
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",reg];
     return [predicate evaluateWithObject:str];
 }
+
 /**
  向UserDefault中存储数据, 建议只存储轻量级数据
  
@@ -438,8 +439,19 @@
                            attributes:@{NSFontAttributeName: font}
                               context:nil].size;
 }
+
 @end
 
+@implementation NSAttributedString (TTUtility)
+
+- (CGSize)tt_getAttributeStringWithContainerMaxSize:(CGSize)maxSize
+{
+    return [self boundingRectWithSize:maxSize
+                              options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                              context:nil].size;
+}
+
+@end
 #pragma mark -- Views
 
 @implementation UIView (TTUtility)
@@ -547,6 +559,25 @@
 
 @end
 
+@implementation UILabel (TTUtility)
+
+- (CGSize)tt_getStringSizeWithContainerViMaxSize:(CGSize)containerViMaxSize
+{
+
+    return [self.text boundingRectWithSize:containerViMaxSize
+                                   options:NSStringDrawingUsesFontLeading|NSStringDrawingUsesLineFragmentOrigin
+                                attributes:@{NSFontAttributeName: self.font}
+                                   context:nil].size;
+}
+
+- (CGSize)tt_getAttributeStringWithContainerViMaxSize:(CGSize)containerViMaxSize
+{
+    return [self.attributedText boundingRectWithSize:containerViMaxSize
+                                             options:NSStringDrawingUsesLineFragmentOrigin|NSStringDrawingUsesFontLeading
+                                             context:nil].size;
+}
+
+@end
 @implementation UITableView (TTUtility)
 
 - (void)tt_registerNibClass:(nullable Class)cellClass forCellReuseIdentifier:(nullable NSString *)identifier

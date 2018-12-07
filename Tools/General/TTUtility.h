@@ -10,6 +10,23 @@
 #import <UIKit/UIKit.h>
 NS_ASSUME_NONNULL_BEGIN
 
+#ifdef DEBUG
+#   define DLog(fmt, ...) NSLog((@"%s [Line %d] " fmt), __PRETTY_FUNCTION__, __LINE__, ##__VA_ARGS__);
+#   define ELog(err) {if(err) DLog(@"%@", err)}
+#else
+#   define DLog(...)
+#endif
+
+#define tkDeviceHeight     [UIScreen mainScreen].bounds.size.height
+#define tkDeviceWidth      [UIScreen mainScreen].bounds.size.width
+
+#define tk_iOS_10_Above    ([UIDevice currentDevice].systemVersion.floatValue>=10.0f)
+#define tk_iOS_9_Above     ([[UIDevice currentDevice].systemVersion floatValue]>=9.0)
+#define tk_iOS_8_Above     ([[UIDevice currentDevice].systemVersion floatValue]>=8.0)
+#define tkAppDelegate      ((TTAppDelegate *)[UIApplication sharedApplication].delegate)
+#define tkAppWindow        (tkAppDelegate.window)
+
+
 @interface TTUtility : NSObject
 
 /**获取windows当前现在的Vc*/
@@ -151,6 +168,11 @@ NS_ASSUME_NONNULL_BEGIN
 - (CGSize)tt_getStringSizeWithContentMaxSize:(CGSize)maxSize font:(UIFont *)font;
 @end
 
+@interface NSAttributedString (TTUtility)
+
+- (CGSize)tt_getAttributeStringWithContainerMaxSize:(CGSize)maxSize;
+
+@end
 #pragma mark -- Views
 @interface UIView (TTUtility)
 
@@ -182,6 +204,13 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
+@interface UILabel (TTUtility)
+
+/**给定一个容器的最大size, 返回文字的size*/
+- (CGSize)tt_getStringSizeWithContainerViMaxSize:(CGSize)containerViMaxSize;
+- (CGSize)tt_getAttributeStringWithContainerViMaxSize:(CGSize)containerViMaxSize;
+
+@end
 @interface UITableView (TTUtility)
 
 - (void)tt_registerNibClass:(nullable Class) cellClass forCellReuseIdentifier:(nullable NSString *)identifier;
@@ -214,6 +243,7 @@ NS_ASSUME_NONNULL_BEGIN
  修改图片的前景色
 
  @param theColor 需要被修改成的前景色
+ 
  @return 修改过前景色的目标图片
  */
 - (UIImage *)tt_rederWithColor:(UIColor *)theColor;
@@ -293,14 +323,6 @@ static inline BOOL tkIsIPhoneX(){
         return YES;
     }
     return NO;
-}
-
-static inline CGFloat tkDeviceHeight(){
-    return [UIScreen mainScreen].bounds.size.height;
-}
-
-static inline CGFloat tkDeviceWidth(){
-    return [UIScreen mainScreen].bounds.size.width;
 }
 
 static inline UIColor *tkRGBColor(CGFloat r, CGFloat g, CGFloat b){

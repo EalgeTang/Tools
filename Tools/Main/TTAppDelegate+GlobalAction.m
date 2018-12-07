@@ -53,8 +53,8 @@
         self.mbHud.bezelView.backgroundColor = tkRGBAlphaColor(0, 0, 0, 0.6);
         self.mbHud.margin = 5;
         self.mbHud.contentColor = [UIColor whiteColor];
-        CGFloat bottom = tkDeviceHeight() / 8.f + 10;
-        CGFloat offsetY = tkDeviceHeight() / 2.f - bottom;
+        CGFloat bottom = tkDeviceHeight / 8.f + 10;
+        CGFloat offsetY = tkDeviceHeight / 2.f - bottom;
         self.mbHud.offset = tkPoint(0, offsetY);
         [NSObject cancelPreviousPerformRequestsWithTarget:self selector:@selector(hideMessageHud) object:nil];
         [self performSelector:@selector(hideMessageHud) withObject:nil afterDelay:delay];
