@@ -568,6 +568,67 @@
     self.layer.borderColor = borderColor.CGColor;
 }
 
+- (UITapGestureRecognizer *)tt_addTapGestureWithSel:(SEL)action
+{
+    self.userInteractionEnabled = YES;
+    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
+    [self addGestureRecognizer:tap];
+    return tap;
+}
+
+/**添加一个拖动手势*/
+- (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(SEL)action
+{
+    self.userInteractionEnabled = YES;
+    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:action];
+    [self addGestureRecognizer:pan];
+    return pan;
+}
+
+/**添加一个轻扫手势*/
+- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(SEL)action
+{
+    self.userInteractionEnabled = YES;
+    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:action];
+    [self addGestureRecognizer:swipe];
+    return swipe;
+}
+
+/**添加一个旋转手势*/
+- (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(SEL)action
+{
+    self.userInteractionEnabled = YES;
+    UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:action];
+    [self addGestureRecognizer:rotation];
+    return rotation;
+}
+
+/**添加一个捏合手势*/
+- (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(SEL)action
+{
+    self.userInteractionEnabled = YES;
+    UIPinchGestureRecognizer *pin = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:action];
+    [self addGestureRecognizer:pin];
+    return pin;
+}
+/**添加一个长按手势*/
+- (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(SEL)action
+{
+    self.userInteractionEnabled = YES;
+    UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:action];
+    [self addGestureRecognizer:lp];
+    return lp;
+}
+
+/**边缘拖动手势*/
+- (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(SEL)action
+{
+    self.userInteractionEnabled = YES;
+    UIScreenEdgePanGestureRecognizer *sc = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:action];
+    [self addGestureRecognizer:sc];
+    return sc;
+}
+
 @end
 
 @implementation UILabel (TTUtility)

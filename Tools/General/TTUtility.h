@@ -213,6 +213,20 @@ NS_ASSUME_NONNULL_BEGIN
  */
 - (void)tt_setupBorder:(nullable UIColor *)borderColor borderWidth:(CGFloat)borderWidth cornerRadius:(CGFloat)radius;
 
+/**添加一个点击手势*/
+- (UITapGestureRecognizer *)tt_addTapGestureWithSel:(SEL)action;
+/**添加一个拖动手势*/
+- (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(SEL)action;
+/**添加一个轻扫手势*/
+- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(SEL)action;
+/**添加一个旋转手势*/
+- (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(SEL)action;
+/**添加一个捏合手势*/
+- (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(SEL)action;
+/**添加一个长按手势*/
+- (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(SEL)action;
+/**边缘拖动手势*/
+- (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(SEL)action;
 @end
 
 @interface UILabel (TTUtility)
