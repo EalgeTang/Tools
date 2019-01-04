@@ -70,11 +70,37 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 }
 - (IBAction)addBtnClick:(id)sender {
     
-    Person *p1 = self.dataArr[0];
-    [p1.arr addObject:@(arc4random() % 100)];
-    [self.table reloadData];
+//    Person *p1 = self.dataArr[0];
+//    [p1.arr addObject:@(arc4random() % 100)];
+//    [self.table reloadData];
+    [self testMoreRequest];
 }
 
+- (void)testMoreRequest {
+    
+    NSBlockOperation *operation1 = [NSBlockOperation blockOperationWithBlock:^{
+        //
+        [self doSomeThings:@"op 1" time:5];
+    }];
+    NSBlockOperation *openration2 = [NSBlockOperation blockOperationWithBlock:^{
+        //
+        [self doSomeThings:@"op 2" time:1];
+    }];
+    [operation1 start];
+    [openration2 start];
+    [openration2 addDependency:operation1];
+    
+    NSOperationQueue *queue = [[NSOperationQueue alloc] init];
+    [queue addOperation:openration2];
+    [queue addOperation:operation1];
+    queue.maxConcurrentOperationCount = 1;
+}
+
+- (void)doSomeThings:(NSString *)thing time:(NSInteger)t
+{
+    [NSThread sleepForTimeInterval:t];
+    DLog(@"%@",thing);
+}
 - (Person *)setupPerSon
 {
     Person *p = [Person new];
