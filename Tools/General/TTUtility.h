@@ -26,6 +26,7 @@ NS_ASSUME_NONNULL_BEGIN
 #define tkAppDelegate      ((TTAppDelegate *)[UIApplication sharedApplication].delegate)
 #define tkAppWindow        (tkAppDelegate.window)
 
+typedef void(^voidBlock)(void);
 
 @interface TTUtility : NSObject
 
@@ -227,6 +228,21 @@ NS_ASSUME_NONNULL_BEGIN
 - (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(SEL)action;
 /**边缘拖动手势*/
 - (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(SEL)action;
+
+/**添加一个放大效果动画*/
+- (void)tt_addZoomInAnimationWithComplete:(nullable voidBlock)complete;
+/**添加一个放大效果动画*/
+- (void)tt_addZoomInAnimationWithDuration:(CGFloat)duration
+                               startBlock:(nullable voidBlock)start
+                            progressBlock:(nullable voidBlock)progress
+                                 complete:(nullable voidBlock)complete;
+/**添加一个缩小效果的动画*/
+- (void)tt_addZoomOutAnimationWithComplete:(nullable voidBlock)complete;
+/**添加一个缩小效果的动画*/
+- (void)tt_addZoomOutAnimationWithDuration:(CGFloat)duration
+                                startBlock:(nullable voidBlock)start
+                             progressBlock:(nullable voidBlock)progress
+                                  complete:(nullable voidBlock)complete;
 @end
 
 @interface UILabel (TTUtility)
