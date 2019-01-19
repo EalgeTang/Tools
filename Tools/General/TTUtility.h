@@ -186,6 +186,8 @@ typedef void(^voidBlock)(void);
 
 @end
 #pragma mark -- Views
+
+typedef void(^gestureBlock)(UIGestureRecognizer *gesture);
 @interface UIView (TTUtility)
 
 // 坐标相关
@@ -214,20 +216,23 @@ typedef void(^voidBlock)(void);
  */
 - (void)tt_setupBorder:(nullable UIColor *)borderColor borderWidth:(CGFloat)borderWidth cornerRadius:(CGFloat)radius;
 
+/**添加手势触发时 ,若没有添加对应的方法, 则会默认响应*/
+@property (nonatomic, copy) gestureBlock tt_gestureHandle;
+
 /**添加一个点击手势*/
-- (UITapGestureRecognizer *)tt_addTapGestureWithSel:(SEL)action;
+- (UITapGestureRecognizer *)tt_addTapGestureWithSel:(nullable SEL)action;
 /**添加一个拖动手势*/
-- (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(SEL)action;
+- (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(nullable SEL)action;
 /**添加一个轻扫手势*/
-- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(SEL)action;
+- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(nullable SEL)action;
 /**添加一个旋转手势*/
-- (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(SEL)action;
+- (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(nullable SEL)action;
 /**添加一个捏合手势*/
-- (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(SEL)action;
+- (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(nullable SEL)action;
 /**添加一个长按手势*/
-- (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(SEL)action;
+- (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(nullable SEL)action;
 /**边缘拖动手势*/
-- (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(SEL)action;
+- (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(nullable SEL)action;
 
 /**添加一个放大效果动画*/
 - (void)tt_addZoomInAnimationWithComplete:(nullable voidBlock)complete;
