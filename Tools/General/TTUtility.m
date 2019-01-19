@@ -568,8 +568,22 @@
     self.layer.borderColor = borderColor.CGColor;
 }
 
-- (UITapGestureRecognizer *)tt_addTapGestureWithSel:(SEL)action
+- (void)setTt_gestureHandle:(gestureBlock)tt_gestureHandle
 {
+    objc_setAssociatedObject(self, "tt_gestureHandle", tt_gestureHandle, OBJC_ASSOCIATION_COPY);
+}
+
+- (gestureBlock)tt_gestureHandle
+{
+    return objc_getAssociatedObject(self, "tt_gestureHandle");
+}
+
+- (UITapGestureRecognizer *)tt_addTapGestureWithSel:(nullable SEL)action
+{
+    if (!action)
+    {
+        action = @selector(tt_gestureDefaultAction:);
+    }
     self.userInteractionEnabled = YES;
     UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
     [self addGestureRecognizer:tap];
@@ -577,8 +591,12 @@
 }
 
 /**添加一个拖动手势*/
-- (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(SEL)action
+- (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(nullable SEL)action
 {
+    if (!action)
+    {
+        action = @selector(tt_gestureDefaultAction:);
+    }
     self.userInteractionEnabled = YES;
     UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:action];
     [self addGestureRecognizer:pan];
@@ -586,8 +604,12 @@
 }
 
 /**添加一个轻扫手势*/
-- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(SEL)action
+- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(nullable SEL)action
 {
+    if (!action)
+    {
+        action = @selector(tt_gestureDefaultAction:);
+    }
     self.userInteractionEnabled = YES;
     UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:action];
     [self addGestureRecognizer:swipe];
@@ -595,8 +617,12 @@
 }
 
 /**添加一个旋转手势*/
-- (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(SEL)action
+- (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(nullable SEL)action
 {
+    if (!action)
+    {
+        action = @selector(tt_gestureDefaultAction:);
+    }
     self.userInteractionEnabled = YES;
     UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:action];
     [self addGestureRecognizer:rotation];
@@ -604,16 +630,24 @@
 }
 
 /**添加一个捏合手势*/
-- (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(SEL)action
+- (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(nullable SEL)action
 {
+    if (!action)
+    {
+        action = @selector(tt_gestureDefaultAction:);
+    }
     self.userInteractionEnabled = YES;
     UIPinchGestureRecognizer *pin = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:action];
     [self addGestureRecognizer:pin];
     return pin;
 }
 /**添加一个长按手势*/
-- (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(SEL)action
+- (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(nullable SEL)action
 {
+    if (!action)
+    {
+        action = @selector(tt_gestureDefaultAction:);
+    }
     self.userInteractionEnabled = YES;
     UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:action];
     [self addGestureRecognizer:lp];
@@ -621,12 +655,24 @@
 }
 
 /**边缘拖动手势*/
-- (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(SEL)action
+- (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(nullable SEL)action
 {
+    if (!action)
+    {
+        action = @selector(tt_gestureDefaultAction:);
+    }
     self.userInteractionEnabled = YES;
     UIScreenEdgePanGestureRecognizer *sc = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:action];
     [self addGestureRecognizer:sc];
     return sc;
+}
+
+- (void)tt_gestureDefaultAction:(UIGestureRecognizer *)ges
+{
+    if (self.tt_gestureHandle)
+    {
+        self.tt_gestureHandle(ges);
+    }
 }
 
 /**添加一个放大效果动画*/

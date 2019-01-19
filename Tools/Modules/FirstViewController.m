@@ -40,6 +40,10 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 
 @end
 @interface FirstViewController ()<UITableViewDelegate, UITableViewDataSource>
+{
+    
+    __weak IBOutlet UIView *testVi;
+}
 
 @property (nonatomic, assign) StructTemp numbers;
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -67,6 +71,7 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
     self.dataArr = @[p1,p2,p3];
     
     [self.table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellid"];
+    [testVi tt_addTapGestureWithSel:nil];
 }
 - (IBAction)addBtnClick:(id)sender {
     
@@ -85,19 +90,30 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
     NSBlockOperation *openration2 = [NSBlockOperation blockOperationWithBlock:^{
         //
         [self doSomeThings:@"op 2" time:1];
+//        dispatch_async(dispatch_queue_create("111", DISPATCH_QUEUE_CONCURRENT), ^{
+//            //
+//            [NSThread sleepForTimeInterval:2];
+//            DLog(@"%@",@"op 2");
+//        });
     }];
-    [operation1 start];
-    [openration2 start];
     [openration2 addDependency:operation1];
     
     NSOperationQueue *queue = [[NSOperationQueue alloc] init];
     [queue addOperation:openration2];
     [queue addOperation:operation1];
-    queue.maxConcurrentOperationCount = 1;
+    queue.maxConcurrentOperationCount = 3;
+    
+//    [operation1 start];
+//    [openration2 start];
 }
 
 - (void)doSomeThings:(NSString *)thing time:(NSInteger)t
 {
+//    dispatch_async(dispatch_get_global_queue(0, 0), ^{
+//        //
+//            [NSThread sleepForTimeInterval:t];
+//            DLog(@"%@",thing);
+//    });
     [NSThread sleepForTimeInterval:t];
     DLog(@"%@",thing);
 }
