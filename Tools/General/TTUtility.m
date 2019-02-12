@@ -580,91 +580,60 @@
 
 - (UITapGestureRecognizer *)tt_addTapGestureWithSel:(nullable SEL)action
 {
-    if (!action)
+    return [self tt_addTapGestureWithTarget:self sel:action];
+}
+
+/**添加手势的基类方法*/
+- (id)tt_addGestureWithTarget:(id)target sel:(SEL)action cls:(Class)cls
+{
+    if ([cls isSubclassOfClass:[UIGestureRecognizer class]])
     {
-        action = @selector(tt_gestureDefaultAction:);
+        if (!action)
+        {
+            action = @selector(tt_gestureDefaultAction:);
+        }
+        self.userInteractionEnabled = YES;
+        UIGestureRecognizer *ges = [[cls alloc] initWithTarget:target action:action];
+        [self addGestureRecognizer:ges];
+        return ges;
     }
-    self.userInteractionEnabled = YES;
-    UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:action];
-    [self addGestureRecognizer:tap];
-    return tap;
+    return nil;
 }
 
 /**添加一个拖动手势*/
 - (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(nullable SEL)action
 {
-    if (!action)
-    {
-        action = @selector(tt_gestureDefaultAction:);
-    }
-    self.userInteractionEnabled = YES;
-    UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:action];
-    [self addGestureRecognizer:pan];
-    return pan;
-}
-
-/**添加一个轻扫手势*/
-- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(nullable SEL)action
-{
-    if (!action)
-    {
-        action = @selector(tt_gestureDefaultAction:);
-    }
-    self.userInteractionEnabled = YES;
-    UISwipeGestureRecognizer *swipe = [[UISwipeGestureRecognizer alloc] initWithTarget:self action:action];
-    [self addGestureRecognizer:swipe];
-    return swipe;
+    return [self tt_addPanGestureWithTarget:self sel:action];
 }
 
 /**添加一个旋转手势*/
 - (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(nullable SEL)action
 {
-    if (!action)
-    {
-        action = @selector(tt_gestureDefaultAction:);
-    }
-    self.userInteractionEnabled = YES;
-    UIRotationGestureRecognizer *rotation = [[UIRotationGestureRecognizer alloc] initWithTarget:self action:action];
-    [self addGestureRecognizer:rotation];
-    return rotation;
+    return [self tt_addRotationGestureWithTarget:self sel:action];
 }
 
 /**添加一个捏合手势*/
 - (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(nullable SEL)action
 {
-    if (!action)
-    {
-        action = @selector(tt_gestureDefaultAction:);
-    }
-    self.userInteractionEnabled = YES;
-    UIPinchGestureRecognizer *pin = [[UIPinchGestureRecognizer alloc] initWithTarget:self action:action];
-    [self addGestureRecognizer:pin];
-    return pin;
+    return [self tt_addPinGestureWithTarget:self sel:action];
 }
+
 /**添加一个长按手势*/
 - (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(nullable SEL)action
 {
-    if (!action)
-    {
-        action = @selector(tt_gestureDefaultAction:);
-    }
-    self.userInteractionEnabled = YES;
-    UILongPressGestureRecognizer *lp = [[UILongPressGestureRecognizer alloc] initWithTarget:self action:action];
-    [self addGestureRecognizer:lp];
-    return lp;
+    return [self tt_addLongPressGestureWithTarget:self sel:action];
 }
 
 /**边缘拖动手势*/
 - (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(nullable SEL)action
 {
-    if (!action)
-    {
-        action = @selector(tt_gestureDefaultAction:);
-    }
-    self.userInteractionEnabled = YES;
-    UIScreenEdgePanGestureRecognizer *sc = [[UIScreenEdgePanGestureRecognizer alloc] initWithTarget:self action:action];
-    [self addGestureRecognizer:sc];
-    return sc;
+    return [self tt_addScreendEdgePanGestureWithTarget:self sel:action];
+}
+
+/**添加一个轻扫手势*/
+- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(nullable SEL)action
+{
+    return [self tt_addSwipeGestureWithTarget:self sel:action];
 }
 
 - (void)tt_gestureDefaultAction:(UIGestureRecognizer *)ges
@@ -675,10 +644,67 @@
     }
 }
 
+/**添加一个点击手势*/
+- (UITapGestureRecognizer *)tt_addTapGestureWithTarget:(id)target sel:(nullable SEL)action
+{
+    return [self tt_addGestureWithTarget:target
+                                     sel:action
+                                     cls:[UITapGestureRecognizer class]];
+    
+}
+
+/**添加一个拖动手势*/
+- (UIPanGestureRecognizer *)tt_addPanGestureWithTarget:(id)target sel:(nullable SEL)action
+{
+    return [self tt_addGestureWithTarget:target
+                                     sel:action
+                                     cls:[UIPanGestureRecognizer class]];
+}
+
+/**添加一个清扫手势*/
+- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithTarget:(id)target sel:(nullable SEL)action
+{
+    return [self tt_addGestureWithTarget:target
+                                     sel:action
+                                     cls:[UISwipeGestureRecognizer class]];
+}
+/**添加一个旋转手势*/
+- (UIRotationGestureRecognizer *)tt_addRotationGestureWithTarget:(id)target sel:(nullable SEL)action
+{
+    return [self tt_addGestureWithTarget:target
+                                     sel:action
+                                     cls:[UIRotationGestureRecognizer class]];
+}
+/**添加一个捏合手势*/
+- (UIPinchGestureRecognizer *)tt_addPinGestureWithTarget:(id)target sel:(nullable SEL)action
+{
+    return [self tt_addGestureWithTarget:target
+                                     sel:action
+                                     cls:[UIPinchGestureRecognizer class]];
+}
+/**添加一个长按手势*/
+- (UILongPressGestureRecognizer *)tt_addLongPressGestureWithTarget:(id)target sel:(nullable SEL)action
+{
+    return [self tt_addGestureWithTarget:target
+                                     sel:action
+                                     cls:[UILongPressGestureRecognizer class]];
+}
+
+/**边缘拖动手势*/
+- (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithTarget:(id)target sel:(SEL)action
+{
+    return [self tt_addGestureWithTarget:target
+                                     sel:action
+                                     cls:[UIScreenEdgePanGestureRecognizer class]];
+}
+
 /**添加一个放大效果动画*/
 - (void)tt_addZoomInAnimationWithComplete:(nullable voidBlock)complete
 {
-    [self tt_addZoomInAnimationWithDuration:0.35 startBlock:nil progressBlock:nil complete:complete];
+    [self tt_addZoomInAnimationWithDuration:0.35
+                                 startBlock:nil
+                              progressBlock:nil
+                                   complete:complete];
 }
 
 /**添加一个放大效果动画*/

@@ -219,20 +219,35 @@ typedef void(^gestureBlock)(UIGestureRecognizer *gesture);
 /**添加手势触发时 ,若没有添加对应的方法, 则会默认响应*/
 @property (nonatomic, copy) gestureBlock tt_gestureHandle;
 
-/**添加一个点击手势*/
+/**添加一个target为控件本身的一个点击手势*/
 - (UITapGestureRecognizer *)tt_addTapGestureWithSel:(nullable SEL)action;
-/**添加一个拖动手势*/
+/**添加一个target为控件本身的拖动手势*/
 - (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(nullable SEL)action;
-/**添加一个轻扫手势*/
+/**添加一个target为控件本身轻扫手势*/
 - (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(nullable SEL)action;
-/**添加一个旋转手势*/
+/**添加一个target为控件本身旋转手势*/
 - (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(nullable SEL)action;
-/**添加一个捏合手势*/
+/**添加一个target为控件本身捏合手势*/
 - (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(nullable SEL)action;
-/**添加一个长按手势*/
+/**添加一个target为控件本身长按手势*/
 - (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(nullable SEL)action;
-/**边缘拖动手势*/
+/**target为控件本身的边缘拖动手势*/
 - (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(nullable SEL)action;
+
+/**添加一个点击手势*/
+- (UITapGestureRecognizer *)tt_addTapGestureWithTarget:(id)target sel:(nullable SEL)action;
+/**添加一个拖动手势*/
+- (UIPanGestureRecognizer *)tt_addPanGestureWithTarget:(id)target sel:(nullable SEL)action;
+/**添加一个清扫手势*/
+- (UISwipeGestureRecognizer *)tt_addSwipeGestureWithTarget:(id)target sel:(nullable SEL)action;
+/**添加一个旋转手势*/
+- (UIRotationGestureRecognizer *)tt_addRotationGestureWithTarget:(id)target sel:(nullable SEL)action;
+/**添加一个捏合手势*/
+- (UIPinchGestureRecognizer *)tt_addPinGestureWithTarget:(id)target sel:(nullable SEL)action;
+/**添加一个长按手势*/
+- (UILongPressGestureRecognizer *)tt_addLongPressGestureWithTarget:(id)target sel:(nullable SEL)action;
+/**边缘拖动手势*/
+- (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithTarget:(id)target sel:(SEL)action;
 
 /**添加一个放大效果动画*/
 - (void)tt_addZoomInAnimationWithComplete:(nullable voidBlock)complete;
@@ -329,7 +344,7 @@ typedef void(^gestureBlock)(UIGestureRecognizer *gesture);
  自己写的方法就会因为找不到而报错了
  */
 #pragma 一些常用的内联方法
-static inline void tkDispatch_async_on_main_queue(void(^block)(void)){
+static inline void tkDispatch_safe_on_main_queue(void(^block)(void)){
     if([NSThread isMainThread])
     {
         block();

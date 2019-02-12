@@ -29,7 +29,7 @@
 
 - (void)showMessageHUDWithTitle:(NSString *)title detailText:(NSString *)detailText inView:(UIView *)vi hideAfterDelay:(CGFloat)delay
 {
-    tkDispatch_async_on_main_queue(^{
+    tkDispatch_safe_on_main_queue(^{
         if (!vi)
         {
             
