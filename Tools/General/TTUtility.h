@@ -329,7 +329,7 @@ typedef void(^gestureBlock)(UIGestureRecognizer *gesture);
  自己写的方法就会因为找不到而报错了
  */
 #pragma 一些常用的内联方法
-static inline void tkDispatch_async_on_main_queue(void(^block)(void)){
+static inline void tkDispatch_safe_on_main_queue(void(^block)(void)){
     if([NSThread isMainThread])
     {
         block();
