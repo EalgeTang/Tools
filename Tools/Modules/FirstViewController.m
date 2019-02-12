@@ -71,7 +71,12 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
     self.dataArr = @[p1,p2,p3];
     
     [self.table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellid"];
-    [testVi tt_addTapGestureWithSel:nil];
+  UITapGestureRecognizer *tap = [testVi tt_addTapGestureWithTarget:self sel:@selector(testAction)];
+//    [testVi tt_addTapGestureWithSel:nil];
+//    testVi.tt_gestureHandle = ^(UIGestureRecognizer * _Nonnull gesture) {
+//        //
+//        DLog(@"default action");
+//    };
 }
 - (IBAction)addBtnClick:(id)sender {
     
@@ -107,6 +112,10 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 //    [openration2 start];
 }
 
+- (void)testAction
+{
+    DLog(@" action 被接受到了");
+}
 - (void)doSomeThings:(NSString *)thing time:(NSInteger)t
 {
 //    dispatch_async(dispatch_get_global_queue(0, 0), ^{
