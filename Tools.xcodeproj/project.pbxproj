@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8015BEA02215445400D59255 /* TTTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8015BE9F2215445400D59255 /* TTTestView.m */; };
 		8090FA7220E9D6790056946D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FA5A20E9D6790056946D /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		8090FA7320E9D6790056946D /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FA6320E9D6790056946D /* ViewController+MASAdditions.m */; };
 		8090FA7420E9D6790056946D /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FA6720E9D6790056946D /* MASCompositeConstraint.m */; };
@@ -57,6 +58,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8015BE9E2215445400D59255 /* TTTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTestView.h; sourceTree = "<group>"; };
+		8015BE9F2215445400D59255 /* TTTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTestView.m; sourceTree = "<group>"; };
 		8090FA5920E9D6790056946D /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		8090FA5A20E9D6790056946D /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		8090FA5B20E9D6790056946D /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -287,6 +290,8 @@
 				80AEF1E620E4E8650028FDB1 /* FirstViewController.h */,
 				80AEF1E720E4E8650028FDB1 /* FirstViewController.m */,
 				80AEF1E820E4E8650028FDB1 /* FirstViewController.xib */,
+				8015BE9E2215445400D59255 /* TTTestView.h */,
+				8015BE9F2215445400D59255 /* TTTestView.m */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -487,6 +492,7 @@
 				8090FA7820E9D6790056946D /* View+MASAdditions.m in Sources */,
 				8090FA8220E9D82D0056946D /* NSObject+YYModel.m in Sources */,
 				8090FABE20EA0DC60056946D /* TTConstant.m in Sources */,
+				8015BEA02215445400D59255 /* TTTestView.m in Sources */,
 				80AEF1DE20E4E3DB0028FDB1 /* TTTabBarController.m in Sources */,
 				80AEF1E120E4E4370028FDB1 /* TTBaseViewController.m in Sources */,
 				8090FA8320E9D82D0056946D /* YYClassInfo.m in Sources */,

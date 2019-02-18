@@ -21,7 +21,7 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 //}
 
 #import "FirstViewController.h"
-
+#import "TTTestView.h"
 @interface Person :NSObject
 
 @property (nonatomic, strong) NSMutableArray *arr;
@@ -42,7 +42,7 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 @interface FirstViewController ()<UITableViewDelegate, UITableViewDataSource>
 {
     
-    __weak IBOutlet UIView *testVi;
+    __weak IBOutlet TTTestView *testVi;
 }
 
 @property (nonatomic, assign) StructTemp numbers;
@@ -78,6 +78,25 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 //        DLog(@"default action");
 //    };
 }
+- (IBAction)onHandle1Click:(id)sender {
+    testVi.handle = ^{
+        DLog(@"Handle1Click");
+    };
+//    testVi.handle = nil;
+}
+- (IBAction)onHandle2Click:(id)sender {
+    testVi.handle = ^{
+        DLog(@"handle2Click");
+    };
+//    testVi.handle = nil;
+}
+- (IBAction)onHandle3Click:(id)sender {
+    testVi.handle = ^{
+        DLog(@"handle3Click");
+    };
+//    testVi.handle = nil;
+}
+
 - (IBAction)addBtnClick:(id)sender {
     
 //    Person *p1 = self.dataArr[0];
