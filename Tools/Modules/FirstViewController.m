@@ -22,6 +22,7 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 
 #import "FirstViewController.h"
 #import "TTTestView.h"
+#import "TTVi.h"
 @interface Person :NSObject
 
 @property (nonatomic, strong) NSMutableArray *arr;
@@ -49,6 +50,7 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 @property (weak, nonatomic) IBOutlet UITableView *table;
 /***/
 @property (nonatomic, copy) NSArray *dataArr;
+@property (strong, nonatomic) IBOutlet UITapGestureRecognizer *xibTap;
 @end
 
 @implementation FirstViewController
@@ -72,12 +74,27 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
     
     [self.table registerClass:[UITableViewCell class] forCellReuseIdentifier:@"cellid"];
   UITapGestureRecognizer *tap = [testVi tt_addTapGestureWithTarget:self sel:@selector(testAction)];
+    UIView *vi = [[UIView alloc] initWithFrame:tkRect(10, 10, 100, 100)];
+    vi.userInteractionEnabled = YES;
+    [vi addGestureRecognizer:tap];
+    vi.backgroundColor = [UIColor greenColor];
+    [self.view addSubview:vi];
 //    [testVi tt_addTapGestureWithSel:nil];
 //    testVi.tt_gestureHandle = ^(UIGestureRecognizer * _Nonnull gesture) {
 //        //
 //        DLog(@"default action");
 //    };
+    
+    TTVi *v2 = [TTVi build];
+    v2.frame = tkRect(200, 300, 200, 200);
+    v2.backgroundColor = tkRandowColor();
+    [self.view addSubview:v2];
 }
+- (IBAction)xibTapVi:(id)sender {
+    DLog(@"XibTapViewClick");
+}
+
+
 - (IBAction)onHandle1Click:(id)sender {
     testVi.handle = ^{
         DLog(@"Handle1Click");

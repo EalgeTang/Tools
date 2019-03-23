@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		8015BEA02215445400D59255 /* TTTestView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8015BE9F2215445400D59255 /* TTTestView.m */; };
+		80293524222CFF0A00955994 /* TTVi.m in Sources */ = {isa = PBXBuildFile; fileRef = 80293523222CFF0A00955994 /* TTVi.m */; };
+		80293526222CFF2700955994 /* TTVi.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80293525222CFF2700955994 /* TTVi.xib */; };
 		8090FA7220E9D6790056946D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FA5A20E9D6790056946D /* NSLayoutConstraint+MASDebugAdditions.m */; };
 		8090FA7320E9D6790056946D /* ViewController+MASAdditions.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FA6320E9D6790056946D /* ViewController+MASAdditions.m */; };
 		8090FA7420E9D6790056946D /* MASCompositeConstraint.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FA6720E9D6790056946D /* MASCompositeConstraint.m */; };
@@ -60,6 +62,9 @@
 /* Begin PBXFileReference section */
 		8015BE9E2215445400D59255 /* TTTestView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTestView.h; sourceTree = "<group>"; };
 		8015BE9F2215445400D59255 /* TTTestView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTestView.m; sourceTree = "<group>"; };
+		80293522222CFF0A00955994 /* TTVi.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTVi.h; sourceTree = "<group>"; };
+		80293523222CFF0A00955994 /* TTVi.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTVi.m; sourceTree = "<group>"; };
+		80293525222CFF2700955994 /* TTVi.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TTVi.xib; sourceTree = "<group>"; };
 		8090FA5920E9D6790056946D /* MASCompositeConstraint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MASCompositeConstraint.h; sourceTree = "<group>"; };
 		8090FA5A20E9D6790056946D /* NSLayoutConstraint+MASDebugAdditions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSLayoutConstraint+MASDebugAdditions.m"; sourceTree = "<group>"; };
 		8090FA5B20E9D6790056946D /* MASConstraint+Private.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "MASConstraint+Private.h"; sourceTree = "<group>"; };
@@ -292,6 +297,9 @@
 				80AEF1E820E4E8650028FDB1 /* FirstViewController.xib */,
 				8015BE9E2215445400D59255 /* TTTestView.h */,
 				8015BE9F2215445400D59255 /* TTTestView.m */,
+				80293522222CFF0A00955994 /* TTVi.h */,
+				80293523222CFF0A00955994 /* TTVi.m */,
+				80293525222CFF2700955994 /* TTVi.xib */,
 			);
 			path = Modules;
 			sourceTree = "<group>";
@@ -453,6 +461,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				80293526222CFF2700955994 /* TTVi.xib in Resources */,
 				80FD763620BEAB6500811327 /* LaunchScreen.storyboard in Resources */,
 				80AEF1EA20E4E8650028FDB1 /* FirstViewController.xib in Resources */,
 				80FD763320BEAB6500811327 /* Assets.xcassets in Resources */,
@@ -485,6 +494,7 @@
 				80AEF1D720E4CB1D0028FDB1 /* TTAppDelegate.m in Sources */,
 				8090FABD20EA0DC60056946D /* TTUtility.m in Sources */,
 				8090FA7920E9D6790056946D /* MASConstraint.m in Sources */,
+				80293524222CFF0A00955994 /* TTVi.m in Sources */,
 				8090FA7A20E9D6790056946D /* MASViewConstraint.m in Sources */,
 				8090FA7320E9D6790056946D /* ViewController+MASAdditions.m in Sources */,
 				8090FA7B20E9D6790056946D /* MASViewAttribute.m in Sources */,

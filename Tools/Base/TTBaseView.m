@@ -15,7 +15,7 @@
     NSString *xibName = NSStringFromClass([self class]);
     return [[[NSBundle mainBundle] loadNibNamed:xibName
                                           owner:nil
-                                        options:nil] lastObject];
+                                        options:nil] firstObject];
 }
 
 

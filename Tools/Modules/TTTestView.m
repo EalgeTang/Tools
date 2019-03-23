@@ -17,8 +17,8 @@
 
 - (void)dealloc
 {
-    [self.timer invalidate];
-    self.timer = nil;
+//    [self.timer invalidate];
+//    self.timer = nil;
 }
 - (instancetype)initWithCoder:(NSCoder *)aDecoder
 {
@@ -31,7 +31,7 @@
 
 - (void)setupViews
 {
-    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
+//    self.timer = [NSTimer scheduledTimerWithTimeInterval:1.0 target:self selector:@selector(onTimer) userInfo:nil repeats:YES];
 }
 
 - (void)onTimer
