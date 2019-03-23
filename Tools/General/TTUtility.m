@@ -857,6 +857,57 @@
 
 @end
 
+@implementation UIButton (TTUtility)
+
+- (void)tt_layoutButtonWithEdgeInsetsStyle:(TTButtonEdgeInsetsStyle)style
+                                     space:(CGFloat)space
+{
+    // 1. 得到imageView和titleLabel的宽、高
+    CGFloat imageWith = self.currentImage.size.width;
+    CGFloat imageHeight = self.currentImage.size.height;
+    CGFloat labelWidth = self.titleLabel.intrinsicContentSize.width;
+    CGFloat labelHeight = self.titleLabel.intrinsicContentSize.height;
+    
+    // 2. 声明全局的imageEdgeInsets和labelEdgeInsets
+    UIEdgeInsets imageEdgeInsets = UIEdgeInsetsZero;
+    UIEdgeInsets labelEdgeInsets = UIEdgeInsetsZero;
+    
+    // 3. 根据style和space得到imageEdgeInsets和labelEdgeInsets的值
+    switch (style) {
+        case TTButtonEdgeInsetsStyleImageTop:
+        {
+            imageEdgeInsets = UIEdgeInsetsMake(-labelHeight-space/2.0, 0, 0, -labelWidth);
+            labelEdgeInsets = UIEdgeInsetsMake(0, -imageWith, -imageHeight-space/2.0, 0);
+        }
+            break;
+        case TTButtonEdgeInsetsStyleImageLeft:
+        {
+            imageEdgeInsets = UIEdgeInsetsMake(0, -space/2.0, 0, space/2.0);
+            labelEdgeInsets = UIEdgeInsetsMake(0, space/2.0, 0, -space/2.0);
+        }
+            break;
+        case TTButtonEdgeInsetsStyleImageBottom:
+        {
+            imageEdgeInsets = UIEdgeInsetsMake(0, 0, -labelHeight-space/2.0, -labelWidth);
+            labelEdgeInsets = UIEdgeInsetsMake(-imageHeight-space/2.0, -imageWith, 0, 0);
+        }
+            break;
+        case TTButtonEdgeInsetsStyleImageRight:
+        {
+            imageEdgeInsets = UIEdgeInsetsMake(0, labelWidth+space/2.0, 0, -labelWidth-space/2.0);
+            labelEdgeInsets = UIEdgeInsetsMake(0, -imageWith-space/2.0, 0, imageWith+space/2.0);
+        }
+            break;
+        default:
+            break;
+    }
+    
+    // 4. 赋值
+    self.titleEdgeInsets = labelEdgeInsets;
+    self.imageEdgeInsets = imageEdgeInsets;
+}
+
+@end
 @implementation UIColor (TTUtility)
 
 + (UIColor *)tt_colorWithHexString:(NSString *)stringToConvert alpha:(CGFloat)alpha {
@@ -898,6 +949,8 @@
 }
 
 @end
+
+#pragma mark -- others
 
 @implementation UIImage (TTUtility)
 

@@ -287,6 +287,18 @@ typedef void(^gestureBlock)(UIGestureRecognizer *gesture);
 
 @end
 
+typedef NS_ENUM(NSUInteger, TTButtonEdgeInsetsStyle) {
+    TTButtonEdgeInsetsStyleImageTop,      // image在上 , label在下
+    TTButtonEdgeInsetsStyleImageLeft,     // image在左 , label在右
+    TTButtonEdgeInsetsStyleImageBottom,   // image在下 , label在上
+    TTButtonEdgeInsetsStyleImageRight,    // image在右 , label在左
+};
+@interface UIButton (TTUtility)
+
+- (void)tt_layoutButtonWithEdgeInsetsStyle:(TTButtonEdgeInsetsStyle)style
+                                     space:(CGFloat)space;
+@end
+
 #pragma mark -- others
 @interface UIColor (TTUtility)
 
