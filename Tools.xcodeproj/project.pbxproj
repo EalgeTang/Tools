@@ -40,6 +40,7 @@
 		80FD763920BEAB6500811327 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD763820BEAB6500811327 /* main.m */; };
 		80FD764320BEAB6500811327 /* ToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD764220BEAB6500811327 /* ToolsTests.m */; };
 		80FD764E20BEAB6500811327 /* ToolsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD764D20BEAB6500811327 /* ToolsUITests.m */; };
+		9124163B2246896C00B58D6C /* UIView+IBInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9124163A2246896C00B58D6C /* UIView+IBInspection.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -132,6 +133,8 @@
 		80FD764920BEAB6500811327 /* ToolsUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ToolsUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		80FD764D20BEAB6500811327 /* ToolsUITests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ToolsUITests.m; sourceTree = "<group>"; };
 		80FD764F20BEAB6500811327 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		912416392246896C00B58D6C /* UIView+IBInspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+IBInspection.h"; sourceTree = "<group>"; };
+		9124163A2246896C00B58D6C /* UIView+IBInspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+IBInspection.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -220,6 +223,7 @@
 				8090FAAF20EA0DC60056946D /* TTConstant.m */,
 				8090FAAE20EA0DC60056946D /* TTUtility.h */,
 				8090FAAC20EA0DC60056946D /* TTUtility.m */,
+				912416382246896C00B58D6C /* UIView+IBInspection */,
 				8090FAC420EA28520056946D /* UIFont+System */,
 				8090FAC320EA28270056946D /* PlaceholderTextView */,
 			);
@@ -357,6 +361,15 @@
 			path = ToolsUITests;
 			sourceTree = "<group>";
 		};
+		912416382246896C00B58D6C /* UIView+IBInspection */ = {
+			isa = PBXGroup;
+			children = (
+				912416392246896C00B58D6C /* UIView+IBInspection.h */,
+				9124163A2246896C00B58D6C /* UIView+IBInspection.m */,
+			);
+			path = "UIView+IBInspection";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -492,6 +505,7 @@
 				8090FA7220E9D6790056946D /* NSLayoutConstraint+MASDebugAdditions.m in Sources */,
 				8090FAC720EA288C0056946D /* UIFont+TTSystem.m in Sources */,
 				80AEF1D720E4CB1D0028FDB1 /* TTAppDelegate.m in Sources */,
+				9124163B2246896C00B58D6C /* UIView+IBInspection.m in Sources */,
 				8090FABD20EA0DC60056946D /* TTUtility.m in Sources */,
 				8090FA7920E9D6790056946D /* MASConstraint.m in Sources */,
 				80293524222CFF0A00955994 /* TTVi.m in Sources */,

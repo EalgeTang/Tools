@@ -20,7 +20,7 @@
 #import "YYModel.h"
 #import "TTAppDelegate+GlobalAction.h"
 #import "TTPlaceholderTextView.h"
-
+#import "UIView+IBInspection.h"
 #pragma mark 具体项目中的使用到的类
 
 @interface TTConstant : NSObject
