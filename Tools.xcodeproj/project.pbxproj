@@ -29,10 +29,6 @@
 		8090FAC720EA288C0056946D /* UIFont+TTSystem.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAC620EA288C0056946D /* UIFont+TTSystem.m */; };
 		8090FACB20EA2E730056946D /* MBProgressHUD.m in Sources */ = {isa = PBXBuildFile; fileRef = 8090FAC920EA2E730056946D /* MBProgressHUD.m */; };
 		80AEF1D720E4CB1D0028FDB1 /* TTAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1D620E4CB1D0028FDB1 /* TTAppDelegate.m */; };
-		80AEF1DB20E4E1B00028FDB1 /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1DA20E4E1B00028FDB1 /* TTNavigationController.m */; };
-		80AEF1DE20E4E3DB0028FDB1 /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1DD20E4E3DB0028FDB1 /* TTTabBarController.m */; };
-		80AEF1E120E4E4370028FDB1 /* TTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1E020E4E4370028FDB1 /* TTBaseViewController.m */; };
-		80AEF1E420E4E7370028FDB1 /* TTBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1E320E4E7370028FDB1 /* TTBaseView.m */; };
 		80AEF1E920E4E8650028FDB1 /* FirstViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 80AEF1E720E4E8650028FDB1 /* FirstViewController.m */; };
 		80AEF1EA20E4E8650028FDB1 /* FirstViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 80AEF1E820E4E8650028FDB1 /* FirstViewController.xib */; };
 		80FD763320BEAB6500811327 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 80FD763220BEAB6500811327 /* Assets.xcassets */; };
@@ -41,6 +37,11 @@
 		80FD764320BEAB6500811327 /* ToolsTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD764220BEAB6500811327 /* ToolsTests.m */; };
 		80FD764E20BEAB6500811327 /* ToolsUITests.m in Sources */ = {isa = PBXBuildFile; fileRef = 80FD764D20BEAB6500811327 /* ToolsUITests.m */; };
 		9124163B2246896C00B58D6C /* UIView+IBInspection.m in Sources */ = {isa = PBXBuildFile; fileRef = 9124163A2246896C00B58D6C /* UIView+IBInspection.m */; };
+		9126888E225F82A40045B5AF /* TTBaseView.m in Sources */ = {isa = PBXBuildFile; fileRef = 91268880225F82A40045B5AF /* TTBaseView.m */; };
+		9126888F225F82A40045B5AF /* TTTabBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 91268884225F82A40045B5AF /* TTTabBarController.m */; };
+		91268890225F82A40045B5AF /* TTBaseTableCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 91268887225F82A40045B5AF /* TTBaseTableCell.m */; };
+		91268891225F82A40045B5AF /* TTBaseViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9126888A225F82A40045B5AF /* TTBaseViewController.m */; };
+		91268892225F82A40045B5AF /* TTNavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 9126888C225F82A40045B5AF /* TTNavigationController.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,14 +112,6 @@
 		80AEF1D020E4C5220028FDB1 /* TTMacro.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTMacro.pch; sourceTree = "<group>"; };
 		80AEF1D520E4CB1D0028FDB1 /* TTAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTAppDelegate.h; sourceTree = "<group>"; };
 		80AEF1D620E4CB1D0028FDB1 /* TTAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTAppDelegate.m; sourceTree = "<group>"; };
-		80AEF1D920E4E1B00028FDB1 /* TTNavigationController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTNavigationController.h; sourceTree = "<group>"; };
-		80AEF1DA20E4E1B00028FDB1 /* TTNavigationController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTNavigationController.m; sourceTree = "<group>"; };
-		80AEF1DC20E4E3DB0028FDB1 /* TTTabBarController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTTabBarController.h; sourceTree = "<group>"; };
-		80AEF1DD20E4E3DB0028FDB1 /* TTTabBarController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTTabBarController.m; sourceTree = "<group>"; };
-		80AEF1DF20E4E4370028FDB1 /* TTBaseViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTBaseViewController.h; sourceTree = "<group>"; };
-		80AEF1E020E4E4370028FDB1 /* TTBaseViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTBaseViewController.m; sourceTree = "<group>"; };
-		80AEF1E220E4E7370028FDB1 /* TTBaseView.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = TTBaseView.h; sourceTree = "<group>"; };
-		80AEF1E320E4E7370028FDB1 /* TTBaseView.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = TTBaseView.m; sourceTree = "<group>"; };
 		80AEF1E620E4E8650028FDB1 /* FirstViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FirstViewController.h; sourceTree = "<group>"; };
 		80AEF1E720E4E8650028FDB1 /* FirstViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FirstViewController.m; sourceTree = "<group>"; };
 		80AEF1E820E4E8650028FDB1 /* FirstViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstViewController.xib; sourceTree = "<group>"; };
@@ -135,6 +128,16 @@
 		80FD764F20BEAB6500811327 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		912416392246896C00B58D6C /* UIView+IBInspection.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+IBInspection.h"; sourceTree = "<group>"; };
 		9124163A2246896C00B58D6C /* UIView+IBInspection.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+IBInspection.m"; sourceTree = "<group>"; };
+		91268880225F82A40045B5AF /* TTBaseView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTBaseView.m; sourceTree = "<group>"; };
+		91268881225F82A40045B5AF /* TTBaseView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTBaseView.h; sourceTree = "<group>"; };
+		91268883225F82A40045B5AF /* TTTabBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTTabBarController.h; sourceTree = "<group>"; };
+		91268884225F82A40045B5AF /* TTTabBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTTabBarController.m; sourceTree = "<group>"; };
+		91268886225F82A40045B5AF /* TTBaseTableCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTBaseTableCell.h; sourceTree = "<group>"; };
+		91268887225F82A40045B5AF /* TTBaseTableCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTBaseTableCell.m; sourceTree = "<group>"; };
+		91268889225F82A40045B5AF /* TTBaseViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTBaseViewController.h; sourceTree = "<group>"; };
+		9126888A225F82A40045B5AF /* TTBaseViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTBaseViewController.m; sourceTree = "<group>"; };
+		9126888C225F82A40045B5AF /* TTNavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TTNavigationController.m; sourceTree = "<group>"; };
+		9126888D225F82A40045B5AF /* TTNavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TTNavigationController.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -278,21 +281,6 @@
 			path = Main;
 			sourceTree = "<group>";
 		};
-		80AEF1D820E4E1630028FDB1 /* Base */ = {
-			isa = PBXGroup;
-			children = (
-				80AEF1D920E4E1B00028FDB1 /* TTNavigationController.h */,
-				80AEF1DA20E4E1B00028FDB1 /* TTNavigationController.m */,
-				80AEF1DC20E4E3DB0028FDB1 /* TTTabBarController.h */,
-				80AEF1DD20E4E3DB0028FDB1 /* TTTabBarController.m */,
-				80AEF1DF20E4E4370028FDB1 /* TTBaseViewController.h */,
-				80AEF1E020E4E4370028FDB1 /* TTBaseViewController.m */,
-				80AEF1E220E4E7370028FDB1 /* TTBaseView.h */,
-				80AEF1E320E4E7370028FDB1 /* TTBaseView.m */,
-			);
-			path = Base;
-			sourceTree = "<group>";
-		};
 		80AEF1E520E4E82D0028FDB1 /* Modules */ = {
 			isa = PBXGroup;
 			children = (
@@ -331,9 +319,9 @@
 		80FD762820BEAB6300811327 /* Tools */ = {
 			isa = PBXGroup;
 			children = (
+				9126887E225F82A40045B5AF /* Base */,
 				80AEF1D420E4CADE0028FDB1 /* Main */,
 				80AEF1E520E4E82D0028FDB1 /* Modules */,
-				80AEF1D820E4E1630028FDB1 /* Base */,
 				8090FAAA20EA0DC60056946D /* General */,
 				8090FA5720E9D4430056946D /* thirdLib */,
 				80AEF1CF20E4C4BF0028FDB1 /* Resources */,
@@ -368,6 +356,63 @@
 				9124163A2246896C00B58D6C /* UIView+IBInspection.m */,
 			);
 			path = "UIView+IBInspection";
+			sourceTree = "<group>";
+		};
+		9126887E225F82A40045B5AF /* Base */ = {
+			isa = PBXGroup;
+			children = (
+				9126887F225F82A40045B5AF /* TTBaseView */,
+				91268882225F82A40045B5AF /* TTTabBarController */,
+				91268885225F82A40045B5AF /* TTBaseTableCell */,
+				91268888225F82A40045B5AF /* TTBaseViewController */,
+				9126888B225F82A40045B5AF /* TTNavigationController */,
+			);
+			path = Base;
+			sourceTree = "<group>";
+		};
+		9126887F225F82A40045B5AF /* TTBaseView */ = {
+			isa = PBXGroup;
+			children = (
+				91268880225F82A40045B5AF /* TTBaseView.m */,
+				91268881225F82A40045B5AF /* TTBaseView.h */,
+			);
+			path = TTBaseView;
+			sourceTree = "<group>";
+		};
+		91268882225F82A40045B5AF /* TTTabBarController */ = {
+			isa = PBXGroup;
+			children = (
+				91268883225F82A40045B5AF /* TTTabBarController.h */,
+				91268884225F82A40045B5AF /* TTTabBarController.m */,
+			);
+			path = TTTabBarController;
+			sourceTree = "<group>";
+		};
+		91268885225F82A40045B5AF /* TTBaseTableCell */ = {
+			isa = PBXGroup;
+			children = (
+				91268886225F82A40045B5AF /* TTBaseTableCell.h */,
+				91268887225F82A40045B5AF /* TTBaseTableCell.m */,
+			);
+			path = TTBaseTableCell;
+			sourceTree = "<group>";
+		};
+		91268888225F82A40045B5AF /* TTBaseViewController */ = {
+			isa = PBXGroup;
+			children = (
+				91268889225F82A40045B5AF /* TTBaseViewController.h */,
+				9126888A225F82A40045B5AF /* TTBaseViewController.m */,
+			);
+			path = TTBaseViewController;
+			sourceTree = "<group>";
+		};
+		9126888B225F82A40045B5AF /* TTNavigationController */ = {
+			isa = PBXGroup;
+			children = (
+				9126888C225F82A40045B5AF /* TTNavigationController.m */,
+				9126888D225F82A40045B5AF /* TTNavigationController.h */,
+			);
+			path = TTNavigationController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -512,21 +557,22 @@
 				8090FA7A20E9D6790056946D /* MASViewConstraint.m in Sources */,
 				8090FA7320E9D6790056946D /* ViewController+MASAdditions.m in Sources */,
 				8090FA7B20E9D6790056946D /* MASViewAttribute.m in Sources */,
+				91268890225F82A40045B5AF /* TTBaseTableCell.m in Sources */,
 				8090FA7420E9D6790056946D /* MASCompositeConstraint.m in Sources */,
 				8090FA7820E9D6790056946D /* View+MASAdditions.m in Sources */,
 				8090FA8220E9D82D0056946D /* NSObject+YYModel.m in Sources */,
 				8090FABE20EA0DC60056946D /* TTConstant.m in Sources */,
+				9126888E225F82A40045B5AF /* TTBaseView.m in Sources */,
+				91268892225F82A40045B5AF /* TTNavigationController.m in Sources */,
 				8015BEA02215445400D59255 /* TTTestView.m in Sources */,
-				80AEF1DE20E4E3DB0028FDB1 /* TTTabBarController.m in Sources */,
-				80AEF1E120E4E4370028FDB1 /* TTBaseViewController.m in Sources */,
 				8090FA8320E9D82D0056946D /* YYClassInfo.m in Sources */,
 				8090FA7620E9D6790056946D /* MASLayoutConstraint.m in Sources */,
+				91268891225F82A40045B5AF /* TTBaseViewController.m in Sources */,
 				8090FA7520E9D6790056946D /* MASConstraintMaker.m in Sources */,
+				9126888F225F82A40045B5AF /* TTTabBarController.m in Sources */,
 				8090FACB20EA2E730056946D /* MBProgressHUD.m in Sources */,
 				80FD763920BEAB6500811327 /* main.m in Sources */,
 				8090FAC220EA10F00056946D /* TTAppDelegate+GlobalAction.m in Sources */,
-				80AEF1DB20E4E1B00028FDB1 /* TTNavigationController.m in Sources */,
-				80AEF1E420E4E7370028FDB1 /* TTBaseView.m in Sources */,
 				8090FA7720E9D6790056946D /* NSArray+MASAdditions.m in Sources */,
 				80AEF1E920E4E8650028FDB1 /* FirstViewController.m in Sources */,
 				8090FABF20EA0DC60056946D /* TTPlaceholderTextView.m in Sources */,

@@ -23,6 +23,7 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
 #import "FirstViewController.h"
 #import "TTTestView.h"
 #import "TTVi.h"
+#import "TTBaseTableCell.h"
 @interface Person :NSObject
 
 @property (nonatomic, strong) NSMutableArray *arr;

@@ -26,6 +26,10 @@ NS_ASSUME_NONNULL_BEGIN
 #define tkAppDelegate      ((TTAppDelegate *)[UIApplication sharedApplication].delegate)
 #define tkAppWindow        (tkAppDelegate.window)
 
+#define tkAddNotification(NotiName,Sel) ([NSNotificationCenter defaultCenter] addObserver:self selector:@selector(Sel) name:NotiName object:nil])
+#define tkPostNotification(NotiName)    ([[NSNotificationCenter defaultCenter] postNotificationName:NotiName object:nil])
+#define tkRemoveNotification            ([[NSNotificationCenter defaultCenter] removeObserver:self])
+
 typedef void(^voidBlock)(void);
 
 @interface TTUtility : NSObject
@@ -263,6 +267,32 @@ typedef void(^gestureBlock)(UIGestureRecognizer *gesture);
                                 startBlock:(nullable voidBlock)start
                              progressBlock:(nullable voidBlock)progress
                                   complete:(nullable voidBlock)complete;
+/**添加一个渐入动画*/
+- (void)tt_addFadeInAnimationWithDuration:(CGFloat)duration
+                                 complete:(nullable voidBlock)complete;
+
+/**添加一个渐入动画*/
+- (void)tt_addFadeInAnimationWithDuration:(CGFloat)duration
+                               startBlock:(nullable voidBlock)start
+                            progressBlock:(nullable voidBlock)progress
+                                 complete:(nullable voidBlock)complete;
+
+/**添加一个渐出动画*/
+- (void)tt_addFadeOutAnimationWithDuration:(CGFloat)duration
+                                  complete:(nullable voidBlock)complete;
+/**添加一个渐出动画*/
+- (void)tt_addFadeOutAnimationWithDuration:(CGFloat)duration
+                                startBlock:(nullable voidBlock)start
+                             progressBlock:(nullable voidBlock)progress
+                                  complete:(nullable voidBlock)complete;
+
+- (void)tt_addFadeToAlpha:(CGFloat)alpha
+                 duration:(CGFloat)duration
+               startBlock:(nullable voidBlock)start
+            progressBlock:(nullable voidBlock)progress
+                 complete:(nullable voidBlock)comple;
+
+
 @end
 
 @interface UILabel (TTUtility)
@@ -391,7 +421,7 @@ static inline CGFloat tkNavHeight(){
 
  @return yes 为iPhone X机型
  */
-static inline BOOL tkIsIPhoneX(){
+static inline BOOL tkIsFullScreenIPhone(){
     UIApplication *app = [UIApplication sharedApplication];
     UIView *statusBar = [app valueForKeyPath:@"statusBar"];
     if ([statusBar isKindOfClass:NSClassFromString(@"UIStatusBar_Modern")])

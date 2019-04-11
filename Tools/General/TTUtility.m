@@ -717,35 +717,40 @@
     {
         duration = 0.35;
     }
-    self.transform = CGAffineTransformMakeScale(0.1, 0.1);
-    if (start)
-    {
-        start();
-    }
-    [self layoutIfNeeded];
-    __weak __typeof(self) weakSelf = self;
-    
-    [UIView animateWithDuration:duration
-                          delay:0
-         usingSpringWithDamping:0.7
-          initialSpringVelocity:5
-                        options:UIViewAnimationOptionTransitionNone animations:^{
-                            //
-                            weakSelf.transform = CGAffineTransformMakeScale(1.0, 1.0);
-                            if (progress)
-                            {
-                                progress();
-                            }
-                            [self layoutIfNeeded];
-                        } completion:^(BOOL finished) {
-                            //
-                            dispatch_async(dispatch_get_main_queue(), ^{
-                                if (complete)
+ 
+    tkDispatch_safe_on_main_queue(^{
+        //
+        self.transform = CGAffineTransformMakeScale(0.1, 0.1);
+        if (start)
+        {
+            start();
+        }
+        [self layoutIfNeeded];
+        __weak __typeof(self) weakSelf = self;
+        
+        [UIView animateWithDuration:duration
+                              delay:0
+             usingSpringWithDamping:0.7
+              initialSpringVelocity:5
+                            options:UIViewAnimationOptionTransitionNone animations:^{
+                                //
+                                weakSelf.transform = CGAffineTransformMakeScale(1.0, 1.0);
+                                if (progress)
                                 {
-                                    complete();
+                                    progress();
                                 }
-                            });
-                        }];
+                                [self layoutIfNeeded];
+                            } completion:^(BOOL finished) {
+                                //
+                                tkDispatch_safe_on_main_queue(^{
+                                    //
+                                    if (complete)
+                                    {
+                                        complete();
+                                    }
+                                });
+                            }];
+    });
 }
 
 /**添加一个缩小效果的动画*/
@@ -764,36 +769,116 @@
     {
         duration = 0.35;
     }
-    if (start)
-    {
-        start();
-    }
-    __weak __typeof(self) weakSelf = self;
-    [UIView animateWithDuration:0.25 animations:^{
+    tkDispatch_safe_on_main_queue(^{
         //
-        weakSelf.transform = CGAffineTransformMakeScale(1.1, 1.1);
-        [self layoutIfNeeded];
-    } completion:^(BOOL finished) {
+        if (start)
+        {
+            start();
+        }
+        __weak __typeof(self) weakSelf = self;
+        [UIView animateWithDuration:0.25 animations:^{
+            //
+            weakSelf.transform = CGAffineTransformMakeScale(1.1, 1.1);
+            [self layoutIfNeeded];
+        } completion:^(BOOL finished) {
+            //
+            [UIView animateWithDuration:duration animations:^{
+                //
+                weakSelf.transform = CGAffineTransformMakeScale(0.1, 0.1);
+                if (progress)
+                {
+                    progress();
+                }
+                [self layoutIfNeeded];
+            } completion:^(BOOL finished) {
+                //
+                tkDispatch_safe_on_main_queue(^{
+                    //
+                    if (complete)
+                    {
+                        complete();
+                    }
+                });
+            }];
+        }];
+    });
+}
+
+/**添加一个渐入动画*/
+- (void)tt_addFadeInAnimationWithDuration:(CGFloat)duration
+                                 complete:(nullable voidBlock)complete
+{
+    return [self tt_addFadeInAnimationWithDuration:duration
+                                        startBlock:nil
+                                     progressBlock:nil
+                                          complete:complete];
+}
+
+/**添加一个渐入动画*/
+- (void)tt_addFadeInAnimationWithDuration:(CGFloat)duration
+                               startBlock:(nullable voidBlock)start
+                            progressBlock:(nullable voidBlock)progress
+                                 complete:(nullable voidBlock)complete
+{
+    return [self tt_addFadeToAlpha:1.0
+                          duration:duration
+                        startBlock:start
+                     progressBlock:progress
+                          complete:complete];
+}
+
+/**添加一个渐出动画*/
+- (void)tt_addFadeOutAnimationWithDuration:(CGFloat)duration
+                                  complete:(nullable voidBlock)complete
+{
+    return [self tt_addFadeOutAnimationWithDuration:duration
+                                         startBlock:nil
+                                      progressBlock:nil
+                                           complete:complete];
+}
+/**添加一个渐出动画*/
+- (void)tt_addFadeOutAnimationWithDuration:(CGFloat)duration
+                                startBlock:(nullable voidBlock)start
+                             progressBlock:(nullable voidBlock)progress
+                                  complete:(nullable voidBlock)complete
+{
+    return [self tt_addFadeToAlpha:0.f
+                          duration:duration
+                        startBlock:start
+                     progressBlock:progress
+                          complete:complete];
+}
+
+- (void)tt_addFadeToAlpha:(CGFloat)alpha
+                 duration:(CGFloat)duration
+               startBlock:(nullable voidBlock)start
+            progressBlock:(nullable voidBlock)progress
+                 complete:(nullable voidBlock)comple
+{
+    tkDispatch_safe_on_main_queue(^{
         //
+        if (start)
+        {
+            start();
+        }
         [UIView animateWithDuration:duration animations:^{
             //
-            weakSelf.transform = CGAffineTransformMakeScale(0.1, 0.1);
             if (progress)
             {
                 progress();
             }
-            [self layoutIfNeeded];
+            self.alpha = alpha;
         } completion:^(BOOL finished) {
             //
-            dispatch_async(dispatch_get_main_queue(), ^{
+            tkDispatch_safe_on_main_queue(^{
                 //
-                if (complete)
+                if (comple)
                 {
-                    complete();
+                    comple();
                 }
             });
         }];
-    }];
+    });
 }
 @end
 
