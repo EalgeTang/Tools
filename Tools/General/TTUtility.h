@@ -221,7 +221,7 @@ UIKIT_EXTERN NSString *const tkDateFormat_yyyyMMdd_none;//yyyyMMdd ,eg: 20190101
 typedef void(^gestureBlock)(UIGestureRecognizer *gesture);
 @interface UIView (TTUtility)
 
-// 坐标相关
+///坐标相关
 @property CGFloat tt_x;
 @property CGFloat tt_y;
 @property CGFloat tt_width;
@@ -369,7 +369,15 @@ typedef NS_ENUM(NSUInteger, TTButtonEdgeInsetsStyle) {
 - (void)tt_setImageNamed:(NSString *)imageName status:(UIControlState)status;
 - (void)tt_setTitle:(NSString *)title status:(UIControlState)status;
 - (void)tt_setTitleColor:(UIColor *)titleColor status:(UIControlState)status;
+///将image以拉伸的形式之后重置
+- (void)tt_updateImageForScretch:(UIControlState)status;
+///将BackgroudImage以拉伸的形式之后重置
+- (void)tt_updateBackgroudImageForScretch:(UIControlState)status;
+@end
 
+@interface UIImageView (TTUtility)
+///将image以拉伸的形式之后重置
+- (void)tt_updateImageForScretch;
 @end
 
 #pragma mark -- others

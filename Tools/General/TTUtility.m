@@ -1411,6 +1411,21 @@ NSString *const tkDateFormat_yyyyMMdd_none = @"yyyyMMdd";
         [self setTitleColor:titleColor forState:status];
     }
 }
+
+///将image以拉伸的形式之后重置
+- (void)tt_updateImageForScretch:(UIControlState)status
+{
+    UIImage *original = [self imageForState:status];
+    UIImage *image = [original tt_resizableImageForSretchMode];
+    [self setImage:image forState:status];
+}
+
+///将BackgroudImage以拉伸的形式之后重置
+- (void)tt_updateBackgroudImageForScretch:(UIControlState)status
+{
+    UIImage *image = [[self imageForState:status] tt_resizableImageForSretchMode];
+    [self setBackgroundImage:image forState:status];
+}
 @end
 
 @implementation UIColor (TTUtility)
@@ -1453,6 +1468,15 @@ NSString *const tkDateFormat_yyyyMMdd_none = @"yyyyMMdd";
     return [self tt_colorWithHexString:stringToConvert alpha:1.0];
 }
 
+@end
+
+@implementation UIImageView(TTUtility)
+///将image以拉伸的形式之后重置
+- (void)tt_updateImageForScretch
+{
+    UIImage *image = [self.image tt_resizableImageForSretchMode];
+    self.image = image;
+}
 @end
 
 #pragma mark -- others
