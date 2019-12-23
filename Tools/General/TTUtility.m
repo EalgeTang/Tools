@@ -11,7 +11,7 @@
 #import <sys/utsname.h>
 @implementation TTUtility
 
-/** 获取windows当前现在的Vc*/
+/// 获取windows当前现在的Vc
 + (UIViewController *)tt_getCurrentViewController
 {
     UIViewController *vc = [UIApplication sharedApplication].delegate.window.rootViewController;
@@ -38,11 +38,8 @@
     return vc;
 }
 
-/**
- 验证E-mail 格式
- @param email 需要验证的emal格式
- @return 格式是否正确
- */
+///验证E-mail 格式
+ 
 + (BOOL)tt_validateEmail:(NSString *)email
 {
     NSString *emailReg = @"[A-Z0-9a-z._%+-]+@[A-Za-z0-9.-]+\\.[A-Za-z]{2,4}";
@@ -50,12 +47,19 @@
     return [predicate evaluateWithObject:email];
 }
 
-/**验证中文*/
+///验证中文
 + (BOOL)tt_validateChinese:(NSString *)str;
 {
     NSString *reg = @"[\u4e00-\u9fa5]";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",reg];
     return [predicate evaluateWithObject:str];
+}
+
++ (BOOL)tt_validateNum:(NSString *)num
+{
+    NSString *numRegex = @"^[0-9]+([.]{0}|[.]{1}[0-9]+)$";
+    NSPredicate *pre = [NSPredicate predicateWithFormat:@"SELF MATCHES %@", numRegex];
+    return [pre evaluateWithObject:num];
 }
 
 + (BOOL)tt_validateRegExForPredicate:(NSString *)reg string:(NSString *)str
@@ -64,13 +68,7 @@
     return [predicate evaluateWithObject:str];
 }
 
-/**
- 向UserDefault中存储数据, 建议只存储轻量级数据
- 
- @param obj 需要存储的数据
- @param key 数据对应的key
- @return 是否存储成功
- */
+///向UserDefault中存储数据, 建议只存储轻量级数据
 + (BOOL)tt_storeObjectToUserDefault:(id)obj key:(NSString *)key
 {
     if (!obj || !key.tt_isUseable)
@@ -82,12 +80,7 @@
     return [ud synchronize];
 }
 
-/**
- 从userDefault中取出指定的数据
- 
- @param key 数据对应的key
- @return 对应的数据
- */
+///从userDefault中取出指定的数据
 + (id)tt_objectFromeUseDefaultWithKey:(NSString *)key
 {
     if (!key.tt_isUseable)
@@ -98,12 +91,7 @@
     return [ud objectForKey:key];
 }
 
-/**
- 删除指定的数据
- 
- @param key 需要删除的数据对应的key
- @return 是否删除成功
- */
+///删除指定的数据
 + (BOOL)tt_removeObjectFromUserDefaultWithKey:(NSString *)key
 {
     if (!key.tt_isUseable)
@@ -116,7 +104,7 @@
 }
 
 //TODO: 项目信息相关
-/**设备型号*/
+///设备型号
 + (NSString *)tt_deviceModel
 {
     struct utsname systemInfo;
@@ -135,7 +123,7 @@
     return deviceString;
 }
 
-/**APP的icon*/
+///APP的icon
 + (UIImage *)tt_appIcon
 {
     NSDictionary *infoPlist = [TTUtility tt_bundleInfoDictionary];
@@ -150,7 +138,7 @@
     return image;
 }
 
-/**app的名字*/
+///app的名字
 + (NSString *)tt_appName
 {
     NSDictionary *dict = [TTUtility tt_bundleInfoDictionary];
@@ -179,6 +167,70 @@
     return [[NSBundle mainBundle] infoDictionary];
 }
 
++(NSString *)tt_systemVersion
+{
+    return [UIDevice currentDevice].systemName;
+}
+
+///改变二维码尺寸大小
++ (UIImage *)tt_qrCodeImageWithContent:(NSString *)content
+                      codeImageSize:(CGFloat)size
+{
+    CIImage *image = [self tt_qrCodeImageWithContent:content];
+    CGRect integralRect = CGRectIntegral(image.extent);
+    CGFloat scale = MIN(size/CGRectGetWidth(integralRect), size/CGRectGetHeight(integralRect));
+    size_t width = CGRectGetWidth(integralRect)*scale;
+    size_t height = CGRectGetHeight(integralRect)*scale;
+    CGColorSpaceRef colorSpaceRef = CGColorSpaceCreateDeviceGray();
+    CGContextRef bitmapRef = CGBitmapContextCreate(nil, width, height, 8, 0, colorSpaceRef, (CGBitmapInfo)kCGImageAlphaNone);
+    CIContext *context = [CIContext contextWithOptions:nil];
+    CGImageRef bitmapImage = [context createCGImage:image fromRect:integralRect];
+    CGContextSetInterpolationQuality(bitmapRef, kCGInterpolationNone);
+    CGContextScaleCTM(bitmapRef, scale, scale);
+    CGContextDrawImage(bitmapRef, integralRect, bitmapImage);
+    CGImageRef scaledImage = CGBitmapContextCreateImage(bitmapRef);
+    CGContextRelease(bitmapRef);
+    CGImageRelease(bitmapImage);
+    return [UIImage imageWithCGImage:scaledImage];
+}
+
+///生成最原始的二维码
++ (CIImage *)tt_qrCodeImageWithContent:(NSString *)content
+{
+    CIFilter *qrFilter = [CIFilter filterWithName:@"CIQRCodeGenerator"];
+    NSData *contentData = [content dataUsingEncoding:NSUTF8StringEncoding];
+    [qrFilter setValue:contentData forKey:@"inputMessage"];
+    [qrFilter setValue:@"L" forKey:@"inputCorrectionLevel"];
+    CIImage *image = qrFilter.outputImage;
+    return image;
+}
+
++ (nullable NSString *)tt_getValueInUrl:(NSString *)url byKey:(NSString *)key
+{
+    if (url==nil)
+    {
+        return nil;
+    }
+    if (key == nil)
+    {
+        return nil;
+    }
+    NSString *argString = [[url componentsSeparatedByString:@"?"] lastObject];
+    NSArray *argArray = [argString componentsSeparatedByString:@"&"];
+    for (NSString *param in argArray)
+    {
+        NSArray *targetArray = [param componentsSeparatedByString:@"="];
+        if (targetArray.count>1)
+        {
+            if ([targetArray.firstObject isEqualToString:key])
+            {
+                return targetArray.lastObject;
+            }
+        }
+    }
+    return nil;
+}
+
 @end
 
 @implementation NSObject (TTUtility)
@@ -204,12 +256,164 @@
 }
 
 @end
+@implementation UIDevice (TTUtility)
+
++ (BOOL)tk_isiPad
+{
+    return UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPad;
+}
+
+@end
+
+NSString *const tkDateFormat_yyyyMMddHHmmss_hyphen = @"yyyy-MM-dd HH:mm:ss";
+NSString *const tkDateFormat_yyyyMMdd_none = @"yyyyMMdd";
+@implementation NSDate (TTUtility)
+
++ (NSDate *)tt_getCnDateWithSystemDate:(NSDate *)aAnyDate
+{
+    // 设置源日期时区
+    NSTimeZone *sourceTimeZone = [NSTimeZone timeZoneWithAbbreviation:@"GMT"];//或UTC
+    
+    // 设置转换后的目标日期时区
+    NSTimeZone *destinationTimeZone = [NSTimeZone localTimeZone];
+    
+    // 得到源日期与世界标准时间的偏移量
+    NSInteger sourceGMTOffset = [sourceTimeZone secondsFromGMTForDate:aAnyDate];
+    
+    // 目标日期与本地时区的偏移量
+    NSInteger destinationGMTOffset = [destinationTimeZone secondsFromGMTForDate:aAnyDate];
+    
+    // 得到时间偏移量的差值
+    NSTimeInterval interval = destinationGMTOffset - sourceGMTOffset;
+    
+    // 转为现在时间
+    NSDate *destinationDateNow = [[NSDate alloc] initWithTimeInterval:interval sinceDate:aAnyDate];
+    
+    return destinationDateNow;
+}
+
+///获取时间字符串
++ (NSString *)tt_getCNDateStringFromDate:(NSDate *)date formatString:(NSString *)formatString
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+//    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT+0800"]];
+    [formatter setDateFormat:formatString];
+    
+    return [formatter stringFromDate:date];
+}
+
++ (NSDate *)tt_getCNDateFromString:(NSString *)dateString withFormatString:(NSString *)formatString
+{
+    NSDateFormatter *formatter = [[NSDateFormatter alloc] init];
+//    [formatter setLocale:[[NSLocale alloc] initWithLocaleIdentifier:@"zh_CN"]];
+//    [formatter setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"GMT+0800"]];
+    [formatter setDateFormat:formatString];
+    return [formatter dateFromString:dateString];
+}
+
++ (NSString *)tt_getTimeAgoWithInterval:(NSTimeInterval)timeInterval
+{
+    NSString *time = @"";
+    NSTimeInterval now = [[NSDate date] timeIntervalSince1970];
+    NSTimeInterval interval = now - timeInterval;
+    
+    if (interval<0)
+    {
+        return @"";
+    }
+    if (interval < 1)
+    {
+        time = @"刚刚";
+    }
+    else if (interval / 60 < 1) {
+        time = [NSString stringWithFormat:@"%zd秒前", (NSInteger)interval];
+    }
+    else if (interval / 3600 < 1)
+    {
+        interval = interval / 60;
+        time = [NSString stringWithFormat:@"%zd分钟前", (NSInteger)interval];
+    }
+    else if (interval / (3600 * 24) < 1)
+    {
+        interval = interval / 3600;
+        time = [NSString stringWithFormat:@"%zd小时前", (NSInteger)interval];
+    }
+    else
+    {
+        NSInteger temp = interval / (3600 * 24);
+        if (temp<30)
+        {
+            time = [NSString stringWithFormat:@"%@天前", @(temp)];
+        }
+        else
+        {
+            NSDate *date = [NSDate dateWithTimeIntervalSince1970:timeInterval];
+            time = [NSDate tt_getCNDateStringFromDate:date formatString:@"MM月dd日"];
+        }
+    }
+    return time;
+}
+
+@end
+
+@implementation NSLayoutConstraint (TTUtility)
+
+- (void)tt_addFullScreenStatusBarHeight
+{
+    if (tkIsFullScreenIPhone())
+    {
+        self.constant += tkStatusBarHeight()-20;
+    }
+}
+
+- (void)tt_add:(CGFloat)x
+{
+    self.constant += x;
+}
+
+- (void)tt_mutiply:(CGFloat)x
+{
+    self.constant = self.constant * x;
+}
+
+@end
+
+@implementation NSIndexPath (TTUtility)
+
+-(NSIndexPath *)tt_addItem:(NSInteger)add
+{
+    return [NSIndexPath indexPathForItem:self.item + add inSection:self.section];
+}
+
+///返回一个 以此对象为基础加了 X section的对象
+- (NSIndexPath *)tt_addSection:(NSInteger)add
+{
+    return [NSIndexPath indexPathForItem:self.item inSection:self.section + add];
+}
+@end
 
 @implementation NSArray (TTUtility)
 
 - (BOOL)tt_isUseable
 {
     return ([self isKindOfClass:[NSArray class]] && self.count > 0);
+}
+
+- (BOOL)tt_isEmpty
+{
+    return ([self isKindOfClass:[NSArray class]] && self.count == 0);
+}
+
+- (NSString *)tt_JSONString
+{
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self
+                                                   options:0
+                                                     error:&error];
+    NSString *string = [[NSString alloc] initWithData:data
+                                             encoding:NSUTF8StringEncoding];
+    return string;
 }
 
 @end
@@ -219,6 +423,11 @@
 - (BOOL)tt_isUseable
 {
     return ([self isKindOfClass:[NSDictionary class]] && self.count > 0);
+}
+
+ -(BOOL)tt_isEmpty
+{
+    return ([self isKindOfClass:[NSDictionary class]] && self.count == 0);
 }
 
 - (id)getAttribute:(NSString *)attribute
@@ -328,6 +537,16 @@
     return nil;
 }
 
+- (nullable NSString *)tt_JSONString
+{
+    NSError *error = nil;
+    NSData *data = [NSJSONSerialization dataWithJSONObject:self
+                                                   options:0
+                                                     error:&error];
+    NSString *string = [[NSString alloc] initWithData:data
+                                             encoding:NSUTF8StringEncoding];
+    return string;
+}
 @end
 
 @implementation NSData (TTUtility)
@@ -341,7 +560,11 @@
     return ([self isKindOfClass:[NSString class]] && self.length>0);
 }
 
-/**判断是否包含 字符串 aString*/
+- (BOOL)tt_isEmpty
+{
+    return ([self isKindOfClass:[NSString class]] && self.length == 0);
+}
+///判断是否包含 字符串 aString
 - (BOOL)tt_containString:(NSString *)aString {
     BOOL isContain = NO;
     
@@ -352,7 +575,7 @@
     return isContain;
 }
 
-/**从from位置截取字符串*/
+///从from位置截取字符串
 - (NSString *)tt_substringFromIndex:(NSUInteger)from {
     if ([self isKindOfClass:[NSString class]]) {
         if (from <= self.length) {
@@ -362,7 +585,7 @@
     return nil;
 }
 
-/**从开始截取到to位置的字符串*/
+///从开始截取到to位置的字符串
 - (NSString *)tt_substringToIndex:(NSUInteger)toIndex {
     if ([self isKindOfClass:[NSString class]]) {
         if (toIndex <= self.length) {
@@ -372,7 +595,7 @@
     return nil;
 }
 
-/**截取指定范围的字符串*/
+///截取指定范围的字符串
 - (NSString *)tt_substringWithRange:(NSRange)range {
     if ([self isKindOfClass:[NSString class]]) {
         if ((range.location + range.length) <= self.length && range.location <= self.length && range.length <= self.length) {
@@ -382,13 +605,7 @@
     return nil;
 }
 
-/**
- 根据起始位字符串去截取特定位置的字符串
- 
- @param startString 开始位置的字符串
- @param endString 结束位置字符串
- @return 截取过的字符串
- */
+///根据起始位字符串去截取特定位置的字符串
 - (NSString *)tt_subStringFromStartStr:(NSString *)startString to:(NSString *)endString
 {
     NSRange startRange = (startString && startString.length > 0) ? [self rangeOfString:startString] :NSMakeRange(0, 0);
@@ -401,7 +618,7 @@
     return self.length > 0 ? [self tt_substringWithRange:range] : @"";
 }
 
-/**用URL对特殊字符的允许范围将字符串进行UTF8编码*/
+///用URL对特殊字符的允许范围将字符串进行UTF8编码
 - (NSString *)tt_URLQueryStringUTF8Encoding
 {
     return [self stringByAddingPercentEncodingWithAllowedCharacters:[NSCharacterSet URLQueryAllowedCharacterSet]];
@@ -415,19 +632,14 @@
     
 }
 
-/**将字符串解码*/
+///将字符串解码
 - (NSString *)tt_stringDecoding
 {
     return [self stringByRemovingPercentEncoding];
 }
 
-/**
- 获取string的尺寸
- 
- @param maxSize string 所在的容器的所能支持的最大尺寸.
- @param font string的font
- @return string的尺寸
- */
+///获取string的尺寸
+
 - (CGSize)tt_getStringSizeWithContentMaxSize:(CGSize)maxSize font:(UIFont *)font
 {
     if (!font)
@@ -440,10 +652,81 @@
                               context:nil].size;
 }
 
-/**给定指定宽度, 高度不做限制,获取文字size*/
+///给定指定宽度, 高度不做限制,获取文字size
 - (CGSize)tt_getStringSizeWithFixedWidth:(CGFloat)fixedWidth font:(UIFont *)font
 {
     return [self tt_getStringSizeWithContentMaxSize:CGSizeMake(fixedWidth, MAXFLOAT) font:font];
+}
+
+- (id)tt_objectFromJSONString
+{
+    NSError *error = nil;
+    NSData *data = [self dataUsingEncoding:NSUTF8StringEncoding];
+    if (data==nil)
+    {
+        return nil;
+    }
+    id jsonObj = [NSJSONSerialization JSONObjectWithData:data
+                                                 options:NSJSONReadingMutableContainers
+                                                   error:&error];
+    return jsonObj;
+}
+
+- (NSString *)tt_bankCardNumFormart
+{
+    NSString *getString = @"";
+    
+    int a = (int)self.length/4;
+    int b = (int)self.length%4;
+    int c = a;
+    if (b>0)
+    {
+        c = a+1;
+    }
+    else
+    {
+        c = a;
+    }
+    for (int i = 0 ; i<c; i++)
+    {
+        NSString *string = @"";
+        
+        if (i == (c-1))
+        {
+            if (b>0)
+            {
+                string = [self substringWithRange:NSMakeRange(4*(c-1), b)];
+            }
+            else
+            {
+                string = [self substringWithRange:NSMakeRange(4*i, 4)];
+            }
+            
+        }
+        else
+        {
+            string = [self substringWithRange:NSMakeRange(4*i, 4)];
+        }
+        if (getString.tt_isUseable)
+        { // 判断是否是开头,开头不需要添加空格
+             getString = [NSString stringWithFormat:@"%@ %@",getString,string];
+        }
+        else
+        {
+            getString = string;
+        }
+    }
+    return getString;
+}
+
+- (NSString *)tt_takeOutSpace
+{
+    if (self.tt_isUseable)
+    {
+        NSString *str = [self stringByReplacingOccurrencesOfString:@" " withString:@""];
+        return str;
+    }
+    return self;
 }
 @end
 
@@ -456,7 +739,7 @@
                               context:nil].size;
 }
 
-/**给定指定宽度,高度不做限制,获取attributeStr的尺寸*/
+///给定指定宽度,高度不做限制,获取attributeStr的尺寸
 - (CGSize)tt_getAttributeStringWithFixedWidth:(CGFloat)fixedWidth
 {
     return [self tt_getAttributeStringWithContainerMaxSize:CGSizeMake(fixedWidth, MAXFLOAT)];
@@ -548,11 +831,7 @@
     return self.center.y;
 }
 
-/**
- 设置一个默认无边框的圆角
- 
- @param radius 圆角半径
- */
+///设置一个默认无边框的圆角
 - (void)tt_setupConnerRadius:(CGFloat)radius
 {
     [self tt_setupBorder:nil borderWidth:0 cornerRadius:radius];
@@ -583,7 +862,7 @@
     return [self tt_addTapGestureWithTarget:self sel:action];
 }
 
-/**添加手势的基类方法*/
+///添加手势的基类方法
 - (id)tt_addGestureWithTarget:(id)target sel:(SEL)action cls:(Class)cls
 {
     if ([cls isSubclassOfClass:[UIGestureRecognizer class]])
@@ -600,37 +879,37 @@
     return nil;
 }
 
-/**添加一个拖动手势*/
+///添加一个拖动手势
 - (UIPanGestureRecognizer *)tt_addPanGestureWithSel:(nullable SEL)action
 {
     return [self tt_addPanGestureWithTarget:self sel:action];
 }
 
-/**添加一个旋转手势*/
+///添加一个旋转手势
 - (UIRotationGestureRecognizer *)tt_addRotationGestureWithSel:(nullable SEL)action
 {
     return [self tt_addRotationGestureWithTarget:self sel:action];
 }
 
-/**添加一个捏合手势*/
+///添加一个捏合手势
 - (UIPinchGestureRecognizer *)tt_addPinGestureWithSel:(nullable SEL)action
 {
     return [self tt_addPinGestureWithTarget:self sel:action];
 }
 
-/**添加一个长按手势*/
+///添加一个长按手势
 - (UILongPressGestureRecognizer *)tt_addLongPressGestureWithSel:(nullable SEL)action
 {
     return [self tt_addLongPressGestureWithTarget:self sel:action];
 }
 
-/**边缘拖动手势*/
+///边缘拖动手势
 - (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithSel:(nullable SEL)action
 {
     return [self tt_addScreendEdgePanGestureWithTarget:self sel:action];
 }
 
-/**添加一个轻扫手势*/
+///添加一个轻扫手势
 - (UISwipeGestureRecognizer *)tt_addSwipeGestureWithSel:(nullable SEL)action
 {
     return [self tt_addSwipeGestureWithTarget:self sel:action];
@@ -644,7 +923,7 @@
     }
 }
 
-/**添加一个点击手势*/
+///添加一个点击手势
 - (UITapGestureRecognizer *)tt_addTapGestureWithTarget:(id)target sel:(nullable SEL)action
 {
     return [self tt_addGestureWithTarget:target
@@ -653,7 +932,7 @@
     
 }
 
-/**添加一个拖动手势*/
+///添加一个拖动手势
 - (UIPanGestureRecognizer *)tt_addPanGestureWithTarget:(id)target sel:(nullable SEL)action
 {
     return [self tt_addGestureWithTarget:target
@@ -661,28 +940,28 @@
                                      cls:[UIPanGestureRecognizer class]];
 }
 
-/**添加一个清扫手势*/
+///添加一个清扫手势
 - (UISwipeGestureRecognizer *)tt_addSwipeGestureWithTarget:(id)target sel:(nullable SEL)action
 {
     return [self tt_addGestureWithTarget:target
                                      sel:action
                                      cls:[UISwipeGestureRecognizer class]];
 }
-/**添加一个旋转手势*/
+///添加一个旋转手势
 - (UIRotationGestureRecognizer *)tt_addRotationGestureWithTarget:(id)target sel:(nullable SEL)action
 {
     return [self tt_addGestureWithTarget:target
                                      sel:action
                                      cls:[UIRotationGestureRecognizer class]];
 }
-/**添加一个捏合手势*/
+///添加一个捏合手势
 - (UIPinchGestureRecognizer *)tt_addPinGestureWithTarget:(id)target sel:(nullable SEL)action
 {
     return [self tt_addGestureWithTarget:target
                                      sel:action
                                      cls:[UIPinchGestureRecognizer class]];
 }
-/**添加一个长按手势*/
+///添加一个长按手势
 - (UILongPressGestureRecognizer *)tt_addLongPressGestureWithTarget:(id)target sel:(nullable SEL)action
 {
     return [self tt_addGestureWithTarget:target
@@ -690,7 +969,7 @@
                                      cls:[UILongPressGestureRecognizer class]];
 }
 
-/**边缘拖动手势*/
+///边缘拖动手势
 - (UIScreenEdgePanGestureRecognizer *)tt_addScreendEdgePanGestureWithTarget:(id)target sel:(SEL)action
 {
     return [self tt_addGestureWithTarget:target
@@ -698,7 +977,7 @@
                                      cls:[UIScreenEdgePanGestureRecognizer class]];
 }
 
-/**添加一个放大效果动画*/
+///添加一个放大效果动画
 - (void)tt_addZoomInAnimationWithComplete:(nullable voidBlock)complete
 {
     [self tt_addZoomInAnimationWithDuration:0.35
@@ -707,7 +986,7 @@
                                    complete:complete];
 }
 
-/**添加一个放大效果动画*/
+///添加一个放大效果动画
 - (void)tt_addZoomInAnimationWithDuration:(CGFloat)duration
                                startBlock:(nullable voidBlock)start
                             progressBlock:(nullable voidBlock)progress
@@ -753,13 +1032,13 @@
     });
 }
 
-/**添加一个缩小效果的动画*/
+///添加一个缩小效果的动画
 - (void)tt_addZoomOutAnimationWithComplete:(nullable voidBlock)complete
 {
     [self tt_addZoomOutAnimationWithDuration:0.35 startBlock:nil progressBlock:nil complete:complete];
 }
 
-/**添加一个缩小效果的动画*/
+///添加一个缩小效果的动画
 - (void)tt_addZoomOutAnimationWithDuration:(CGFloat)duration
                                 startBlock:(nullable voidBlock)start
                              progressBlock:(nullable voidBlock)progress
@@ -804,7 +1083,7 @@
     });
 }
 
-/**添加一个渐入动画*/
+///添加一个渐入动画
 - (void)tt_addFadeInAnimationWithDuration:(CGFloat)duration
                                  complete:(nullable voidBlock)complete
 {
@@ -814,7 +1093,7 @@
                                           complete:complete];
 }
 
-/**添加一个渐入动画*/
+///添加一个渐入动画
 - (void)tt_addFadeInAnimationWithDuration:(CGFloat)duration
                                startBlock:(nullable voidBlock)start
                             progressBlock:(nullable voidBlock)progress
@@ -827,7 +1106,7 @@
                           complete:complete];
 }
 
-/**添加一个渐出动画*/
+///添加一个渐出动画
 - (void)tt_addFadeOutAnimationWithDuration:(CGFloat)duration
                                   complete:(nullable voidBlock)complete
 {
@@ -836,7 +1115,7 @@
                                       progressBlock:nil
                                            complete:complete];
 }
-/**添加一个渐出动画*/
+///添加一个渐出动画
 - (void)tt_addFadeOutAnimationWithDuration:(CGFloat)duration
                                 startBlock:(nullable voidBlock)start
                              progressBlock:(nullable voidBlock)progress
@@ -900,7 +1179,7 @@
                                              context:nil].size;
 }
 
-/**给定label的宽度, 返回Label文字显示需要的高度*/
+///给定label的宽度, 返回Label文字显示需要的高度
 - (CGSize)tt_getStringSizeWithContainerViFixedWith:(CGFloat)containerViFixedWidth
 {
     return [self tt_getStringSizeWithContainerViMaxSize:CGSizeMake(containerViFixedWidth, MAXFLOAT)];
@@ -910,39 +1189,127 @@
     return [self tt_getAttributeStringWithContainerViMaxSize:CGSizeMake(containerViFixedWidth, MAXFLOAT)];
 }
 @end
+
 @implementation UITableView (TTUtility)
+
+///注册一个使用xib创建的cell , cell 的identifier设置为:className+ID
+- (void)tt_registerCellNibClass:(nullable Class)cellClass
+{
+    [self tt_registerNibClass:cellClass forCellReuseIdentifier:nil];
+}
 
 - (void)tt_registerNibClass:(nullable Class)cellClass forCellReuseIdentifier:(nullable NSString *)identifier
 {
     
-    if (!cellClass || !(identifier.length > 0 && identifier))
+    if (!cellClass)
     {
         return;
     }
-    
+    NSString *reuseId = identifier;
     NSString * nibName = [cellClass description];
-    [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:identifier];
+    if (!identifier.tt_isUseable)
+    {
+        reuseId = [nibName stringByAppendingString:@"ID"];
+    }
+    [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellReuseIdentifier:reuseId];
     
 }
 
 @end
 
+@implementation UITableViewCell (TTUtility)
+
++ (NSString *)tt_cellIdentifer
+{
+    NSString *cellId = [self tt_className];
+    cellId = [cellId stringByAppendingString:@"ID"];
+    return cellId;
+}
+
+@end
 @implementation UICollectionView (TTUtility)
 
-- (void)tt_registerNibClass:(Class)cellClass forCellReuseIdentifier:(NSString *)identifier
+- (void)tt_registerCellNibClass:(Class)cellClass
 {
-    if (!cellClass || !(identifier && identifier.length > 0))
+    [self tt_registerCellNibClass:cellClass forCellReuseIdentifier:nil];
+}
+
+- (void)tt_registerCellNibClass:(Class)cellClass forCellReuseIdentifier:(nullable NSString *)identifier
+{
+    if (!cellClass)
     {
         return;
     }
     NSString *nibName = [cellClass description];
-    [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellWithReuseIdentifier:identifier];
+    NSString *reuseId = identifier;
+    if (!identifier)
+    {
+        reuseId = [nibName stringByAppendingString:@"ID"];
+    }
+    [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forCellWithReuseIdentifier:reuseId];
     
+}
+
+- (void)tt_registerHeaderNibClass:(Class)headerClass
+{
+    [self tt_registerNIBClass:headerClass forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:nil];
+}
+
+- (void)tt_registerFooterNibClass:(Class)footerClass
+{
+    [self tt_registerNIBClass:footerClass forSupplementaryViewOfKind:UICollectionElementKindSectionFooter withReuseIdentifier:nil];
+}
+
+- (void)tt_registerNIBClass:(Class)nibClass forSupplementaryViewOfKind:(NSString *)kind withReuseIdentifier:(nullable NSString *)identifier
+{
+    if (!nibClass || !kind.tt_isUseable)
+    {
+        return;
+    }
+    NSString *nibName = [nibClass description];
+    NSString *reuseId = identifier;
+    if (!identifier.tt_isUseable)
+    {
+        reuseId = [nibName stringByAppendingString:@"ID"];
+    }
+    [self registerNib:[UINib nibWithNibName:nibName bundle:nil] forSupplementaryViewOfKind:kind withReuseIdentifier:reuseId];
+}
+
+@end
+
+@implementation UICollectionViewCell (TTUtility)
+
++ (NSString *)tt_cellIdentifer
+{
+    NSString *cellId = [self tt_className];
+    cellId = [cellId stringByAppendingString:@"ID"];
+    return cellId;
+}
+
+@end
+
+@implementation UICollectionReusableView (TTUtility)
+
++ (NSString *)tt_reusableViewIdentifier
+{
+    NSString *viID = [self tt_className];
+    viID = [viID stringByAppendingString:@"ID"];
+    return viID;
 }
 
 @end
 
 @implementation UIButton (TTUtility)
+
+- (void)setTt_titleFont:(UIFont *)tt_titleFont
+{
+    self.titleLabel.font = tt_titleFont;
+}
+
+- (UIFont *)tt_titleFont
+{
+    return self.titleLabel.font;
+}
 
 - (void)tt_layoutButtonWithEdgeInsetsStyle:(TTButtonEdgeInsetsStyle)style
                                      space:(CGFloat)space
@@ -992,7 +1359,60 @@
     self.imageEdgeInsets = imageEdgeInsets;
 }
 
+- (void)tt_setNormalImageNamed:(NSString *)imageName
+{
+    [self tt_setImageNamed:imageName status:UIControlStateNormal];
+}
+
+- (void)tt_setSelectedImaged:(NSString *)imageName
+{
+    [self tt_setImageNamed:imageName status:UIControlStateSelected];
+}
+
+- (void)tt_setImageNamed:(NSString *)imageName status:(UIControlState)status
+{
+    UIImage *image = [UIImage imageNamed:imageName];
+    [self setImage:image forState:status];
+}
+
+- (void)tt_setNormalTitle:(NSString *)title
+{
+    [self tt_setTitle:title status:UIControlStateNormal];
+}
+
+- (void)tt_setSelectedTitle:(NSString *)title
+{
+    [self tt_setTitle:title status:UIControlStateSelected];
+}
+
+- (void)tt_setTitle:(NSString *)title status:(UIControlState)status
+{
+    if (!title.tt_isUseable)
+    {
+        return;
+    }
+    [self setTitle:title forState:status];
+}
+
+- (void)tt_setNormalTitleColor:(UIColor *)titleColor
+{
+    [self tt_setTitleColor:titleColor status:UIControlStateNormal];
+}
+
+- (void)tt_setSelectedTitleColor:(UIColor *)titleColor
+{
+    [self tt_setTitleColor:titleColor status:UIControlStateSelected];
+}
+
+- (void)tt_setTitleColor:(UIColor *)titleColor status:(UIControlState)status
+{
+    if (titleColor)
+    {
+        [self setTitleColor:titleColor forState:status];
+    }
+}
 @end
+
 @implementation UIColor (TTUtility)
 
 + (UIColor *)tt_colorWithHexString:(NSString *)stringToConvert alpha:(CGFloat)alpha {
@@ -1039,11 +1459,7 @@
 
 @implementation UIImage (TTUtility)
 
-/**
- 以图片的中心点为拉伸点去拉伸图片
- 
- @return 拉伸过的图片
- */
+///以图片的中心点为拉伸点去拉伸图片
 - (UIImage *)tt_resizableImageForSretchMode
 {
     CGFloat hor = self.size.width *0.5 - 1;
@@ -1053,12 +1469,7 @@
     return img;
 }
 
-/**
- 修改图片的前景色
- 
- @param theColor 需要被修改成的前景色
- @return 修改过前景色的目标图片
- */
+///修改图片的前景色
 - (UIImage *)tt_rederWithColor:(UIColor *)theColor
 {
     //    if (NULL != UIGraphicsBeginImageContextWithOptions)
@@ -1081,24 +1492,13 @@
     UIGraphicsEndImageContext();
     return newImage;
 }
-/**
- 屏幕截屏, 截取一个size为目标view本身尺寸的图片
- 
- @param vi 目标view
- @return 生成的图片
- */
+///屏幕截屏, 截取一个size为目标view本身尺寸的图片
 + (UIImage *)tt_screenShotFromeView:(UIView *)vi
 {
     return [UIImage tt_screenShotFromView:vi withSize:CGSizeZero];
 }
 
-/**
- 屏幕截屏, 如果size为nil,默认使用目标view的size.
- 
- @param vi 目标view
- @param size 目标尺寸
- @return 生成的图片
- */
+///屏幕截屏, 如果size为nil,默认使用目标view的size.
 + (UIImage *)tt_screenShotFromView:(UIView *)vi withSize:(CGSize)size
 {
     CGSize targetSize;
@@ -1122,7 +1522,7 @@
 
 @implementation CALayer (TTUtility)
 
-/**左右抖动*/
+///左右抖动
 - (void)tt_shake
 {
     CAKeyframeAnimation *keyAnimation = [CAKeyframeAnimation animationWithKeyPath:@"transform.translation.x"];
@@ -1136,8 +1536,8 @@
     keyAnimation.removedOnCompletion = YES;
     [self addAnimation:keyAnimation forKey:@"shake"];
 }
-
-/**自转/ 旋转*/
+ 
+///自转/ 旋转
 - (void)tt_rotation
 {
     CABasicAnimation *rotation = [CABasicAnimation animationWithKeyPath:@"transform.rotation.z"];
