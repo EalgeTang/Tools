@@ -71,7 +71,7 @@
 ///向UserDefault中存储数据, 建议只存储轻量级数据
 + (BOOL)tt_storeObjectToUserDefault:(id)obj key:(NSString *)key
 {
-    if (!obj || !key.tt_isUseable)
+    if (!key.tt_isUseable)
     {
         return NO;
     }
