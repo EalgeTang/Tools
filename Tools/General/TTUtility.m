@@ -50,7 +50,7 @@
 ///验证中文
 + (BOOL)tt_validateChinese:(NSString *)str;
 {
-    NSString *reg = @"[\u4e00-\u9fa5]";
+    NSString *reg = @"^[\u4e00-\u9fa5]{0,}$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",reg];
     return [predicate evaluateWithObject:str];
 }
