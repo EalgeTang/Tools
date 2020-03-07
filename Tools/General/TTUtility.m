@@ -564,6 +564,16 @@ NSString *const tkDateFormat_yyyyMMdd_none = @"yyyyMMdd";
 {
     return ([self isKindOfClass:[NSString class]] && self.length == 0);
 }
+/// 是否为整数
+- (BOOL)isPureInt{
+
+    NSScanner* scan = [NSScanner scannerWithString:self];
+
+    int val;
+
+    return[scan scanInt:&val] && [scan isAtEnd];
+
+}
 ///判断是否包含 字符串 aString
 - (BOOL)tt_containString:(NSString *)aString {
     BOOL isContain = NO;
