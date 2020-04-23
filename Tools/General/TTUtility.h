@@ -179,6 +179,8 @@ UIKIT_EXTERN NSString *const tkDateFormat_yyyyMMdd_none;//yyyyMMdd ,eg: 20190101
 - (NSString *)tt_subStringFromStartStr:(NSString *)startString to:(NSString *)endString;
 ///判断是否包含字符串aString
 - (BOOL)tt_containString:(NSString *)aString;
+/// 判断是否为整数
+- (BOOL)isPureInt;
 ///截取range范围
 - (NSString *)tt_substringWithRange:(NSRange)range;
 ///NSString 从某个地方开始截取

@@ -50,7 +50,7 @@
 ///验证中文
 + (BOOL)tt_validateChinese:(NSString *)str;
 {
-    NSString *reg = @"[\u4e00-\u9fa5]";
+    NSString *reg = @"^[\u4e00-\u9fa5]{0,}$";
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"SELF MATCHES %@",reg];
     return [predicate evaluateWithObject:str];
 }
@@ -563,6 +563,16 @@ NSString *const tkDateFormat_yyyyMMdd_none = @"yyyyMMdd";
 - (BOOL)tt_isEmpty
 {
     return ([self isKindOfClass:[NSString class]] && self.length == 0);
+}
+/// 是否为整数
+- (BOOL)isPureInt{
+
+    NSScanner* scan = [NSScanner scannerWithString:self];
+
+    int val;
+
+    return[scan scanInt:&val] && [scan isAtEnd];
+
 }
 ///判断是否包含 字符串 aString
 - (BOOL)tt_containString:(NSString *)aString {
