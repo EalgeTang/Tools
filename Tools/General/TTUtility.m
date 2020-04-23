@@ -1064,6 +1064,7 @@ NSString *const tkDateFormat_yyyyMMdd_none = @"yyyyMMdd";
             [UIView animateWithDuration:duration animations:^{
                 //
                 weakSelf.transform = CGAffineTransformMakeScale(0.1, 0.1);
+                weakSelf.alpha = 0;
                 if (progress)
                 {
                     progress();
