@@ -395,7 +395,7 @@ typedef NS_ENUM(NSUInteger, TTButtonEdgeInsetsStyle) {
 ///以图片的中心点为拉伸点去拉伸图片
 - (UIImage *)tt_resizableImageForSretchMode;
 ///修改图片的前景色
-- (UIImage *)tt_rederWithColor:(UIColor *)theColor;
+- (UIImage *)tt_renderWithColor:(UIColor *)theColor;
 ///屏幕截屏, 截取一个size为目标view本身尺寸的图片
 + (UIImage *)tt_screenShotFromeView:(UIView *)vi;
 

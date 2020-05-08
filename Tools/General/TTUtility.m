@@ -1505,7 +1505,7 @@ NSString *const tkDateFormat_yyyyMMdd_none = @"yyyyMMdd";
 }
 
 ///修改图片的前景色
-- (UIImage *)tt_rederWithColor:(UIColor *)theColor
+- (UIImage *)tt_renderWithColor:(UIColor *)theColor
 {
     //    if (NULL != UIGraphicsBeginImageContextWithOptions)
     UIGraphicsBeginImageContextWithOptions(self.size, NO, 0.0f);
