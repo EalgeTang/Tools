@@ -521,6 +521,7 @@ static inline NSString *tkDocumentPath(){
 static inline NSString *tkCachePath(){
     return NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES).firstObject;
 }
+
 static inline NSString *tkCachePathAppend(NSString *append){
     return [tkCachePath() stringByAppendingPathComponent:append];
 }
