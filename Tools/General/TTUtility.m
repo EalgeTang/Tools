@@ -169,7 +169,7 @@
 
 +(NSString *)tt_systemVersion
 {
-    return [UIDevice currentDevice].systemName;
+    return [UIDevice currentDevice].systemVersion;
 }
 
 ///改变二维码尺寸大小
