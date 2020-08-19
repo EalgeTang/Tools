@@ -46,6 +46,7 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
     
     __weak IBOutlet TTTestView *testVi;
 }
+@property (weak, nonatomic) IBOutlet UILabel *label;
 
 @property (nonatomic, assign) StructTemp numbers;
 @property (weak, nonatomic) IBOutlet UITableView *table;
@@ -90,6 +91,10 @@ typedef struct CG_BOXABLE StructTemp StructTemp;
     v2.frame = tkRect(200, 300, 200, 200);
     v2.backgroundColor = tkRandowColor();
     [self.view addSubview:v2];
+    self.label.text = @"杨虹虹是个笨蛋蛋";
+    CGSize size = [self.label.text tt_getStringSizeWithFixedWidth:50 font:self.label.font];
+    DLog(@"size: %@",NSStringFromCGSize(size))
+    
 }
 - (IBAction)xibTapVi:(id)sender {
     DLog(@"XibTapViewClick");
